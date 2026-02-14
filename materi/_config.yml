@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Catatan Matakuliah Penambanngan Data
-author: A. Achoiril Anwar EL-Asfihani Risydan
+author: A. Choiril Anwar EL-Asfihani Risydan
 logo: foto.png
 
 # Force re-execution of notebooks on each build.
