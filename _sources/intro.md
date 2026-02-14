@@ -1,11 +1,9 @@
-# Welcome to your Jupyter Book
+# Penambangan Data
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+## 💫 About Me:
+<code> Student | Developer | Learner </code><br><hr>👋 `echo "Hello World! I'm A. Choiril Anwar EL-Asfihani Risydan || NIM : 240411100098";` <br><br> 🎓 Informatics student in Universitas Trunojoyo Madura since of 2024<br> 🛠️ Spending my days exploring **Web Dev** <br> 📚 Currently compiling knowledge and leveling up my skills step-by-step<br> ⚡ Fun fact: I turn caffeine into code.
 
-Check out the content pages bundled with this sample book to see more.
+Check out the content pages bundled with this.
 
 ```{tableofcontents}
 ```
