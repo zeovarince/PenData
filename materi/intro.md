@@ -6,7 +6,7 @@
 <code> Student | Developer | Learner </code><br><hr>👋 `echo "Hello World! I'm A. Choiril Anwar EL-Asfihani Risydan || NIM : 240411100098";` <br><br> 🎓 Informatics student in Universitas Trunojoyo Madura since of 2024<br> 🛠️ Spending my days exploring **Web Dev** <br> 📚 Currently compiling knowledge and leveling up my skills step-by-step<br> ⚡ Fun fact: I turn caffeine into code.
 
 ## 🌐 Socials:
-[![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:achoirilanwar01@gmail.com) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/riellz.java)
+[![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:achoirilanwar01@gmail.com) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/2ez4rielz)
 
 
 ## 💻 Tech Stack:
