@@ -3,8 +3,9 @@
 
 title: Catatan Matakuliah Penambanngan Data
 author: A. Choiril Anwar EL-Asfihani Risydan
-logo: foto.jpeg
 copyright: 2026
+logo: "foto.jpeg"
+description: "Catatan Matakuliah"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
