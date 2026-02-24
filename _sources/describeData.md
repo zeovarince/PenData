@@ -1,52 +1,73 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Describe Data
 
 ## Analisis Statistik Deskriptif
 
 **Describing Data** atau deskripsi data merupakan tahapan krusial dalam analisis untuk menyajikan informasi mentah menjadi sajian yang lebih terstruktur dan mudah dipahami. Proses ini bertujuan untuk merangkum karakteristik utama dari dataset melalui berbagai parameter statistik guna memberikan gambaran menyeluruh sebelum menarik kesimpulan lebih lanjut.
 
-### 1. Mean (Rata-Rata)
+### Mean (Rata-Rata)
 Nilai rata-rata hitung dari sekumpulan data.
+
 $$ \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} $$
 
-### 2. Median (Nilai Tengah)
+### Median (Nilai Tengah)
 Nilai yang membagi data menjadi dua bagian yang sama besar setelah diurutkan.
+
 * Jika $n$ ganjil: $Med = x_{(\frac{n+1}{2})}$
 * Jika $n$ genap: $Med = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2} + 1)}}{2}$
 
-### 3. Modus (Mode)
+### Modus (Mode)
 Nilai yang paling sering muncul atau memiliki frekuensi tertinggi dalam distribusi data.
 
-### 4. Ukuran Sebaran (Quartil & Rentang)
+### Ukuran Sebaran (Quartil & Rentang)
 Membagi data terurut menjadi empat bagian sama besar.
 * **Quartil ($Q_i$):** Nilai pembatas data (25%, 50%, 75%).
 * **Rentang Interquartil (IQR):** Selisih antara Quartil atas dan Quartil bawah.
+
 $$ IQR = Q_3 - Q_1 $$
 
 
 
-### 5. Variansi dan Standar Deviasi
+### Variansi dan Standar Deviasi
 Mengukur seberapa jauh sebaran titik data dari nilai rata-rata (*mean*).
 * **Variansi ($s^2$):**
+
 $$ s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n - 1} $$
+
 * **Standar Deviasi ($s$):**
+
 $$ s = \sqrt{s^2} $$
 
 
 
-### 6. Skewness (Kemencengan)
+### Skewness (Kemencengan)
 Ukuran ketidaksimetrisan sebuah distribusi. Nilai ini menunjukkan apakah data cenderung menumpuk di sisi kiri atau kanan.
+
 $$ Skewness = \frac{n}{(n-1)(n-2)} \sum \left( \frac{x_i - \bar{x}}{s} \right)^3 $$
 
 
 
 ---
 
-### Implementasi pada Data `sepal_length`
+## Implementasi pada Data `sepal_length`
 
 Berikut adalah kode Python untuk menghitung parameter statistik di atas menggunakan pustaka `pandas` dan `scipy`:
 
 ```{code-cell}
-:tags: [hide-input]
+
 import pandas as pd
 from scipy import stats
 
@@ -75,7 +96,7 @@ print("Variansi         :", "{0:.2f}".format(round(df['sepal_length'].var(), 2))
 
 ---
 
-### Output Statistik (Dataset Iris)
+## Output Statistik (Dataset Iris)
 
 Berdasarkan eksekusi kode di atas, berikut adalah ringkasan nilai statistik untuk kolom `sepal_length`:
 

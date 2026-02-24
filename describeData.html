@@ -383,16 +383,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-statistik-deskriptif">Analisis Statistik Deskriptif</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-rata-rata">1. Mean (Rata-Rata)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-nilai-tengah">2. Median (Nilai Tengah)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modus-mode">3. Modus (Mode)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-sebaran-quartil-rentang">4. Ukuran Sebaran (Quartil &amp; Rentang)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variansi-dan-standar-deviasi">5. Variansi dan Standar Deviasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan">6. Skewness (Kemencengan)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-sepal-length">Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-statistik-dataset-iris">Output Statistik (Dataset Iris)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-rata-rata">Mean (Rata-Rata)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-nilai-tengah">Median (Nilai Tengah)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modus-mode">Modus (Mode)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-sebaran-quartil-rentang">Ukuran Sebaran (Quartil &amp; Rentang)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variansi-dan-standar-deviasi">Variansi dan Standar Deviasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan">Skewness (Kemencengan)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-sepal-length">Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-statistik-dataset-iris">Output Statistik (Dataset Iris)</a></li>
 </ul>
             </nav>
         </div>
@@ -410,12 +410,13 @@ document.write(`
 <h2>Analisis Statistik Deskriptif<a class="headerlink" href="#analisis-statistik-deskriptif" title="Link to this heading">#</a></h2>
 <p><strong>Describing Data</strong> atau deskripsi data merupakan tahapan krusial dalam analisis untuk menyajikan informasi mentah menjadi sajian yang lebih terstruktur dan mudah dipahami. Proses ini bertujuan untuk merangkum karakteristik utama dari dataset melalui berbagai parameter statistik guna memberikan gambaran menyeluruh sebelum menarik kesimpulan lebih lanjut.</p>
 <section id="mean-rata-rata">
-<h3>1. Mean (Rata-Rata)<a class="headerlink" href="#mean-rata-rata" title="Link to this heading">#</a></h3>
-<p>Nilai rata-rata hitung dari sekumpulan data.
-$<span class="math notranslate nohighlight">\( \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} \)</span>$</p>
+<h3>Mean (Rata-Rata)<a class="headerlink" href="#mean-rata-rata" title="Link to this heading">#</a></h3>
+<p>Nilai rata-rata hitung dari sekumpulan data.</p>
+<div class="math notranslate nohighlight">
+\[ \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} \]</div>
 </section>
 <section id="median-nilai-tengah">
-<h3>2. Median (Nilai Tengah)<a class="headerlink" href="#median-nilai-tengah" title="Link to this heading">#</a></h3>
+<h3>Median (Nilai Tengah)<a class="headerlink" href="#median-nilai-tengah" title="Link to this heading">#</a></h3>
 <p>Nilai yang membagi data menjadi dua bagian yang sama besar setelah diurutkan.</p>
 <ul class="simple">
 <li><p>Jika <span class="math notranslate nohighlight">\(n\)</span> ganjil: <span class="math notranslate nohighlight">\(Med = x_{(\frac{n+1}{2})}\)</span></p></li>
@@ -423,41 +424,91 @@ $<span class="math notranslate nohighlight">\( \bar{x} = \frac{\sum_{i=1}^{n} x_
 </ul>
 </section>
 <section id="modus-mode">
-<h3>3. Modus (Mode)<a class="headerlink" href="#modus-mode" title="Link to this heading">#</a></h3>
+<h3>Modus (Mode)<a class="headerlink" href="#modus-mode" title="Link to this heading">#</a></h3>
 <p>Nilai yang paling sering muncul atau memiliki frekuensi tertinggi dalam distribusi data.</p>
 </section>
 <section id="ukuran-sebaran-quartil-rentang">
-<h3>4. Ukuran Sebaran (Quartil &amp; Rentang)<a class="headerlink" href="#ukuran-sebaran-quartil-rentang" title="Link to this heading">#</a></h3>
+<h3>Ukuran Sebaran (Quartil &amp; Rentang)<a class="headerlink" href="#ukuran-sebaran-quartil-rentang" title="Link to this heading">#</a></h3>
 <p>Membagi data terurut menjadi empat bagian sama besar.</p>
 <ul class="simple">
 <li><p><strong>Quartil (<span class="math notranslate nohighlight">\(Q_i\)</span>):</strong> Nilai pembatas data (25%, 50%, 75%).</p></li>
-<li><p><strong>Rentang Interquartil (IQR):</strong> Selisih antara Quartil atas dan Quartil bawah.
-$<span class="math notranslate nohighlight">\( IQR = Q_3 - Q_1 \)</span>$</p></li>
+<li><p><strong>Rentang Interquartil (IQR):</strong> Selisih antara Quartil atas dan Quartil bawah.</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[ IQR = Q_3 - Q_1 \]</div>
 </section>
 <section id="variansi-dan-standar-deviasi">
-<h3>5. Variansi dan Standar Deviasi<a class="headerlink" href="#variansi-dan-standar-deviasi" title="Link to this heading">#</a></h3>
+<h3>Variansi dan Standar Deviasi<a class="headerlink" href="#variansi-dan-standar-deviasi" title="Link to this heading">#</a></h3>
 <p>Mengukur seberapa jauh sebaran titik data dari nilai rata-rata (<em>mean</em>).</p>
 <ul class="simple">
-<li><p><strong>Variansi (<span class="math notranslate nohighlight">\(s^2\)</span>):</strong>
-$<span class="math notranslate nohighlight">\( s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n - 1} \)</span>$</p></li>
-<li><p><strong>Standar Deviasi (<span class="math notranslate nohighlight">\(s\)</span>):</strong>
-$<span class="math notranslate nohighlight">\( s = \sqrt{s^2} \)</span>$</p></li>
+<li><p><strong>Variansi (<span class="math notranslate nohighlight">\(s^2\)</span>):</strong></p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[ s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n - 1} \]</div>
+<ul class="simple">
+<li><p><strong>Standar Deviasi (<span class="math notranslate nohighlight">\(s\)</span>):</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ s = \sqrt{s^2} \]</div>
 </section>
 <section id="skewness-kemencengan">
-<h3>6. Skewness (Kemencengan)<a class="headerlink" href="#skewness-kemencengan" title="Link to this heading">#</a></h3>
-<p>Ukuran ketidaksimetrisan sebuah distribusi. Nilai ini menunjukkan apakah data cenderung menumpuk di sisi kiri atau kanan.
-$<span class="math notranslate nohighlight">\( Skewness = \frac{n}{(n-1)(n-2)} \sum \left( \frac{x_i - \bar{x}}{s} \right)^3 \)</span>$</p>
+<h3>Skewness (Kemencengan)<a class="headerlink" href="#skewness-kemencengan" title="Link to this heading">#</a></h3>
+<p>Ukuran ketidaksimetrisan sebuah distribusi. Nilai ini menunjukkan apakah data cenderung menumpuk di sisi kiri atau kanan.</p>
+<div class="math notranslate nohighlight">
+\[ Skewness = \frac{n}{(n-1)(n-2)} \sum \left( \frac{x_i - \bar{x}}{s} \right)^3 \]</div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="implementasi-pada-data-sepal-length">
-<h3>Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code><a class="headerlink" href="#implementasi-pada-data-sepal-length" title="Link to this heading">#</a></h3>
+<h2>Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code><a class="headerlink" href="#implementasi-pada-data-sepal-length" title="Link to this heading">#</a></h2>
 <p>Berikut adalah kode Python untuk menghitung parameter statistik di atas menggunakan pustaka <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dan <code class="docutils literal notranslate"><span class="pre">scipy</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Memuat dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;IRIS.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perhitungan statistik khusus fitur sepal_length</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- STATISTIK SEPAL LENGTH ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data      :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rata-rata        :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nilai minimal    :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q1 (25%)         :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q2 (Median)      :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q3 (75%)         :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nilai Maksimal   :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="c1"># Menghitung Modus menggunakan scipy</span>
+<span class="n">mode_res</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">],</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nilai Modus      : </span><span class="si">{</span><span class="n">mode_res</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Muncul </span><span class="si">{</span><span class="n">mode_res</span><span class="o">.</span><span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> kali)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Variansi, Standar Deviasi, dan Skewness</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kemencengan      :&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{0:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span> <span class="mi">6</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standar Deviasi  :&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variansi         :&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Memuat dataset</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;IRIS.csv&quot;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <hr class="docutils" />
 <section id="output-statistik-dataset-iris">
-<h3>Output Statistik (Dataset Iris)<a class="headerlink" href="#output-statistik-dataset-iris" title="Link to this heading">#</a></h3>
+<h2>Output Statistik (Dataset Iris)<a class="headerlink" href="#output-statistik-dataset-iris" title="Link to this heading">#</a></h2>
 <p>Berdasarkan eksekusi kode di atas, berikut adalah ringkasan nilai statistik untuk kolom <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code>:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -503,7 +554,6 @@ $<span class="math notranslate nohighlight">\( Skewness = \frac{n}{(n-1)(n-2)} \
 </table>
 </div>
 <hr class="docutils" />
-</section>
 </section>
 </section>
 
@@ -563,16 +613,16 @@ $<span class="math notranslate nohighlight">\( Skewness = \frac{n}{(n-1)(n-2)} \
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-statistik-deskriptif">Analisis Statistik Deskriptif</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-rata-rata">1. Mean (Rata-Rata)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-nilai-tengah">2. Median (Nilai Tengah)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modus-mode">3. Modus (Mode)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-sebaran-quartil-rentang">4. Ukuran Sebaran (Quartil &amp; Rentang)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variansi-dan-standar-deviasi">5. Variansi dan Standar Deviasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan">6. Skewness (Kemencengan)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-sepal-length">Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-statistik-dataset-iris">Output Statistik (Dataset Iris)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-rata-rata">Mean (Rata-Rata)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-nilai-tengah">Median (Nilai Tengah)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modus-mode">Modus (Mode)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-sebaran-quartil-rentang">Ukuran Sebaran (Quartil &amp; Rentang)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variansi-dan-standar-deviasi">Variansi dan Standar Deviasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan">Skewness (Kemencengan)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-sepal-length">Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-statistik-dataset-iris">Output Statistik (Dataset Iris)</a></li>
 </ul>
   </nav></div>
 
