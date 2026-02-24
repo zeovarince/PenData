@@ -8,3 +8,5 @@ chapters:
 - file: MemahamiData
   sections:
   - file: eksplorData
+  - file: describeData
+  - file: visualisasi
