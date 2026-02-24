@@ -5,3 +5,6 @@ format: jb-book
 root: intro
 chapters:
 - file: Pengantar
+- file: MemahamiData
+  sections:
+  - file: eksplorData
