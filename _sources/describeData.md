@@ -26,8 +26,13 @@ $$ \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} $$
 ### Median (Nilai Tengah)
 Nilai yang membagi data menjadi dua bagian yang sama besar setelah diurutkan.
 
-* Jika $n$ ganjil: $Med = x_{(\frac{n+1}{2})}$
-* Jika $n$ genap: $Med = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2} + 1)}}{2}$
+* Jika $n$ ganjil: 
+
+$$Med = x_{(\frac{n+1}{2})}$$
+
+* Jika $n$ genap: 
+
+$$Med = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2} + 1)}}{2}$$
 
 ### Modus (Mode)
 Nilai yang paling sering muncul atau memiliki frekuensi tertinggi dalam distribusi data.
@@ -67,6 +72,14 @@ $$ Skewness = \frac{n}{(n-1)(n-2)} \sum \left( \frac{x_i - \bar{x}}{s} \right)^3
 Berikut adalah kode Python untuk menghitung parameter statistik di atas menggunakan pustaka `pandas` dan `scipy`:
 
 ```{code-cell}
+---
+tags: [remove-output]
+---
+%pip install pandas seaborn matplotlib scipy
+```
+
+
+```{code-cell}
 
 import pandas as pd
 from scipy import stats
@@ -96,6 +109,10 @@ print("Variansi         :", "{0:.2f}".format(round(df['sepal_length'].var(), 2))
 
 ---
 
+![ColumnStatisticsOrange](img/stt.png)
+
+---
+
 ## Output Statistik (Dataset Iris)
 
 Berdasarkan eksekusi kode di atas, berikut adalah ringkasan nilai statistik untuk kolom `sepal_length`:
@@ -110,5 +127,3 @@ Berdasarkan eksekusi kode di atas, berikut adalah ringkasan nilai statistik untu
 | **Q3 (75%)** | 6.40 | 75% data memiliki nilai di bawah 6.4. |
 | **Standar Deviasi** | 0.83 | Sebaran data cukup rapat di sekitar rata-rata. |
 | **Skewness** | 0.314911 | Menceng positif ringan (data cenderung simetris). |
-
----

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Memahami Data &#8212; Catatan Matakuliah Penambanngan Data</title>
+    <title>Visualisasi Data IRIS &#8212; Catatan Matakuliah Penambanngan Data</title>
   
   
   
@@ -57,13 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'MemahamiData';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'visualisasi';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Eksplorasi Data IRIS" href="eksplorData.html" />
-    <link rel="prev" title="Pengantar Penambangan Data" href="Pengantar.html" />
+    <link rel="prev" title="Describe Data" href="describeData.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,10 +180,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Memahami Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="eksplorData.html">Eksplorasi Data IRIS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Visualisasi Data IRIS</a></li>
 </ul>
 </details></li>
 </ul>
@@ -260,7 +257,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMemahamiData.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fvisualisasi.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -290,7 +287,7 @@
       
       
       
-      <li><a href="_sources/MemahamiData.md" target="_blank"
+      <li><a href="_sources/visualisasi.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -374,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Memahami Data</h1>
+    <h1>Visualisasi Data IRIS</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,16 +381,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pentingnya-memahami-data">Pentingnya memahami data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-jenis-data-dalam-data-mining">Klasifikasi Jenis Data dalam Data Mining</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-perbedaan-ini-penting">Mengapa Perbedaan Ini Penting?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-utama-memahami-data">Komponen Utama Memahami Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-data">Atribut Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-fitur-feature-selection">Seleksi Fitur (Feature Selection)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-perlu-seleksi-fitur">Mengapa perlu Seleksi Fitur?</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">Histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">Scatter Plot</a></li>
 </ul>
             </nav>
         </div>
@@ -405,154 +394,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="memahami-data">
-<h1>Memahami Data<a class="headerlink" href="#memahami-data" title="Link to this heading">#</a></h1>
-<section id="data-understanding">
-<h2>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="visualisasi-data-iris">
+<h1>Visualisasi Data IRIS<a class="headerlink" href="#visualisasi-data-iris" title="Link to this heading">#</a></h1>
+<p>Visualisasi data merupakan proses mengonversi informasi mentah menjadi representasi grafis, seperti diagram, plot, atau gambar, dengan tujuan utama menyederhanakan kompleksitas data. Melalui visualisasi, kita dapat mendeteksi pola, tren, hingga korelasi antar variabel secara instan yang mungkin sulit ditemukan jika hanya mengamati barisan angka dalam tabel statistik.Dalam eksplorasi dataset Iris kali ini, proses visualisasi dilakukan menggunakan Orange Data Mining. Orange adalah perangkat lunak berbasis visual programming yang memungkinkan pengguna melakukan analisis data secara interaktif tanpa harus menulis baris kode (coding). Kita cukup menghubungkan berbagai widget untuk menghasilkan visualisasi yang mendalam dan dinamis.</p>
+<section id="histogram">
+<h2>Histogram<a class="headerlink" href="#histogram" title="Link to this heading">#</a></h2>
+<p>Histogram digunakan untuk melihat persebaran frekuensi nilai pada fitur sepal_length yang dikelompokkan berdasarkan spesies.</p>
+<p><img alt="visualHistogram" src="_images/visualH.png" /></p>
 <ul class="simple">
-<li><p>Mengumpulkan data awal dan dilanjutkan dengan kegiatan untuk mendapat data yang lazim serta,</p></li>
-<li><p>Identifikasi data yang berkualitas</p></li>
-<li><p>Pemahaman data sangat diperlukan untuk mendeteksi bagian yang menarik dari data sehingga dapat membangun hipotesa terhadap informasi yang tersembunyi</p></li>
+<li><p>Iris-setosa (Biru): Memiliki distribusi yang cenderung terkumpul di area nilai rendah, dengan puncak frekuensi pada kisaran 5.0 cm. Ini menunjukkan Setosa memiliki kelopak yang paling pendek.</p></li>
+<li><p>Iris-versicolor (Merah): Berada di rentang menengah, dengan puncak distribusi di sekitar 5.6 cm hingga 5.9 cm.</p></li>
+<li><p>Iris-virginica (Hijau): Memiliki sebaran yang paling luas dan menempati area nilai tertinggi, dengan puncak frekuensi di atas 6.3 cm.</p></li>
+<li><p>Analisis: Terdapat tumpang tindih (overlap) yang signifikan antara Versicolor dan Virginica, yang menandakan bahwa fitur sepal_length saja tidak cukup kuat untuk memisahkan kedua spesies ini secara sempurna.</p></li>
 </ul>
 </section>
-<section id="pentingnya-memahami-data">
-<h2>Pentingnya memahami data<a class="headerlink" href="#pentingnya-memahami-data" title="Link to this heading">#</a></h2>
+<section id="scatter-plot">
+<h2>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h2>
+<p>Scatter plot memetakan hubungan antara sepal_length (sumbu X) dan sepal_width (sumbu Y) untuk melihat pola pengelompokan spesies.</p>
+<p><img alt="visualScatterPlot" src="_images/visualSP.png" /></p>
 <ul class="simple">
-<li><p>Membantu memilih teknik data mining yang tepat</p></li>
-<li><p>Meningkat akurasi model prediksi</p></li>
-<li><p>Menghindari kesalahan interpretasi</p></li>
-<li><p>Memastikan hasil yang dapat diandalkan dan dapat ditindaklanjuti</p></li>
+<li><p>Pemisahan Kelompok: Spesies Iris-setosa membentuk kelompok (cluster) yang terpisah jauh dari dua spesies lainnya. Hal ini menunjukkan karakteristik kelopak Setosa yang pendek namun cenderung lebar.</p></li>
+<li><p>Identifikasi Outlier: Titik-titik data yang berada jauh di luar kelompok utamanya dapat diidentifikasi secara visual sebagai outlier atau pencilan yang perlu diperhatikan dalam analisis lebih lanjut.</p></li>
 </ul>
 </section>
-<section id="klasifikasi-jenis-data-dalam-data-mining">
-<h2>Klasifikasi Jenis Data dalam Data Mining<a class="headerlink" href="#klasifikasi-jenis-data-dalam-data-mining" title="Link to this heading">#</a></h2>
-<p>Dalam ekosistem <em>Big Data</em>, kita akan berhadapan dengan berbagai format data. Memahami jenis data ini sangat penting karena setiap jenis memerlukan algoritma dan alat (<em>tools</em>) yang berbeda untuk diolah.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>Jenis Data</p></th>
-<th class="head text-left"><p>Karakteristik Utama</p></th>
-<th class="head text-left"><p>Format/Contoh File</p></th>
-<th class="head text-left"><p>Contoh Nyata</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Terstruktur (<em>Structured</em>)</strong></p></td>
-<td class="text-left"><p>Memiliki skema tetap, rapi dalam baris dan kolom. Sangat mudah dicari dan diolah.</p></td>
-<td class="text-left"><p>SQL, Excel, CSV</p></td>
-<td class="text-left"><p>Data transaksi bank, tabel induk mahasiswa.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Tidak Terstruktur (<em>Unstructured</em>)</strong></p></td>
-<td class="text-left"><p>Tidak memiliki format atau struktur internal yang tetap.</p></td>
-<td class="text-left"><p>File mentah</p></td>
-<td class="text-left"><p>Kumpulan file acak, dokumen PDF tanpa format baku.</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><strong>Bahasa Alami (<em>Natural Language</em>)</strong></p></td>
-<td class="text-left"><p>Data berbentuk teks komunikasi manusia. Membutuhkan teknik NLP.</p></td>
-<td class="text-left"><p>Dokumen Teks, Chat</p></td>
-<td class="text-left"><p>Tweet di X, ulasan produk, isi email.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Dibangkitkan Mesin (<em>Machine-Generated</em>)</strong></p></td>
-<td class="text-left"><p>Data otomatis hasil sensor atau log perangkat tanpa input manual manusia.</p></td>
-<td class="text-left"><p>Log files, JSON</p></td>
-<td class="text-left"><p>Log server, riwayat pencarian web, sensor suhu.</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><strong>Multimedia (Audio, Video, Citra)</strong></p></td>
-<td class="text-left"><p>Data berupa sinyal suara, piksel gambar, atau urutan bingkai video.</p></td>
-<td class="text-left"><p>JPG, MP3, MP4</p></td>
-<td class="text-left"><p>Foto rontgen, rekaman CCTV, <em>face recognition</em>.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Streaming</strong></p></td>
-<td class="text-left"><p>Data yang masuk secara terus-menerus dan <em>real-time</em> dalam volume besar.</p></td>
-<td class="text-left"><p>Data Aliran (<em>Streams</em>)</p></td>
-<td class="text-left"><p>Data bursa saham, navigasi GPS, data <em>smartwatch</em>.</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><strong>Berbasis Graf (<em>Graph-based</em>)</strong></p></td>
-<td class="text-left"><p>Menitikberatkan pada hubungan atau koneksi antar entitas (simpul &amp; sisi).</p></td>
-<td class="text-left"><p>Graph Database</p></td>
-<td class="text-left"><p>Jaringan pertemanan Facebook, rute penerbangan.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="mengapa-perbedaan-ini-penting">
-<h2>Mengapa Perbedaan Ini Penting?<a class="headerlink" href="#mengapa-perbedaan-ini-penting" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Penyimpanan:</strong> Data terstruktur disimpan di <em>Database Relasional</em> (MySQL), sedangkan data tidak terstruktur biasanya di <em>Data Lake</em> (Hadoop/NoSQL).</p></li>
-<li><p><strong>Analisis:</strong> Data citra (gambar) membutuhkan <em>Deep Learning</em> (CNN), sedangkan data terstruktur bisa diolah dengan algoritma statistik sederhana.</p></li>
-<li><p><strong>Persiapan:</strong> Data teks (<em>Natural Language</em>) membutuhkan tahap <em>Cleaning</em> khusus seperti penghapusan kata sambung (<em>stopword removal</em>) sebelum bisa diproses.</p></li>
-</ul>
-</section>
-<section id="komponen-utama-memahami-data">
-<h2>Komponen Utama Memahami Data<a class="headerlink" href="#komponen-utama-memahami-data" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Komponen</p></th>
-<th class="head"><p>Penjelasan</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Pengumpulan Data Awal</p></td>
-<td><p>Mengidentifikasi dan mengumpulkan semua sumber data yang relevan (database, CSV, API, dll.)</p></td>
-</tr>
-<tr class="row-odd"><td><p>Deskripsi Data</p></td>
-<td><p>Memahami struktur data: jumlahbaris/kolom, jenis variabel (numerik,kategorikal), nama atribut, contoh data.</p></td>
-</tr>
-<tr class="row-even"><td><p>Eksploraasi Data (Exploratory Data Analysis/ EDA)</p></td>
-<td><p>Mencari pola, tren, korelasi, atau anomali menggunakan statistik deskriptif dan visualisasi(Grafik, Histogram, Scatter plot.)</p></td>
-</tr>
-<tr class="row-odd"><td><p>Kualitas</p></td>
-<td><p>Memeriksa kelengkapan, keakuratan, dan konsistensi data. Meliputi pengecekan data hilang (missing value), data duplikat, outlier atau nilai tidak wajar, kesalahan format data, inkonsistensi penulisan, serta kesesuaian tipe data dengan atribut yang digunakan.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="atribut-data">
-<h2>Atribut Data<a class="headerlink" href="#atribut-data" title="Link to this heading">#</a></h2>
-<p>Memahami tipe atribut adalah kunci untuk menentukan metode statistik atau algoritma yang akan digunakan. Berikut adalah klasifikasi atribut berdasarkan skala pengukurannya:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>Jenis Atribut</p></th>
-<th class="head text-left"><p>Karakteristik</p></th>
-<th class="head text-left"><p>Contoh</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Nominal (Kategorikal)</strong></p></td>
-<td class="text-left"><p>Hanya sebagai label/nama, tidak memiliki urutan atau nilai numerik.</p></td>
-<td class="text-left"><p>Jenis kelamin, warna, ID karyawan, nama kota.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Biner (<em>Binary</em>)</strong></p></td>
-<td class="text-left"><p>Kasus khusus nominal yang hanya memiliki dua kemungkinan nilai (0 atau 1).</p></td>
-<td class="text-left"><p>Ya/Tidak, Lulus/Gagal, Positif/Negatif.</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><strong>Ordinal</strong></p></td>
-<td class="text-left"><p>Memiliki urutan atau tingkatan yang bermakna, namun jarak antar nilai tidak tetap.</p></td>
-<td class="text-left"><p>Tingkat pendidikan (SD, SMP, SMA), tingkat kepuasan pelanggan.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Numerik (<em>Quantitative</em>)</strong></p></td>
-<td class="text-left"><p>Berbentuk angka yang dapat dioperasikan secara matematis.</p></td>
-<td class="text-left"><p>Berat badan, suhu, pendapatan, jumlah stok barang.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="seleksi-fitur-feature-selection">
-<h2>Seleksi Fitur (Feature Selection)<a class="headerlink" href="#seleksi-fitur-feature-selection" title="Link to this heading">#</a></h2>
-<p>Seleksi fitur adalah proses memilih subset atribut yang paling relevan untuk digunakan dalam pembangunan model.</p>
-<section id="mengapa-perlu-seleksi-fitur">
-<h3>Mengapa perlu Seleksi Fitur?<a class="headerlink" href="#mengapa-perlu-seleksi-fitur" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Reduksi Dimensi:</strong> Mengurangi jumlah kolom yang tidak perlu.</p></li>
-<li><p><strong>Menghilangkan Noise:</strong> Membuang data yang tidak memiliki hubungan dengan target prediksi.</p></li>
-<li><p><strong>Efisiensi:</strong> Mempercepat proses komputasi.</p></li>
-</ul>
-</section>
-</section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -586,22 +450,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Pengantar.html"
+       href="describeData.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Pengantar Penambangan Data</p>
+        <p class="prev-next-title">Describe Data</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="eksplorData.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Eksplorasi Data IRIS</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -619,16 +474,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pentingnya-memahami-data">Pentingnya memahami data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-jenis-data-dalam-data-mining">Klasifikasi Jenis Data dalam Data Mining</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-perbedaan-ini-penting">Mengapa Perbedaan Ini Penting?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-utama-memahami-data">Komponen Utama Memahami Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-data">Atribut Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-fitur-feature-selection">Seleksi Fitur (Feature Selection)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-perlu-seleksi-fitur">Mengapa perlu Seleksi Fitur?</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">Histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">Scatter Plot</a></li>
 </ul>
   </nav></div>
 

@@ -419,9 +419,15 @@ document.write(`
 <h3>Median (Nilai Tengah)<a class="headerlink" href="#median-nilai-tengah" title="Link to this heading">#</a></h3>
 <p>Nilai yang membagi data menjadi dua bagian yang sama besar setelah diurutkan.</p>
 <ul class="simple">
-<li><p>Jika <span class="math notranslate nohighlight">\(n\)</span> ganjil: <span class="math notranslate nohighlight">\(Med = x_{(\frac{n+1}{2})}\)</span></p></li>
-<li><p>Jika <span class="math notranslate nohighlight">\(n\)</span> genap: <span class="math notranslate nohighlight">\(Med = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2} + 1)}}{2}\)</span></p></li>
+<li><p>Jika <span class="math notranslate nohighlight">\(n\)</span> ganjil:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[Med = x_{(\frac{n+1}{2})}\]</div>
+<ul class="simple">
+<li><p>Jika <span class="math notranslate nohighlight">\(n\)</span> genap:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Med = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2} + 1)}}{2}\]</div>
 </section>
 <section id="modus-mode">
 <h3>Modus (Mode)<a class="headerlink" href="#modus-mode" title="Link to this heading">#</a></h3>
@@ -462,6 +468,13 @@ document.write(`
 <section id="implementasi-pada-data-sepal-length">
 <h2>Implementasi pada Data <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code><a class="headerlink" href="#implementasi-pada-data-sepal-length" title="Link to this heading">#</a></h2>
 <p>Berikut adalah kode Python untuk menghitung parameter statistik di atas menggunakan pustaka <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dan <code class="docutils literal notranslate"><span class="pre">scipy</span></code>:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install pandas seaborn matplotlib scipy
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -492,19 +505,24 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Memuat dataset</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;IRIS.csv&quot;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- STATISTIK SEPAL LENGTH ---
+Jumlah data      : 150
+Rata-rata        : 5.843333333333334
+Nilai minimal    : 4.3
+Q1 (25%)         : 5.1
+Q2 (Median)      : 5.8
+Q3 (75%)         : 6.4
+Nilai Maksimal   : 7.9
+Nilai Modus      : 5.0 (Muncul 10 kali)
+Kemencengan      : 0.314911
+Standar Deviasi  : 0.83
+Variansi         : 0.69
 </pre></div>
 </div>
 </div>
 </div>
+<hr class="docutils" />
+<p><img alt="ColumnStatisticsOrange" src="_images/stt.png" /></p>
 </section>
 <hr class="docutils" />
 <section id="output-statistik-dataset-iris">
@@ -553,7 +571,6 @@ document.write(`
 </tbody>
 </table>
 </div>
-<hr class="docutils" />
 </section>
 </section>
 
