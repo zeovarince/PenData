@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'eksplorData';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Describe Data" href="describeData.html" />
     <link rel="prev" title="Memahami Data" href="MemahamiData.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,6 +183,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Eksplorasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MengukurJarak.html">Mengukur Jarak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UkurJarak.html">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -385,6 +390,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-tipe-data">Struktur dan Tipe Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-data-duplikat">Pengecekan Data Duplikat</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-missing-value-data-kosong">Pengecekan Missing Value (Data Kosong)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-pencilan-data">Deteksi Outlier (Pencilan Data)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-statistik">Ringkasan Statistik</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-eksplorasi-data">Kesimpulan Eksplorasi Data</a></li>
 </ul>
@@ -645,6 +651,18 @@ dtype: int64
 </div>
 <p>Analisis: Jika hasilnya 0 untuk semua kolom, berarti dataset IRIS ini sangat bersih dan tidak memerlukan tahap pengisian data kosong (imputation).</p>
 </section>
+<section id="deteksi-outlier-pencilan-data">
+<h2>Deteksi Outlier (Pencilan Data)<a class="headerlink" href="#deteksi-outlier-pencilan-data" title="Link to this heading">#</a></h2>
+<p>Untuk mendeteksi outlier kita menggunakan tools orange data mining, dengan langkah sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p>Buka Orange Data Mining.</p></li>
+<li><p>Pilih widget “File” untuk memuat dataset IRIS.csv.</p></li>
+<li><p>Sambungkan widget “File” ke widget “Outliers”.</p></li>
+<li><p>Lalu berikan 2 data table untuk melihat data yang dianggap outlier dan inlears.</p></li>
+</ol>
+<p><img alt="" src="img/outlier.png" /></p>
+<p>Diatas adalah hasil dari deteksi outlier dengan menggunakan Orange data mining, dimana terdapat 15 data yang dianggap sebagai outlier, dan 135 data yang dianggap inlears. Namun, untuk dataset IRIS ini, kita tidak akan menghapus data outlier karena jumlahnya relatif kecil dan dapat memberikan informasi penting tentang variasi dalam data.</p>
+</section>
 <section id="ringkasan-statistik">
 <h2>Ringkasan Statistik<a class="headerlink" href="#ringkasan-statistik" title="Link to this heading">#</a></h2>
 <p>Untuk memahami sebaran angka pada setiap fitur numerik, berikut adalah ringkasan statistik deskriptif dari dataset tersebut:</p>
@@ -811,6 +829,15 @@ dtype: int64
         <p class="prev-next-title">Memahami Data</p>
       </div>
     </a>
+    <a class="right-next"
+       href="describeData.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Describe Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -833,6 +860,7 @@ dtype: int64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dan-tipe-data">Struktur dan Tipe Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-data-duplikat">Pengecekan Data Duplikat</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-missing-value-data-kosong">Pengecekan Missing Value (Data Kosong)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-pencilan-data">Deteksi Outlier (Pencilan Data)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-statistik">Ringkasan Statistik</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-eksplorasi-data">Kesimpulan Eksplorasi Data</a></li>
 </ul>

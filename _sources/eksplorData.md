@@ -83,6 +83,19 @@ df.isnull().sum()
 
 Analisis: Jika hasilnya 0 untuk semua kolom, berarti dataset IRIS ini sangat bersih dan tidak memerlukan tahap pengisian data kosong (imputation).
 
+
+## Deteksi Outlier (Pencilan Data)
+
+Untuk mendeteksi outlier kita menggunakan tools orange data mining, dengan langkah sebagai berikut:
+1. Buka Orange Data Mining.
+2. Pilih widget "File" untuk memuat dataset IRIS.csv.
+3. Sambungkan widget "File" ke widget "Outliers".
+4. Lalu berikan 2 data table untuk melihat data yang dianggap outlier dan inlears.
+
+![](img/outlier.png)
+
+Diatas adalah hasil dari deteksi outlier dengan menggunakan Orange data mining, dimana terdapat 15 data yang dianggap sebagai outlier, dan 135 data yang dianggap inlears. Namun, untuk dataset IRIS ini, kita tidak akan menghapus data outlier karena jumlahnya relatif kecil dan dapat memberikan informasi penting tentang variasi dalam data.
+
 ## Ringkasan Statistik
 
 Untuk memahami sebaran angka pada setiap fitur numerik, berikut adalah ringkasan statistik deskriptif dari dataset tersebut:

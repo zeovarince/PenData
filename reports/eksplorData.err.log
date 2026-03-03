@@ -15,23 +15,42 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-%pip install pandas seaborn matplotlib
-```
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=df.drop(columns=['species']))
+plt.title("Boxplot Fitur Numerik Dataset IRIS")
+plt.show()
+
+# Menghitung IQR untuk kolom sepal_width
+Q1 = df['sepal_width'].quantile(0.25)
+Q3 = df['sepal_width'].quantile(0.75)
+IQR = Q3 - Q1
+
+# Menentukan batas atas dan batas bawah
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+# Memfilter data outlier
+outliers = df[(df['sepal_width'] < lower_bound) | (df['sepal_width'] > upper_bound)]
+print(f"Jumlah outlier pada sepal_width: {len(outliers)}")
+outliers
+
+## Ringkasan Statistik
+
+Untuk memahami sebaran angka pada setiap fitur numerik, berikut adalah ringkasan statistik deskriptif dari dataset tersebut:
 
 ```{code-cell}
 :tags: [hide-input]
-import pandas as pd
-
-df = pd.read_csv("IRIS.csv")
-df.index = df.index + 1
-df.head(150)
-```
+# Menampilkan ringkasan statistik (Mean, Std Dev, Min, Max, dll)
+df.describe()
 ------------------
 
 
-[1;36m  Cell [1;32mIn[1], line 2[1;36m[0m
-[1;33m    ```[0m
-[1;37m    ^[0m
+[1;36m  Cell [1;32mIn[7], line 25[1;36m[0m
+[1;33m    Untuk memahami sebaran angka pada setiap fitur numerik, berikut adalah ringkasan statistik deskriptif dari dataset tersebut:[0m
+[1;37m          ^[0m
 [1;31mSyntaxError[0m[1;31m:[0m invalid syntax
 
 
