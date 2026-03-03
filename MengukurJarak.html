@@ -1,0 +1,881 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mengukur Jarak &#8212; Catatan Matakuliah Penambanngan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MengukurJarak';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Visualisasi Data IRIS" href="visualisasi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Catatan Matakuliah Penambanngan Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpeg" class="logo__image only-dark" alt="Catatan Matakuliah Penambanngan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Matakuliah Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eksplorData.html">Eksplorasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mengukur Jarak</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMengukurJarak.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/MengukurJarak.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mengukur Jarak</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-vs-dissimilarity">Similarity vs Dissimilarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengukuran-jarak-berdasarkan-tipe-atribut">Pengukuran Jarak Berdasarkan Tipe Atribut</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik-minkowski-distance">Atribut Numerik (Minkowski Distance)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manhattan-distance-h-1">1. Manhattan Distance (<span class="math notranslate nohighlight">\(h=1\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-manhattan">Dissimilarity Matrix (Manhattan)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance-h-2">2. Euclidean Distance (<span class="math notranslate nohighlight">\(h=2\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-euclidean">Dissimilarity Matrix (Euclidean)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minkowski-distance-h-3">3. Minkowski Distance (<span class="math notranslate nohighlight">\(h=3\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-minkowski-h-3">Dissimilarity Matrix (Minkowski, <span class="math notranslate nohighlight">\(h=3\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supremum-distance-h-to-infty">4. Supremum Distance (<span class="math notranslate nohighlight">\(h \to \infty\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-supremum">Dissimilarity Matrix (Supremum)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-biner-binary">Atribut Biner (Binary)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-perhitungan-jarak-dengan-python">Implementasi Perhitungan Jarak dengan Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-ordinal">Atribut Ordinal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-campuran-mixed-types">Atribut Campuran (Mixed Types)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mengukur-jarak">
+<h1>Mengukur Jarak<a class="headerlink" href="#mengukur-jarak" title="Link to this heading">#</a></h1>
+<section id="similarity-vs-dissimilarity">
+<h2>Similarity vs Dissimilarity<a class="headerlink" href="#similarity-vs-dissimilarity" title="Link to this heading">#</a></h2>
+<p>Dalam data mining, kita perlu mengukur kedekatan antar objek data:</p>
+<ul class="simple">
+<li><p><strong>Similarity (Kemiripan):</strong> Ukuran numerik yang menunjukkan seberapa serupa dua objek. Semakin tinggi nilainya, semakin mirip objek tersebut (Range <span class="math notranslate nohighlight">\([0,1]\)</span>).</p></li>
+<li><p><strong>Dissimilarity (Ketidakmiripan):</strong> Ukuran numerik yang menunjukkan perbedaan antar objek. Semakin rendah nilainya, semakin mirip objek tersebut (Minimum <span class="math notranslate nohighlight">\(0\)</span>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pengukuran-jarak-berdasarkan-tipe-atribut">
+<h2>Pengukuran Jarak Berdasarkan Tipe Atribut<a class="headerlink" href="#pengukuran-jarak-berdasarkan-tipe-atribut" title="Link to this heading">#</a></h2>
+<section id="atribut-numerik-minkowski-distance">
+<h3>Atribut Numerik (Minkowski Distance)<a class="headerlink" href="#atribut-numerik-minkowski-distance" title="Link to this heading">#</a></h3>
+<p>Formula umum untuk menghitung jarak pada data numerik:</p>
+<div class="math notranslate nohighlight">
+\[
+d(i, j) = \sqrt[h]{\sum_{f=1}^{p} |x_{if} - x_{jf}|^h}
+\]</div>
+<p>Beberapa kasus khusus dari Minkowski Distance adalah sebagai berikut.</p>
+<p>Dataset contoh (dua data pertama Iris):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1 = (5.1, 3.5, 1.4, 0.2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_2 = (4.9, 3.0, 1.4, 0.2)\)</span></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="manhattan-distance-h-1">
+<h3>1. Manhattan Distance (<span class="math notranslate nohighlight">\(h=1\)</span>)<a class="headerlink" href="#manhattan-distance-h-1" title="Link to this heading">#</a></h3>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+d(i,j) = \sum_{f=1}^{p} |x_{if} - x_{jf}|
+\]</div>
+<p>Perhitungan:</p>
+<div class="math notranslate nohighlight">
+\[
+|5.1 - 4.9| = 0.2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|3.5 - 3.0| = 0.5
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|1.4 - 1.4| = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|0.2 - 0.2| = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+d = 0.2 + 0.5 + 0 + 0 = \mathbf{0.7}
+\]</div>
+<section id="dissimilarity-matrix-manhattan">
+<h4>Dissimilarity Matrix (Manhattan)<a class="headerlink" href="#dissimilarity-matrix-manhattan" title="Link to this heading">#</a></h4>
+<p>Karena hanya ada dua objek, maka matriks ketidakmiripan berbentuk:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D =
+\begin{bmatrix}
+0 &amp; 0.7 \\
+0.7 &amp; 0
+\end{bmatrix}
+\end{split}\]</div>
+<p><img alt="manhattan" src="_images/DMatriksManhattan.png" /></p>
+<p><strong>Penjelasan:</strong></p>
+<ul class="simple">
+<li><p>Elemen diagonal bernilai 0 karena jarak suatu objek dengan dirinya sendiri adalah 0.</p></li>
+<li><p>Matriks bersifat simetris (<span class="math notranslate nohighlight">\(d(i,j) = d(j,i)\)</span>).</p></li>
+<li><p>Nilai 0.7 menunjukkan tingkat ketidakmiripan antara <span class="math notranslate nohighlight">\(x_1\)</span> dan <span class="math notranslate nohighlight">\(x_2\)</span> berdasarkan Manhattan Distance.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="euclidean-distance-h-2">
+<h3>2. Euclidean Distance (<span class="math notranslate nohighlight">\(h=2\)</span>)<a class="headerlink" href="#euclidean-distance-h-2" title="Link to this heading">#</a></h3>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+d(i,j) = \sqrt{\sum_{f=1}^{p} (x_{if} - x_{jf})^2}
+\]</div>
+<p>Perhitungan:</p>
+<div class="math notranslate nohighlight">
+\[
+(0.2)^2 = 0.04
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+(0.5)^2 = 0.25
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+(0)^2 = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+(0)^2 = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+0.04 + 0.25 + 0 + 0 = 0.29
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+d = \sqrt{0.29} \approx \mathbf{0.538}
+\]</div>
+<section id="dissimilarity-matrix-euclidean">
+<h4>Dissimilarity Matrix (Euclidean)<a class="headerlink" href="#dissimilarity-matrix-euclidean" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D =
+\begin{bmatrix}
+0 &amp; 0.538 \\
+0.538 &amp; 0
+\end{bmatrix}
+\end{split}\]</div>
+<p><img alt="euclidean" src="_images/DmatriksEuclidean.png" /></p>
+<p><strong>Penjelasan:</strong></p>
+<ul class="simple">
+<li><p>Matriks tetap simetris dan diagonal bernilai nol.</p></li>
+<li><p>Nilai 0.538 lebih kecil dibanding Manhattan karena metode Euclidean menggunakan akar kuadrat dari jumlah kuadrat selisih.</p></li>
+<li><p>Euclidean Distance sering digunakan dalam clustering seperti K-Means.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="minkowski-distance-h-3">
+<h3>3. Minkowski Distance (<span class="math notranslate nohighlight">\(h=3\)</span>)<a class="headerlink" href="#minkowski-distance-h-3" title="Link to this heading">#</a></h3>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+d(i, j) = \sqrt[3]{\sum_{f=1}^{p} |x_{if} - x_{jf}|^3}
+\]</div>
+<p>Perhitungan:</p>
+<div class="math notranslate nohighlight">
+\[
+|0.2|^3 = 0.008
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|0.5|^3 = 0.125
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|0|^3 = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|0|^3 = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+0.008 + 0.125 + 0 + 0 = 0.133
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+d = \sqrt[3]{0.133} \approx \mathbf{0.510}
+\]</div>
+<section id="dissimilarity-matrix-minkowski-h-3">
+<h4>Dissimilarity Matrix (Minkowski, <span class="math notranslate nohighlight">\(h=3\)</span>)<a class="headerlink" href="#dissimilarity-matrix-minkowski-h-3" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D =
+\begin{bmatrix}
+0 &amp; 0.510 \\
+0.510 &amp; 0
+\end{bmatrix}
+\end{split}\]</div>
+<p><strong>Penjelasan:</strong></p>
+<ul class="simple">
+<li><p>Nilai jarak bergantung pada parameter <span class="math notranslate nohighlight">\(h\)</span>.</p></li>
+<li><p>Semakin besar <span class="math notranslate nohighlight">\(h\)</span>, jarak akan semakin dipengaruhi oleh selisih terbesar antar atribut.</p></li>
+<li><p>Matriks tetap simetris dan digunakan sebagai input dalam algoritma clustering berbasis jarak.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="supremum-distance-h-to-infty">
+<h3>4. Supremum Distance (<span class="math notranslate nohighlight">\(h \to \infty\)</span>)<a class="headerlink" href="#supremum-distance-h-to-infty" title="Link to this heading">#</a></h3>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+d(i,j) = \max_{f} |x_{if} - x_{jf}|
+\]</div>
+<p>Perhitungan:</p>
+<div class="math notranslate nohighlight">
+\[
+\max(0.2, 0.5, 0, 0) = \mathbf{0.5}
+\]</div>
+<section id="dissimilarity-matrix-supremum">
+<h4>Dissimilarity Matrix (Supremum)<a class="headerlink" href="#dissimilarity-matrix-supremum" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D =
+\begin{bmatrix}
+0 &amp; 0.5 \\
+0.5 &amp; 0
+\end{bmatrix}
+\end{split}\]</div>
+<p><strong>Penjelasan:</strong></p>
+<ul class="simple">
+<li><p>Supremum Distance hanya mempertimbangkan selisih terbesar antar atribut.</p></li>
+<li><p>Matriks tetap simetris dengan diagonal bernilai nol.</p></li>
+<li><p>Cocok digunakan ketika fokus analisis hanya pada perbedaan maksimum antar fitur.</p></li>
+</ul>
+</section>
+</section>
+<section id="atribut-biner-binary">
+<h3>Atribut Biner (Binary)<a class="headerlink" href="#atribut-biner-binary" title="Link to this heading">#</a></h3>
+<p>Untuk variabel biner tidak simetris (<em>asymmetric binary</em>), kita menggunakan <strong>Jaccard Coefficient</strong>:
+$<span class="math notranslate nohighlight">\(Sim_{Jaccard} = \frac{q}{q + r + s}\)</span>$
+Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q\)</span>: jumlah atribut yang keduanya bernilai 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r\)</span>: jumlah atribut objek <span class="math notranslate nohighlight">\(i\)</span> bernilai 1, objek <span class="math notranslate nohighlight">\(j\)</span> bernilai 0.</p></li>
+<li><p><span class="math notranslate nohighlight">\(s\)</span>: jumlah atribut objek <span class="math notranslate nohighlight">\(i\)</span> bernilai 0, objek <span class="math notranslate nohighlight">\(j\)</span> bernilai 1.</p></li>
+</ul>
+</section>
+<section id="cosine-similarity">
+<h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h3>
+<p>Sering digunakan untuk membandingkan kemiripan antar dokumen (vektor frekuensi kata):
+$<span class="math notranslate nohighlight">\(\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{||d_1|| ||d_2||}\)</span>$</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="implementasi-perhitungan-jarak-dengan-python">
+<h2>Implementasi Perhitungan Jarak dengan Python<a class="headerlink" href="#implementasi-perhitungan-jarak-dengan-python" title="Link to this heading">#</a></h2>
+<p>Gunakan kode berikut untuk menghitung jarak antar baris pada dataset IRIS:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+
+<span class="c1"># Memuat data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;IRIS.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mengambil dua objek data pertama (fitur numerik)</span>
+<span class="n">obj1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">obj2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Menghitung berbagai jenis jarak</span>
+<span class="n">dist_euc</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span> <span class="n">obj2</span><span class="p">)</span>
+<span class="n">dist_man</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">cityblock</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span> <span class="n">obj2</span><span class="p">)</span>
+<span class="n">dist_mink</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">minkowski</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span> <span class="n">obj2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Objek 1: </span><span class="si">{</span><span class="n">obj1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Objek 2: </span><span class="si">{</span><span class="n">obj2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">35</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jarak Euclidean (h=2) : </span><span class="si">{</span><span class="n">dist_euc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jarak Manhattan (h=1) : </span><span class="si">{</span><span class="n">dist_man</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jarak Minkowski (h=3) : </span><span class="si">{</span><span class="n">dist_mink</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Objek 1: [np.float64(5.1) np.float64(3.5) np.float64(1.4) np.float64(0.2)]
+Objek 2: [np.float64(4.9) np.float64(3.0) np.float64(1.4) np.float64(0.2)]
+-----------------------------------
+Jarak Euclidean (h=2) : 0.5385
+Jarak Manhattan (h=1) : 0.7000
+Jarak Minkowski (h=3) : 0.5104
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="atribut-ordinal">
+<h2>Atribut Ordinal<a class="headerlink" href="#atribut-ordinal" title="Link to this heading">#</a></h2>
+<p>Atribut ordinal mirip dengan atribut nominal, namun memiliki urutan (<em>ranking</em>) yang bermakna (contoh: Kecil, Sedang, Besar).</p>
+<p><strong>Langkah Mengukur Jarak Ordinal:</strong></p>
+<ol class="arabic simple">
+<li><p>Mengganti nilai <span class="math notranslate nohighlight">\(f\)</span> dengan urutannya (ranking): <span class="math notranslate nohighlight">\(r_{if} \in \{1, \dots, M_f\}\)</span>.</p></li>
+<li><p>Melakukan normalisasi agar rentang nilai berada di <span class="math notranslate nohighlight">\([0, 1]\)</span> menggunakan formula:
+$<span class="math notranslate nohighlight">\(z_{if} = \frac{r_{if} - 1}{M_f - 1}\)</span>$</p></li>
+<li><p>Hitung jarak menggunakan <strong>Euclidean Distance</strong> atau metrik numerik lainnya pada nilai <span class="math notranslate nohighlight">\(z_{if}\)</span> tersebut.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="atribut-campuran-mixed-types">
+<h2>Atribut Campuran (Mixed Types)<a class="headerlink" href="#atribut-campuran-mixed-types" title="Link to this heading">#</a></h2>
+<p>Dalam database nyata, seringkali kita menemukan berbagai tipe data sekaligus (Nominal, Biner, Numerik, Ordinal). Untuk menghitung jarak antar objek dengan atribut campuran, kita menggunakan pembobotan:</p>
+<div class="math notranslate nohighlight">
+\[d(i, j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}{\sum_{f=1}^{p} \delta_{ij}^{(f)}}\]</div>
+<ul class="simple">
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> biner/nominal:</strong> <span class="math notranslate nohighlight">\(d_{ij}^{(f)} = 0\)</span> jika <span class="math notranslate nohighlight">\(x_{if} = x_{jf}\)</span>, selain itu <span class="math notranslate nohighlight">\(d_{ij}^{(f)} = 1\)</span>.</p></li>
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> numerik:</strong> Gunakan jarak yang dinormalisasi.</p></li>
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> ordinal:</strong> Gunakan rangking yang telah dinormalisasi (<span class="math notranslate nohighlight">\(z_{if}\)</span>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Cosine Similarity<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Metode ini sangat populer dalam pengolahan teks (<em>Text Mining</em>). Dokumen dinyatakan sebagai vektor berdasarkan kemunculan kata-kata (term-frequency).</p>
+<p><strong>Formula Cosine Similarity:</strong></p>
+<div class="math notranslate nohighlight">
+\[\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{\|d_1\| \|d_2\|}\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d_1 \cdot d_2\)</span>: Perkalian titik (<em>dot product</em>) dari dua vektor.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|d\|\)</span>: Panjang atau norma dari vektor.</p></li>
+</ul>
+<p><strong>Karakteristik:</strong></p>
+<ul class="simple">
+<li><p>Jika sudut antar vektor 0°, maka <span class="math notranslate nohighlight">\(\cos(0) = 1\)</span> (sangat mirip).</p></li>
+<li><p>Jika sudut antar vektor 90°, maka <span class="math notranslate nohighlight">\(\cos(90) = 0\)</span> (tidak ada kemiripan).</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="visualisasi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Visualisasi Data IRIS</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-vs-dissimilarity">Similarity vs Dissimilarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengukuran-jarak-berdasarkan-tipe-atribut">Pengukuran Jarak Berdasarkan Tipe Atribut</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-numerik-minkowski-distance">Atribut Numerik (Minkowski Distance)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manhattan-distance-h-1">1. Manhattan Distance (<span class="math notranslate nohighlight">\(h=1\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-manhattan">Dissimilarity Matrix (Manhattan)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance-h-2">2. Euclidean Distance (<span class="math notranslate nohighlight">\(h=2\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-euclidean">Dissimilarity Matrix (Euclidean)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minkowski-distance-h-3">3. Minkowski Distance (<span class="math notranslate nohighlight">\(h=3\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-minkowski-h-3">Dissimilarity Matrix (Minkowski, <span class="math notranslate nohighlight">\(h=3\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supremum-distance-h-to-infty">4. Supremum Distance (<span class="math notranslate nohighlight">\(h \to \infty\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity-matrix-supremum">Dissimilarity Matrix (Supremum)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-biner-binary">Atribut Biner (Binary)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-perhitungan-jarak-dengan-python">Implementasi Perhitungan Jarak dengan Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-ordinal">Atribut Ordinal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-campuran-mixed-types">Atribut Campuran (Mixed Types)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By A. Choiril Anwar EL-Asfihani Risydan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
