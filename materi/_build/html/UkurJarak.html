@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pengukuran Jarak Data Campuran (Mixed Type Attributes) &#8212; Catatan Matakuliah Penambanngan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UkurJarak';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Mengukur Jarak" href="MengukurJarak.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Catatan Matakuliah Penambanngan Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpeg" class="logo__image only-dark" alt="Catatan Matakuliah Penambanngan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Matakuliah Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eksplorData.html">Eksplorasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MengukurJarak.html">Mengukur Jarak</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FUkurJarak.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/UkurJarak.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pengukuran Jarak Data Campuran (Mixed Type Attributes)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-atribut">Deskripsi Atribut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-dataset">Karakteristik Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-atribut-untuk-perhitungan-jarak">Seleksi Atribut untuk Perhitungan Jarak</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-digunakan">Atribut Yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-tidak-digunakan">Atribut Yang Tidak Digunakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data">Transformasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-data-kategorikal">1. Encoding Data Kategorikal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-min-max">2. Normalisasi Min-Max</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-jarak">Perhitungan Jarak</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual">Contoh Perhitungan Manual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-menggunakan-python">Implementasi Menggunakan Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-jarak-distance-matrix">Matriks Jarak (Distance Matrix)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-menggunakan-orange">Implementasi Menggunakan Orange</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pengukuran-jarak-data-campuran-mixed-type-attributes">
+<h1>Pengukuran Jarak Data Campuran (Mixed Type Attributes)<a class="headerlink" href="#pengukuran-jarak-data-campuran-mixed-type-attributes" title="Link to this heading">#</a></h1>
+<p>Dataset Obesity merupakan dataset yang berisi informasi mengenai estimasi tingkat obesitas pada individu dari Meksiko, Peru, dan Kolombia berdasarkan kebiasaan makan dan kondisi fisik mereka. Dataset ini sangat sering digunakan dalam bidang data mining untuk menganalisis faktor-faktor risiko kesehatan dan memprediksi tingkat obesitas seseorang.</p>
+<p>Dataset ini diperoleh dari repositori UCI Machine Learning. Jumlah data dalam dataset ini adalah 2.111 baris dengan 17 atribut. Setiap baris merepresentasikan data satu individu, sedangkan setiap kolom merepresentasikan karakteristik perilaku, genetik, atau fisik dari individu tersebut.</p>
+<p>Tujuan utama dari dataset ini adalah untuk memprediksi tingkat obesitas (atribut <code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code>) yang terbagi menjadi beberapa kategori mulai dari berat badan kurang hingga obesitas tingkat III. Dalam mata kuliah Penambangan Data ini, dataset digunakan untuk menganalisis pengukuran jarak antar data yang memiliki tipe data campuran (numerik, kategorikal, ordinal, dan biner).</p>
+<blockquote>
+<div><p><strong>Sumber Data:</strong> <a class="reference download internal" download="" href="_downloads/1d2b75d8217519343dd7845b42c23cc8/ObesityDataSet.csv"><span class="xref download myst">Download ObesityDataSet.csv</span></a></p>
+</div></blockquote>
+<section id="deskripsi-atribut">
+<h2>Deskripsi Atribut<a class="headerlink" href="#deskripsi-atribut" title="Link to this heading">#</a></h2>
+<p>Berikut merupakan 17 atribut/fitur lengkap yang terdapat dalam dataset Obesity:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>No</p></th>
+<th class="head text-left"><p>Atribut</p></th>
+<th class="head text-left"><p>Deskripsi</p></th>
+<th class="head text-left"><p>Tipe Data</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p><strong>Gender</strong></p></td>
+<td class="text-left"><p>Jenis kelamin (Male, Female)</p></td>
+<td class="text-left"><p><strong>Biner</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p><strong>Age</strong></p></td>
+<td class="text-left"><p>Usia responden dalam tahun</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>3</p></td>
+<td class="text-left"><p><strong>Height</strong></p></td>
+<td class="text-left"><p>Tinggi badan dalam meter</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>4</p></td>
+<td class="text-left"><p><strong>Weight</strong></p></td>
+<td class="text-left"><p>Berat badan dalam kilogram</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>5</p></td>
+<td class="text-left"><p><strong>family_history</strong></p></td>
+<td class="text-left"><p>Riwayat keluarga dengan berat badan berlebih (yes, no)</p></td>
+<td class="text-left"><p><strong>Biner</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>6</p></td>
+<td class="text-left"><p><strong>FAVC</strong></p></td>
+<td class="text-left"><p>Kebiasaan makan makanan tinggi kalori (yes, no)</p></td>
+<td class="text-left"><p><strong>Biner</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>7</p></td>
+<td class="text-left"><p><strong>FCVC</strong></p></td>
+<td class="text-left"><p>Frekuensi konsumsi sayuran dalam hidangan utama (1-3)</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>8</p></td>
+<td class="text-left"><p><strong>NCP</strong></p></td>
+<td class="text-left"><p>Jumlah makanan utama per hari (1-4)</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>9</p></td>
+<td class="text-left"><p><strong>CAEC</strong></p></td>
+<td class="text-left"><p>Konsumsi makanan di antara waktu makan (no, Sometimes, Frequently, Always)</p></td>
+<td class="text-left"><p><strong>Ordinal</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>10</p></td>
+<td class="text-left"><p><strong>SMOKE</strong></p></td>
+<td class="text-left"><p>Kebiasaan merokok (yes, no)</p></td>
+<td class="text-left"><p><strong>Biner</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>11</p></td>
+<td class="text-left"><p><strong>CH2O</strong></p></td>
+<td class="text-left"><p>Jumlah konsumsi air mineral per hari (1-3 liter)</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>12</p></td>
+<td class="text-left"><p><strong>SCC</strong></p></td>
+<td class="text-left"><p>Pemantauan konsumsi kalori harian (yes, no)</p></td>
+<td class="text-left"><p><strong>Biner</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>13</p></td>
+<td class="text-left"><p><strong>FAF</strong></p></td>
+<td class="text-left"><p>Frekuensi aktivitas fisik per minggu (0-3 hari)</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>14</p></td>
+<td class="text-left"><p><strong>TUE</strong></p></td>
+<td class="text-left"><p>Waktu penggunaan perangkat teknologi per hari (0-2 jam)</p></td>
+<td class="text-left"><p><strong>Numerik</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>15</p></td>
+<td class="text-left"><p><strong>CALC</strong></p></td>
+<td class="text-left"><p>Frekuensi konsumsi alkohol (no, Sometimes, Frequently, Always)</p></td>
+<td class="text-left"><p><strong>Ordinal</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>16</p></td>
+<td class="text-left"><p><strong>MTRANS</strong></p></td>
+<td class="text-left"><p>Alat transportasi yang digunakan (Public, Walking, Automobile, dsb)</p></td>
+<td class="text-left"><p><strong>Nominal</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>17</p></td>
+<td class="text-left"><p><strong>NObeyesdad</strong></p></td>
+<td class="text-left"><p>Tingkat obesitas (Target Klasifikasi)</p></td>
+<td class="text-left"><p><strong>Ordinal</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="karakteristik-dataset">
+<h2>Karakteristik Dataset<a class="headerlink" href="#karakteristik-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset memiliki tipe data yang campuran, yaitu:</p>
+<ul class="simple">
+<li><p><strong>Numerik:</strong> <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Height</span></code>, <code class="docutils literal notranslate"><span class="pre">Weight</span></code>, <code class="docutils literal notranslate"><span class="pre">FCVC</span></code>, <code class="docutils literal notranslate"><span class="pre">NCP</span></code>, <code class="docutils literal notranslate"><span class="pre">CH2O</span></code>, <code class="docutils literal notranslate"><span class="pre">FAF</span></code>, <code class="docutils literal notranslate"><span class="pre">TUE</span></code>.</p></li>
+<li><p><strong>Kategorikal (Nominal):</strong> <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code>.</p></li>
+<li><p><strong>Ordinal:</strong> <code class="docutils literal notranslate"><span class="pre">CAEC</span></code>, <code class="docutils literal notranslate"><span class="pre">CALC</span></code>, <code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code>.</p></li>
+<li><p><strong>Biner:</strong> <code class="docutils literal notranslate"><span class="pre">Gender</span></code>, <code class="docutils literal notranslate"><span class="pre">family_history_with_overweight</span></code>, <code class="docutils literal notranslate"><span class="pre">FAVC</span></code>, <code class="docutils literal notranslate"><span class="pre">SMOKE</span></code>, <code class="docutils literal notranslate"><span class="pre">SCC</span></code>.</p></li>
+</ul>
+</section>
+<section id="missing-value">
+<h2>Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h2>
+<p>Berdasarkan hasil tahap data understanding, ditemukan bahwa dataset Obesity ini <strong>tidak memiliki missing value</strong> (nilai kosong). Seluruh 2.111 baris data terisi lengkap untuk semua 17 atribut. Oleh karena itu, dalam studi kasus ini, kita tidak memerlukan tahapan imputasi (pengisian nilai kosong). Data dapat langsung dilanjutkan ke tahap seleksi atribut dan transformasi untuk perhitungan jarak.</p>
+</section>
+<section id="seleksi-atribut-untuk-perhitungan-jarak">
+<h2>Seleksi Atribut untuk Perhitungan Jarak<a class="headerlink" href="#seleksi-atribut-untuk-perhitungan-jarak" title="Link to this heading">#</a></h2>
+<p>Seleksi atribut bertujuan untuk menentukan fitur-fitur yang relevan dan akan digunakan dalam proses perhitungan jarak antar data. Dari 17 atribut yang tersedia, dipilih 4 atribut utama yang mewakili empat tipe data yang berbeda (Numerik, Nominal, Ordinal, dan Biner).</p>
+<section id="atribut-yang-digunakan">
+<h3>Atribut Yang Digunakan<a class="headerlink" href="#atribut-yang-digunakan" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Atribut</p></th>
+<th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Alasan Penggunaan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Weight</p></td>
+<td><p>Numerik</p></td>
+<td><p>Mewakili data angka kontinu dengan rentang nilai yang lebar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>MTRANS</p></td>
+<td><p>Nominal</p></td>
+<td><p>Menunjukkan alat transportasi tanpa urutan tingkatan.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>CAEC</p></td>
+<td><p>Ordinal</p></td>
+<td><p>Menunjukkan frekuensi makan dengan tingkatan yang jelas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Gender</p></td>
+<td><p>Biner</p></td>
+<td><p>Mewakili jenis kelamin dengan dua kategori.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="atribut-yang-tidak-digunakan">
+<h3>Atribut Yang Tidak Digunakan<a class="headerlink" href="#atribut-yang-tidak-digunakan" title="Link to this heading">#</a></h3>
+<p>Atribut lainnya seperti <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Height</span></code>, <code class="docutils literal notranslate"><span class="pre">family_history</span></code>, hingga <code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code> tidak digunakan dalam perhitungan contoh manual ini untuk menyederhanakan proses demonstrasi, meskipun dalam analisis komputasional seluruh atribut dapat dilibatkan.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="transformasi-data">
+<h2>Transformasi Data<a class="headerlink" href="#transformasi-data" title="Link to this heading">#</a></h2>
+<p>Transformasi bertujuan untuk mengubah seluruh atribut ke dalam bentuk numerik dan memiliki skala yang sebanding (0 sampai 1) agar dapat diproses menggunakan metode Euclidean Distance.</p>
+<section id="encoding-data-kategorikal">
+<h3>1. Encoding Data Kategorikal<a class="headerlink" href="#encoding-data-kategorikal" title="Link to this heading">#</a></h3>
+<p>Encoding dilakukan untuk mengubah atribut bertipe kategori (teks) menjadi angka.</p>
+<p><strong>Gender (Biner) :</strong>
+Menggunakan <em>binary encoding</em> karena hanya memiliki dua kategori.</p>
+<ul class="simple">
+<li><p><strong>Female : 1</strong></p></li>
+<li><p><strong>Male : 0</strong></p></li>
+</ul>
+<p><strong>MTRANS (Nominal) :</strong>
+Diberikan label angka unik untuk setiap alat transportasi.</p>
+<ul class="simple">
+<li><p><strong>Public_Transportation : 0</strong></p></li>
+<li><p><strong>Walking : 1</strong></p></li>
+<li><p><strong>Automobile : 2</strong></p></li>
+<li><p><strong>Motorbike : 3</strong></p></li>
+<li><p><strong>Bike : 4</strong></p></li>
+</ul>
+<p><strong>CAEC (Ordinal) :</strong>
+Diubah menjadi angka berdasarkan tingkatan intensitasnya (0 sampai 3).</p>
+<ul class="simple">
+<li><p><strong>no : 0</strong></p></li>
+<li><p><strong>Sometimes : 1</strong></p></li>
+<li><p><strong>Frequently : 2</strong></p></li>
+<li><p><strong>Always : 3</strong></p></li>
+</ul>
+</section>
+<section id="normalisasi-min-max">
+<h3>2. Normalisasi Min-Max<a class="headerlink" href="#normalisasi-min-max" title="Link to this heading">#</a></h3>
+<p>Setelah semua atribut berbentuk numerik, dilakukan normalisasi agar setiap atribut memiliki rentang nilai 0 sampai 1. Hal ini mencegah atribut dengan skala besar (seperti <code class="docutils literal notranslate"><span class="pre">Weight</span></code>) mendominasi hasil perhitungan jarak.</p>
+<p>Rumus normalisasi Min-Max:</p>
+<div class="math notranslate nohighlight">
+\[x' = \frac{x - x_{\min}}{x_{\max} - x_{\min}}\]</div>
+<p><strong>Parameter Normalisasi Atribut Numerik &amp; Ordinal:</strong></p>
+<ul class="simple">
+<li><p><strong>Weight:</strong> <span class="math notranslate nohighlight">\(x_{min} = 39.0\)</span>, <span class="math notranslate nohighlight">\(x_{max} = 173.0\)</span></p></li>
+<li><p><strong>CAEC:</strong> <span class="math notranslate nohighlight">\(x_{min} = 0\)</span>, <span class="math notranslate nohighlight">\(x_{max} = 3\)</span></p></li>
+<li><p><strong>MTRANS:</strong> <span class="math notranslate nohighlight">\(x_{min} = 0\)</span>, <span class="math notranslate nohighlight">\(x_{max} = 4\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="perhitungan-jarak">
+<h2>Perhitungan Jarak<a class="headerlink" href="#perhitungan-jarak" title="Link to this heading">#</a></h2>
+<p>Setelah semua nilai atribut ditransformasikan ke rentang 0 sampai 1, data siap digunakan dalam proses pengukuran jarak. Normalisasi ini memastikan bahwa atribut dengan skala besar (seperti berat badan) tidak mendominasi atribut lainnya dalam menentukan kedekatan antar individu.</p>
+<p>Metode yang digunakan adalah <strong>Euclidean Distance</strong>, yang mengukur jarak “garis lurus” antara dua titik dalam ruang multidimensi (dalam hal ini, 4 dimensi karena kita menggunakan 4 atribut).</p>
+<p>Rumus Euclidean Distance:
+$<span class="math notranslate nohighlight">\(d(x_i, x_j) = \sqrt{\sum_{k=1}^{m} (x_{ik} - x_{jk})^2}\)</span>$</p>
+<section id="contoh-perhitungan-manual">
+<h3>Contoh Perhitungan Manual<a class="headerlink" href="#contoh-perhitungan-manual" title="Link to this heading">#</a></h3>
+<p>Untuk simulasi, kita mengambil dua sampel data dari dataset <strong>Obesity</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Atribut</p></th>
+<th class="head text-left"><p>Individu 1 (Data ke-0)</p></th>
+<th class="head text-left"><p>Individu 2 (Data ke-3)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Weight</strong></p></td>
+<td class="text-left"><p>64.0 kg</p></td>
+<td class="text-left"><p>87.0 kg</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>MTRANS</strong></p></td>
+<td class="text-left"><p>Public_Transportation</p></td>
+<td class="text-left"><p>Walking</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>CAEC</strong></p></td>
+<td class="text-left"><p>Sometimes</p></td>
+<td class="text-left"><p>Sometimes</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Gender</strong></p></td>
+<td class="text-left"><p>Female</p></td>
+<td class="text-left"><p>Male</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p><strong>Langkah 1: Transformasi &amp; Normalisasi</strong></p>
+<p>Kita ubah nilai-nilai tersebut ke bentuk numerik <span class="math notranslate nohighlight">\([0, 1]\)</span> berdasarkan parameter yang telah ditentukan sebelumnya:</p>
+<ol class="arabic simple">
+<li><p><strong>Weight (Min: 39, Max: 173):</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x'_{11} = \frac{64 - 39}{173 - 39} = \frac{25}{134} \approx \mathbf{0.1866}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x'_{21} = \frac{87 - 39}{173 - 39} = \frac{48}{134} \approx \mathbf{0.3582}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>MTRANS (Public: 0, Walking: 1, dst. Max: 4):</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x'_{12} = \frac{0 - 0}{4} = \mathbf{0}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x'_{22} = \frac{1 - 0}{4} = \mathbf{0.25}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>CAEC (no: 0, Sometimes: 1, Always: 3. Max: 3):</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x'_{13} = \frac{1 - 0}{3} \approx \mathbf{0.3333}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x'_{23} = \frac{1 - 0}{3} \approx \mathbf{0.3333}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Gender (Female: 1, Male: 0):</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x'_{14} = \mathbf{1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x'_{24} = \mathbf{0}\)</span></p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Langkah 2: Menghitung Jarak Euclidean</strong></p>
+<p>Sekarang kita masukkan nilai yang sudah dinormalisasi ke dalam rumus:</p>
+<div class="math notranslate nohighlight">
+\[d(1,2) = \sqrt{(0.1866 - 0.3582)^2 + (0 - 0.25)^2 + (0.3333 - 0.3333)^2 + (1 - 0)^2}\]</div>
+<div class="math notranslate nohighlight">
+\[d(1,2) = \sqrt{(-0.1716)^2 + (-0.25)^2 + (0)^2 + (1)^2}\]</div>
+<div class="math notranslate nohighlight">
+\[d(1,2) = \sqrt{0.0294 + 0.0625 + 0 + 1}\]</div>
+<div class="math notranslate nohighlight">
+\[d(1,2) = \sqrt{1.0919} \approx \mathbf{1.0449}\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="implementasi-menggunakan-python">
+<h2>Implementasi Menggunakan Python<a class="headerlink" href="#implementasi-menggunakan-python" title="Link to this heading">#</a></h2>
+<p>Berikut adalah kode untuk memverifikasi perhitungan jarak di atas secara komputasional menggunakan pustaka <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dan <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Data Ternormalisasi</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1866</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3333</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.3582</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.3333</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+<span class="c1"># Hitung Euclidean Distance</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">p1</span> <span class="o">-</span> <span class="n">p2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Titik 1: </span><span class="si">{</span><span class="n">p1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Titik 2: </span><span class="si">{</span><span class="n">p2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jarak Euclidean: </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Titik 1: [0.1866 0.     0.3333 1.    ]
+Titik 2: [0.3582 0.25   0.3333 0.    ]
+------------------------------
+Jarak Euclidean: 1.0450
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matriks-jarak-distance-matrix">
+<h2>Matriks Jarak (Distance Matrix)<a class="headerlink" href="#matriks-jarak-distance-matrix" title="Link to this heading">#</a></h2>
+<p>Hasil perhitungan jarak Euclidean untuk setiap pasangan data kemudian disusun ke dalam sebuah matriks jarak (<span class="math notranslate nohighlight">\(D\)</span>). Matriks ini bersifat simetris, di mana nilai diagonal utamanya adalah 0 (karena jarak objek terhadap dirinya sendiri adalah nol).</p>
+<p>Berdasarkan perhitungan pada 5 sampel data pertama dari dataset <strong>Obesity</strong>, diperoleh struktur matriks jarak sebagai berikut:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D =
+\begin{bmatrix}
+0 &amp; 0.0597 &amp; 1.0047 &amp; 1.0450 &amp; 1.0184 \\
+0.0597 &amp; 0 &amp; 1.0122 &amp; 1.0564 &amp; 1.0313 \\
+1.0047 &amp; 1.0122 &amp; 0 &amp; 0.2609 &amp; 0.0955 \\
+1.0450 &amp; 1.0564 &amp; 0.2609 &amp; 0 &amp; 0.2509 \\
+1.0184 &amp; 1.0313 &amp; 0.0955 &amp; 0.2509 &amp; 0
+\end{bmatrix}
+\end{split}\]</div>
+<p><strong>Karakteristik Matriks Jarak:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Simetris:</strong> Nilai <span class="math notranslate nohighlight">\(d(i,j)\)</span> selalu sama dengan <span class="math notranslate nohighlight">\(d(j,i)\)</span>. Contohnya, jarak antara Data ke-0 dan Data ke-1 (<span class="math notranslate nohighlight">\(0.0597\)</span>) sama dengan jarak Data ke-1 terhadap Data ke-0.</p></li>
+<li><p><strong>Identitas:</strong> Nilai diagonal (<span class="math notranslate nohighlight">\(d(i,i)\)</span>) selalu <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p><strong>Interpretasi:</strong> Semakin kecil nilainya (mendekati 0), maka kedua individu tersebut memiliki karakteristik fisik dan kebiasaan yang semakin mirip. Sebaliknya, nilai yang besar (di atas 1) menunjukkan perbedaan yang signifikan.</p></li>
+</ol>
+</section>
+<section id="implementasi-menggunakan-orange">
+<h2>Implementasi Menggunakan Orange<a class="headerlink" href="#implementasi-menggunakan-orange" title="Link to this heading">#</a></h2>
+<p><img alt="" src="_images/image.png" /></p>
+<p>Setelah melalui perhitungan manual, langkah selanjutnya adalah pengujian secara komputasional menggunakan perangkat lunak <strong>Orange Data Mining</strong>. Dalam implementasi ini, kita memasukkan seluruh 2.111 baris data dengan alur kerja (<em>workflow</em>) sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>File:</strong> Memuat <code class="docutils literal notranslate"><span class="pre">ObesityDataSet.csv</span></code>.</p></li>
+<li><p><strong>Select Columns:</strong> Memilih atribut <code class="docutils literal notranslate"><span class="pre">Weight</span></code>, <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code>, <code class="docutils literal notranslate"><span class="pre">CAEC</span></code>, dan <code class="docutils literal notranslate"><span class="pre">Gender</span></code>.</p></li>
+<li><p><strong>Preprocess:</strong> Melakukan <em>Min-Max Normalization</em> dan <em>Continuization</em> (untuk data kategori).</p></li>
+<li><p><strong>Distances:</strong> Menghitung jarak menggunakan <em>Euclidean Distance</em>.</p></li>
+<li><p><strong>Distance Matrix:</strong> Menampilkan matriks berukuran <span class="math notranslate nohighlight">\(2111 \times 2111\)</span>.</p></li>
+</ol>
+<blockquote>
+<div><p>Hasil yang didapatkan secara komputasional menunjukkan konsistensi dengan perhitungan manual yang telah dilakukan, di mana perbedaan nilai dipengaruhi oleh pembulatan angka desimal.</p>
+</div></blockquote>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MengukurJarak.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mengukur Jarak</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-atribut">Deskripsi Atribut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-dataset">Karakteristik Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-atribut-untuk-perhitungan-jarak">Seleksi Atribut untuk Perhitungan Jarak</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-digunakan">Atribut Yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-tidak-digunakan">Atribut Yang Tidak Digunakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data">Transformasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-data-kategorikal">1. Encoding Data Kategorikal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-min-max">2. Normalisasi Min-Max</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-jarak">Perhitungan Jarak</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual">Contoh Perhitungan Manual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-menggunakan-python">Implementasi Menggunakan Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-jarak-distance-matrix">Matriks Jarak (Distance Matrix)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-menggunakan-orange">Implementasi Menggunakan Orange</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By A. Choiril Anwar EL-Asfihani Risydan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
