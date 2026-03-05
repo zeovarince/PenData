@@ -126,6 +126,7 @@ Setelah semua nilai atribut ditransformasikan ke rentang 0 sampai 1, data siap d
 Metode yang digunakan adalah **Euclidean Distance**, yang mengukur jarak "garis lurus" antara dua titik dalam ruang multidimensi (dalam hal ini, 4 dimensi karena kita menggunakan 4 atribut).
 
 Rumus Euclidean Distance:
+
 $$d(x_i, x_j) = \sqrt{\sum_{k=1}^{m} (x_{ik} - x_{jk})^2}$$
 
 ### Contoh Perhitungan Manual

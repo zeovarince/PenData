@@ -232,39 +232,41 @@ Sering digunakan untuk membandingkan kemiripan antar dokumen (vektor frekuensi k
 $$\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{||d_1|| ||d_2||}$$
 
 ---
+### Atribut Nominal
 
-## Implementasi Perhitungan Jarak dengan Python
+Atribut nominal adalah tipe data kategori yang tidak memiliki urutan atau tingkatan (contoh: warna, jenis transportasi, atau jenis kelamin). Untuk mengukur tingkat ketidakmiripan (*dissimilarity*) pada atribut ini, kita menggunakan metode **Simple Matching**.
 
-Gunakan kode berikut untuk menghitung jarak antar baris pada dataset IRIS:
+**Formula Dissimilarity Nominal:**
 
-```{code-cell}
-:tags: [hide-input]
+$$
+d(i, j) = \frac{p - m}{p}
+$$
 
-import pandas as pd
-import numpy as np
-from scipy.spatial import distance
+Di mana:
+- $p$: Total jumlah variabel (atribut) nominal yang dibandingkan.
+- $m$: Jumlah atribut yang memiliki nilai yang **sama** (*matching*) antara objek $i$ dan objek $j$.
 
-# Memuat data
-df = pd.read_csv("IRIS.csv")
 
-# Mengambil dua objek data pertama (fitur numerik)
-obj1 = df.iloc[0, 0:4].values
-obj2 = df.iloc[1, 0:4].values
 
-# Menghitung berbagai jenis jarak
-dist_euc = distance.euclidean(obj1, obj2)
-dist_man = distance.cityblock(obj1, obj2)
-dist_mink = distance.minkowski(obj1, obj2, p=3)
+**Contoh Perhitungan:**
+Misalkan kita membandingkan dua objek berdasarkan satu atribut nominal yaitu `MTRANS` (Mode Transportasi):
+- Objek 1: `Public_Transportation`
+- Objek 2: `Walking`
 
-print(f"Objek 1: {obj1}")
-print(f"Objek 2: {obj2}")
-print("-" * 35)
-print(f"Jarak Euclidean (h=2) : {dist_euc:.4f}")
-print(f"Jarak Manhattan (h=1) : {dist_man:.4f}")
-print(f"Jarak Minkowski (h=3) : {dist_mink:.4f}")
-```
+Karena nilai atributnya berbeda, maka:
+- $p = 1$ (Total atribut)
+- $m = 0$ (Tidak ada yang sama)
+- $d(1, 2) = \frac{1 - 0}{1} = \mathbf{1}$ (Artinya objek tersebut berbeda total)
 
-## Atribut Ordinal
+Jika Objek 1 dan Objek 2 sama-sama menggunakan `Walking`, maka:
+- $m = 1$
+- $d(1, 2) = \frac{1 - 1}{1} = \mathbf{0}$ (Artinya objek tersebut identik/sama)
+
+**Analisis:**
+Metode ini sangat sederhana: jika nilai atributnya sama maka jaraknya 0, dan jika berbeda maka jaraknya 1. Dalam kasus atribut campuran, hasil $d(i,j)$ dari atribut nominal ini akan digabungkan dengan bobot fitur lainnya.
+
+---
+### Atribut Ordinal
 
 Atribut ordinal mirip dengan atribut nominal, namun memiliki urutan (*ranking*) yang bermakna (contoh: Kecil, Sedang, Besar).
 
@@ -273,8 +275,6 @@ Atribut ordinal mirip dengan atribut nominal, namun memiliki urutan (*ranking*) 
 2. Melakukan normalisasi agar rentang nilai berada di $[0, 1]$ menggunakan formula:
    $$z_{if} = \frac{r_{if} - 1}{M_f - 1}$$
 3. Hitung jarak menggunakan **Euclidean Distance** atau metrik numerik lainnya pada nilai $z_{if}$ tersebut.
-
-
 
 ---
 
@@ -309,3 +309,34 @@ Di mana:
 * Jika sudut antar vektor 90°, maka $\cos(90) = 0$ (tidak ada kemiripan).
 
 ---
+
+## Implementasi Perhitungan Jarak dengan Python
+
+Gunakan kode berikut untuk menghitung jarak antar baris pada dataset IRIS:
+
+```{code-cell}
+:tags: [hide-input]
+
+import pandas as pd
+import numpy as np
+from scipy.spatial import distance
+
+# Memuat data
+df = pd.read_csv("IRIS.csv")
+
+# Mengambil dua objek data pertama (fitur numerik)
+obj1 = df.iloc[0, 0:4].values
+obj2 = df.iloc[1, 0:4].values
+
+# Menghitung berbagai jenis jarak
+dist_euc = distance.euclidean(obj1, obj2)
+dist_man = distance.cityblock(obj1, obj2)
+dist_mink = distance.minkowski(obj1, obj2, p=3)
+
+print(f"Objek 1: {obj1}")
+print(f"Objek 2: {obj2}")
+print("-" * 35)
+print(f"Jarak Euclidean (h=2) : {dist_euc:.4f}")
+print(f"Jarak Manhattan (h=1) : {dist_man:.4f}")
+print(f"Jarak Minkowski (h=3) : {dist_mink:.4f}")
+```

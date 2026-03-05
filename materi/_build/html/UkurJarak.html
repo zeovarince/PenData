@@ -631,8 +631,9 @@ Diubah menjadi angka berdasarkan tingkatan intensitasnya (0 sampai 3).</p>
 <h2>Perhitungan Jarak<a class="headerlink" href="#perhitungan-jarak" title="Link to this heading">#</a></h2>
 <p>Setelah semua nilai atribut ditransformasikan ke rentang 0 sampai 1, data siap digunakan dalam proses pengukuran jarak. Normalisasi ini memastikan bahwa atribut dengan skala besar (seperti berat badan) tidak mendominasi atribut lainnya dalam menentukan kedekatan antar individu.</p>
 <p>Metode yang digunakan adalah <strong>Euclidean Distance</strong>, yang mengukur jarak “garis lurus” antara dua titik dalam ruang multidimensi (dalam hal ini, 4 dimensi karena kita menggunakan 4 atribut).</p>
-<p>Rumus Euclidean Distance:
-$<span class="math notranslate nohighlight">\(d(x_i, x_j) = \sqrt{\sum_{k=1}^{m} (x_{ik} - x_{jk})^2}\)</span>$</p>
+<p>Rumus Euclidean Distance:</p>
+<div class="math notranslate nohighlight">
+\[d(x_i, x_j) = \sqrt{\sum_{k=1}^{m} (x_{ik} - x_{jk})^2}\]</div>
 <section id="contoh-perhitungan-manual">
 <h3>Contoh Perhitungan Manual<a class="headerlink" href="#contoh-perhitungan-manual" title="Link to this heading">#</a></h3>
 <p>Untuk simulasi, kita mengambil dua sampel data dari dataset <strong>Obesity</strong>:</p>
