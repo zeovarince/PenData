@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'MengukurJarak';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pengukuran Jarak Data Campuran (Mixed Type Attributes)" href="UkurJarak.html" />
     <link rel="prev" title="Visualisasi Data IRIS" href="visualisasi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -187,6 +188,7 @@
 <li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Mengukur Jarak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UkurJarak.html">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -405,12 +407,13 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-biner-binary">Atribut Biner (Binary)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-nominal">Atribut Nominal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-ordinal">Atribut Ordinal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-perhitungan-jarak-dengan-python">Implementasi Perhitungan Jarak dengan Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-ordinal">Atribut Ordinal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-campuran-mixed-types">Atribut Campuran (Mixed Types)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-perhitungan-jarak-dengan-python">Implementasi Perhitungan Jarak dengan Python</a></li>
 </ul>
             </nav>
         </div>
@@ -648,6 +651,82 @@ Di mana:</p>
 <p>Sering digunakan untuk membandingkan kemiripan antar dokumen (vektor frekuensi kata):
 $<span class="math notranslate nohighlight">\(\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{||d_1|| ||d_2||}\)</span>$</p>
 </section>
+<hr class="docutils" />
+<section id="atribut-nominal">
+<h3>Atribut Nominal<a class="headerlink" href="#atribut-nominal" title="Link to this heading">#</a></h3>
+<p>Atribut nominal adalah tipe data kategori yang tidak memiliki urutan atau tingkatan (contoh: warna, jenis transportasi, atau jenis kelamin). Untuk mengukur tingkat ketidakmiripan (<em>dissimilarity</em>) pada atribut ini, kita menggunakan metode <strong>Simple Matching</strong>.</p>
+<p><strong>Formula Dissimilarity Nominal:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+d(i, j) = \frac{p - m}{p}
+\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span>: Total jumlah variabel (atribut) nominal yang dibandingkan.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m\)</span>: Jumlah atribut yang memiliki nilai yang <strong>sama</strong> (<em>matching</em>) antara objek <span class="math notranslate nohighlight">\(i\)</span> dan objek <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+</ul>
+<p><strong>Contoh Perhitungan:</strong>
+Misalkan kita membandingkan dua objek berdasarkan satu atribut nominal yaitu <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code> (Mode Transportasi):</p>
+<ul class="simple">
+<li><p>Objek 1: <code class="docutils literal notranslate"><span class="pre">Public_Transportation</span></code></p></li>
+<li><p>Objek 2: <code class="docutils literal notranslate"><span class="pre">Walking</span></code></p></li>
+</ul>
+<p>Karena nilai atributnya berbeda, maka:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p = 1\)</span> (Total atribut)</p></li>
+<li><p><span class="math notranslate nohighlight">\(m = 0\)</span> (Tidak ada yang sama)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d(1, 2) = \frac{1 - 0}{1} = \mathbf{1}\)</span> (Artinya objek tersebut berbeda total)</p></li>
+</ul>
+<p>Jika Objek 1 dan Objek 2 sama-sama menggunakan <code class="docutils literal notranslate"><span class="pre">Walking</span></code>, maka:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(1, 2) = \frac{1 - 1}{1} = \mathbf{0}\)</span> (Artinya objek tersebut identik/sama)</p></li>
+</ul>
+<p><strong>Analisis:</strong>
+Metode ini sangat sederhana: jika nilai atributnya sama maka jaraknya 0, dan jika berbeda maka jaraknya 1. Dalam kasus atribut campuran, hasil <span class="math notranslate nohighlight">\(d(i,j)\)</span> dari atribut nominal ini akan digabungkan dengan bobot fitur lainnya.</p>
+</section>
+<hr class="docutils" />
+<section id="atribut-ordinal">
+<h3>Atribut Ordinal<a class="headerlink" href="#atribut-ordinal" title="Link to this heading">#</a></h3>
+<p>Atribut ordinal mirip dengan atribut nominal, namun memiliki urutan (<em>ranking</em>) yang bermakna (contoh: Kecil, Sedang, Besar).</p>
+<p><strong>Langkah Mengukur Jarak Ordinal:</strong></p>
+<ol class="arabic simple">
+<li><p>Mengganti nilai <span class="math notranslate nohighlight">\(f\)</span> dengan urutannya (ranking): <span class="math notranslate nohighlight">\(r_{if} \in \{1, \dots, M_f\}\)</span>.</p></li>
+<li><p>Melakukan normalisasi agar rentang nilai berada di <span class="math notranslate nohighlight">\([0, 1]\)</span> menggunakan formula:
+$<span class="math notranslate nohighlight">\(z_{if} = \frac{r_{if} - 1}{M_f - 1}\)</span>$</p></li>
+<li><p>Hitung jarak menggunakan <strong>Euclidean Distance</strong> atau metrik numerik lainnya pada nilai <span class="math notranslate nohighlight">\(z_{if}\)</span> tersebut.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="atribut-campuran-mixed-types">
+<h2>Atribut Campuran (Mixed Types)<a class="headerlink" href="#atribut-campuran-mixed-types" title="Link to this heading">#</a></h2>
+<p>Dalam database nyata, seringkali kita menemukan berbagai tipe data sekaligus (Nominal, Biner, Numerik, Ordinal). Untuk menghitung jarak antar objek dengan atribut campuran, kita menggunakan pembobotan:</p>
+<div class="math notranslate nohighlight">
+\[d(i, j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}{\sum_{f=1}^{p} \delta_{ij}^{(f)}}\]</div>
+<ul class="simple">
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> biner/nominal:</strong> <span class="math notranslate nohighlight">\(d_{ij}^{(f)} = 0\)</span> jika <span class="math notranslate nohighlight">\(x_{if} = x_{jf}\)</span>, selain itu <span class="math notranslate nohighlight">\(d_{ij}^{(f)} = 1\)</span>.</p></li>
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> numerik:</strong> Gunakan jarak yang dinormalisasi.</p></li>
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> ordinal:</strong> Gunakan rangking yang telah dinormalisasi (<span class="math notranslate nohighlight">\(z_{if}\)</span>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Cosine Similarity<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Metode ini sangat populer dalam pengolahan teks (<em>Text Mining</em>). Dokumen dinyatakan sebagai vektor berdasarkan kemunculan kata-kata (term-frequency).</p>
+<p><strong>Formula Cosine Similarity:</strong></p>
+<div class="math notranslate nohighlight">
+\[\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{\|d_1\| \|d_2\|}\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d_1 \cdot d_2\)</span>: Perkalian titik (<em>dot product</em>) dari dua vektor.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|d\|\)</span>: Panjang atau norma dari vektor.</p></li>
+</ul>
+<p><strong>Karakteristik:</strong></p>
+<ul class="simple">
+<li><p>Jika sudut antar vektor 0°, maka <span class="math notranslate nohighlight">\(\cos(0) = 1\)</span> (sangat mirip).</p></li>
+<li><p>Jika sudut antar vektor 90°, maka <span class="math notranslate nohighlight">\(\cos(90) = 0\)</span> (tidak ada kemiripan).</p></li>
+</ul>
 </section>
 <hr class="docutils" />
 <section id="implementasi-perhitungan-jarak-dengan-python">
@@ -698,48 +777,6 @@ Jarak Minkowski (h=3) : 0.5104
 </div>
 </div>
 </section>
-<section id="atribut-ordinal">
-<h2>Atribut Ordinal<a class="headerlink" href="#atribut-ordinal" title="Link to this heading">#</a></h2>
-<p>Atribut ordinal mirip dengan atribut nominal, namun memiliki urutan (<em>ranking</em>) yang bermakna (contoh: Kecil, Sedang, Besar).</p>
-<p><strong>Langkah Mengukur Jarak Ordinal:</strong></p>
-<ol class="arabic simple">
-<li><p>Mengganti nilai <span class="math notranslate nohighlight">\(f\)</span> dengan urutannya (ranking): <span class="math notranslate nohighlight">\(r_{if} \in \{1, \dots, M_f\}\)</span>.</p></li>
-<li><p>Melakukan normalisasi agar rentang nilai berada di <span class="math notranslate nohighlight">\([0, 1]\)</span> menggunakan formula:
-$<span class="math notranslate nohighlight">\(z_{if} = \frac{r_{if} - 1}{M_f - 1}\)</span>$</p></li>
-<li><p>Hitung jarak menggunakan <strong>Euclidean Distance</strong> atau metrik numerik lainnya pada nilai <span class="math notranslate nohighlight">\(z_{if}\)</span> tersebut.</p></li>
-</ol>
-</section>
-<hr class="docutils" />
-<section id="atribut-campuran-mixed-types">
-<h2>Atribut Campuran (Mixed Types)<a class="headerlink" href="#atribut-campuran-mixed-types" title="Link to this heading">#</a></h2>
-<p>Dalam database nyata, seringkali kita menemukan berbagai tipe data sekaligus (Nominal, Biner, Numerik, Ordinal). Untuk menghitung jarak antar objek dengan atribut campuran, kita menggunakan pembobotan:</p>
-<div class="math notranslate nohighlight">
-\[d(i, j) = \frac{\sum_{f=1}^{p} \delta_{ij}^{(f)} d_{ij}^{(f)}}{\sum_{f=1}^{p} \delta_{ij}^{(f)}}\]</div>
-<ul class="simple">
-<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> biner/nominal:</strong> <span class="math notranslate nohighlight">\(d_{ij}^{(f)} = 0\)</span> jika <span class="math notranslate nohighlight">\(x_{if} = x_{jf}\)</span>, selain itu <span class="math notranslate nohighlight">\(d_{ij}^{(f)} = 1\)</span>.</p></li>
-<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> numerik:</strong> Gunakan jarak yang dinormalisasi.</p></li>
-<li><p><strong>Jika <span class="math notranslate nohighlight">\(f\)</span> ordinal:</strong> Gunakan rangking yang telah dinormalisasi (<span class="math notranslate nohighlight">\(z_{if}\)</span>).</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="id1">
-<h2>Cosine Similarity<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Metode ini sangat populer dalam pengolahan teks (<em>Text Mining</em>). Dokumen dinyatakan sebagai vektor berdasarkan kemunculan kata-kata (term-frequency).</p>
-<p><strong>Formula Cosine Similarity:</strong></p>
-<div class="math notranslate nohighlight">
-\[\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{\|d_1\| \|d_2\|}\]</div>
-<p>Di mana:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(d_1 \cdot d_2\)</span>: Perkalian titik (<em>dot product</em>) dari dua vektor.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\|d\|\)</span>: Panjang atau norma dari vektor.</p></li>
-</ul>
-<p><strong>Karakteristik:</strong></p>
-<ul class="simple">
-<li><p>Jika sudut antar vektor 0°, maka <span class="math notranslate nohighlight">\(\cos(0) = 1\)</span> (sangat mirip).</p></li>
-<li><p>Jika sudut antar vektor 90°, maka <span class="math notranslate nohighlight">\(\cos(90) = 0\)</span> (tidak ada kemiripan).</p></li>
-</ul>
-<hr class="docutils" />
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -781,6 +818,15 @@ $<span class="math notranslate nohighlight">\(z_{if} = \frac{r_{if} - 1}{M_f - 1
         <p class="prev-next-title">Visualisasi Data IRIS</p>
       </div>
     </a>
+    <a class="right-next"
+       href="UkurJarak.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -818,12 +864,13 @@ $<span class="math notranslate nohighlight">\(z_{if} = \frac{r_{if} - 1}{M_f - 1
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-biner-binary">Atribut Biner (Binary)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-nominal">Atribut Nominal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-ordinal">Atribut Ordinal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-perhitungan-jarak-dengan-python">Implementasi Perhitungan Jarak dengan Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-ordinal">Atribut Ordinal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-campuran-mixed-types">Atribut Campuran (Mixed Types)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cosine Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-perhitungan-jarak-dengan-python">Implementasi Perhitungan Jarak dengan Python</a></li>
 </ul>
   </nav></div>
 
