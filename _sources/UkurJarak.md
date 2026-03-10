@@ -186,19 +186,53 @@ Berikut adalah kode untuk memverifikasi perhitungan jarak di atas secara komputa
 
 ```{code-cell}
 :tags: [hide-input]
+import pandas as pd
 import numpy as np
+from scipy.spatial.distance import pdist, squareform
 
-# Data Ternormalisasi
-p1 = np.array([0.1866, 0.0, 0.3333, 1.0])
-p2 = np.array([0.3582, 0.25, 0.3333, 0.0])
+# Membuat dataset (5 data pertama)
+data = {
+    "Weight": [64.0, 56.0, 77.0, 87.0, 89.8],
+    "MTRANS": ["Public_Transportation", "Public_Transportation", "Public_Transportation", "Walking", "Public_Transportation"],
+    "CAEC": ["Sometimes", "Sometimes", "Sometimes", "Sometimes", "Sometimes"],
+    "Gender": ["Female", "Female", "Male", "Male", "Male"]
+}
 
-# Hitung Euclidean Distance
-distance = np.sqrt(np.sum((p1 - p2)**2))
+df = pd.DataFrame(data)
 
-print(f"Titik 1: {p1}")
-print(f"Titik 2: {p2}")
-print("-" * 30)
-print(f"Jarak Euclidean: {distance:.4f}")
+# Encoding Gender (Binary)
+df["Gender"] = df["Gender"].map({"Female": 0, "Male": 1})
+
+# Encoding CAEC (Ordinal)
+caec_map = {"no": 1, "Sometimes": 2, "Frequently": 3, "Always": 4}
+df["CAEC"] = df["CAEC"].map(caec_map)
+df["CAEC"] = (df["CAEC"] - 1) / (4 - 1)
+
+# Encoding MTRANS (Nominal)
+mtrans_map = {
+    "Public_Transportation": 0,
+    "Walking": 1,
+    "Automobile": 2,
+    "Motorbike": 3,
+    "Bike": 4
+}
+df["MTRANS"] = df["MTRANS"].map(mtrans_map)
+df["MTRANS"] = df["MTRANS"] / 4
+
+# Normalisasi Weight (Min-Max)
+min_weight = 39
+max_weight = 173
+df["Weight"] = (df["Weight"] - min_weight) / (max_weight - min_weight)
+
+print("Data setelah transformasi & normalisasi:\n")
+print(df)
+
+# Menghitung Euclidean Distance
+distance = pdist(df, metric='euclidean')
+distance_matrix = squareform(distance)
+
+print("\nDistance Matrix:\n")
+print(distance_matrix)
 ```
 
 ## Matriks Jarak (Distance Matrix)
