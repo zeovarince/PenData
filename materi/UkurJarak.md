@@ -146,34 +146,37 @@ Untuk simulasi, kita mengambil dua sampel data dari dataset **Obesity**:
 Kita ubah nilai-nilai tersebut ke bentuk numerik $[0, 1]$ berdasarkan parameter yang telah ditentukan sebelumnya:
 
 1. **Weight (Min: 39, Max: 173):**
-   - $x'_{11} = \frac{64 - 39}{173 - 39} = \frac{25}{134} \approx \mathbf{0.1866}$
-   - $x'_{21} = \frac{87 - 39}{173 - 39} = \frac{48}{134} \approx \mathbf{0.3582}$
+* $x'_{11} = \frac{64 - 39}{173 - 39} = \frac{25}{134} \approx \mathbf{0.1866}$
+* $x'_{21} = \frac{56 - 39}{173 - 39} = \frac{17}{134} \approx \mathbf{0.1269}$
 
-2. **MTRANS (Public: 0, Walking: 1, dst. Max: 4):**
-   - $x'_{12} = \frac{0 - 0}{4} = \mathbf{0}$
-   - $x'_{22} = \frac{1 - 0}{4} = \mathbf{0.25}$
 
-3. **CAEC (no: 0, Sometimes: 1, Always: 3. Max: 3):**
-   - $x'_{13} = \frac{1 - 0}{3} \approx \mathbf{0.3333}$
-   - $x'_{23} = \frac{1 - 0}{3} \approx \mathbf{0.3333}$
+2. **MTRANS (Nominal - Simple Matching):**
+* Objek 1: `Public_Transportation`
+* Objek 2: `Public_Transportation`
+* Karena nilainya **SAMA**, maka berdasarkan Slide 4: $d = \frac{1-1}{1} = \mathbf{0}$
 
-4. **Gender (Female: 1, Male: 0):**
-   - $x'_{14} = \mathbf{1}$
-   - $x'_{24} = \mathbf{0}$
 
+3. **CAEC (Ordinal - Ranking):**
+* $M = 4$, Keduanya `Sometimes` ($r=2$)
+* $x'_{13} = \frac{2 - 1}{4 - 1} = \frac{1}{3} \approx \mathbf{0.3333}$
+* $x'_{23} = \frac{2 - 1}{4 - 1} = \frac{1}{3} \approx \mathbf{0.3333}$
+
+
+4. **Gender (Biner - Symmetric):**
+* Keduanya `Female`, maka selisihnya = **0**
 ---
 
 **Langkah 2: Menghitung Jarak Euclidean**
 
 Sekarang kita masukkan nilai yang sudah dinormalisasi ke dalam rumus:
 
-$$d(1,2) = \sqrt{(0.1866 - 0.3582)^2 + (0 - 0.25)^2 + (0.3333 - 0.3333)^2 + (1 - 0)^2}$$
+$$d(1,2) = \sqrt{(0.1866 - 0.1269)^2 + (0)^2 + (0.3333 - 0.3333)^2 + (0)^2}$$
 
-$$d(1,2) = \sqrt{(-0.1716)^2 + (-0.25)^2 + (0)^2 + (1)^2}$$
+$$d(1,2) = \sqrt{(0.0597)^2 + 0 + 0 + 0}$$
 
-$$d(1,2) = \sqrt{0.0294 + 0.0625 + 0 + 1}$$
+$$d(1,2) = \sqrt{0.00356}$$
 
-$$d(1,2) = \sqrt{1.0919} \approx \mathbf{1.0449}$$
+$$d(1,2) = \mathbf{0.0597}$$
 
 ---
 
@@ -183,19 +186,53 @@ Berikut adalah kode untuk memverifikasi perhitungan jarak di atas secara komputa
 
 ```{code-cell}
 :tags: [hide-input]
+import pandas as pd
 import numpy as np
+from scipy.spatial.distance import pdist, squareform
 
-# Data Ternormalisasi
-p1 = np.array([0.1866, 0.0, 0.3333, 1.0])
-p2 = np.array([0.3582, 0.25, 0.3333, 0.0])
+# Membuat dataset (5 data pertama)
+data = {
+    "Weight": [64.0, 56.0, 77.0, 87.0, 89.8],
+    "MTRANS": ["Public_Transportation", "Public_Transportation", "Public_Transportation", "Walking", "Public_Transportation"],
+    "CAEC": ["Sometimes", "Sometimes", "Sometimes", "Sometimes", "Sometimes"],
+    "Gender": ["Female", "Female", "Male", "Male", "Male"]
+}
 
-# Hitung Euclidean Distance
-distance = np.sqrt(np.sum((p1 - p2)**2))
+df = pd.DataFrame(data)
 
-print(f"Titik 1: {p1}")
-print(f"Titik 2: {p2}")
-print("-" * 30)
-print(f"Jarak Euclidean: {distance:.4f}")
+# Encoding Gender (Binary)
+df["Gender"] = df["Gender"].map({"Female": 0, "Male": 1})
+
+# Encoding CAEC (Ordinal)
+caec_map = {"no": 1, "Sometimes": 2, "Frequently": 3, "Always": 4}
+df["CAEC"] = df["CAEC"].map(caec_map)
+df["CAEC"] = (df["CAEC"] - 1) / (4 - 1)
+
+# Encoding MTRANS (Nominal)
+mtrans_map = {
+    "Public_Transportation": 0,
+    "Walking": 1,
+    "Automobile": 2,
+    "Motorbike": 3,
+    "Bike": 4
+}
+df["MTRANS"] = df["MTRANS"].map(mtrans_map)
+df["MTRANS"] = df["MTRANS"] / 4
+
+# Normalisasi Weight (Min-Max)
+min_weight = 39
+max_weight = 173
+df["Weight"] = (df["Weight"] - min_weight) / (max_weight - min_weight)
+
+print("Data setelah transformasi & normalisasi:\n")
+print(df)
+
+# Menghitung Euclidean Distance
+distance = pdist(df, metric='euclidean')
+distance_matrix = squareform(distance)
+
+print("\nDistance Matrix:\n")
+print(distance_matrix)
 ```
 
 ## Matriks Jarak (Distance Matrix)
