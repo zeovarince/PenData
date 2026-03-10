@@ -126,7 +126,6 @@ Setelah semua nilai atribut ditransformasikan ke rentang 0 sampai 1, data siap d
 Metode yang digunakan adalah **Euclidean Distance**, yang mengukur jarak "garis lurus" antara dua titik dalam ruang multidimensi (dalam hal ini, 4 dimensi karena kita menggunakan 4 atribut).
 
 Rumus Euclidean Distance:
-
 $$d(x_i, x_j) = \sqrt{\sum_{k=1}^{m} (x_{ik} - x_{jk})^2}$$
 
 ### Contoh Perhitungan Manual
@@ -147,34 +146,37 @@ Untuk simulasi, kita mengambil dua sampel data dari dataset **Obesity**:
 Kita ubah nilai-nilai tersebut ke bentuk numerik $[0, 1]$ berdasarkan parameter yang telah ditentukan sebelumnya:
 
 1. **Weight (Min: 39, Max: 173):**
-   - $x'_{11} = \frac{64 - 39}{173 - 39} = \frac{25}{134} \approx \mathbf{0.1866}$
-   - $x'_{21} = \frac{87 - 39}{173 - 39} = \frac{48}{134} \approx \mathbf{0.3582}$
+* $x'_{11} = \frac{64 - 39}{173 - 39} = \frac{25}{134} \approx \mathbf{0.1866}$
+* $x'_{21} = \frac{56 - 39}{173 - 39} = \frac{17}{134} \approx \mathbf{0.1269}$
 
-2. **MTRANS (Public: 0, Walking: 1, dst. Max: 4):**
-   - $x'_{12} = \frac{0 - 0}{4} = \mathbf{0}$
-   - $x'_{22} = \frac{1 - 0}{4} = \mathbf{0.25}$
 
-3. **CAEC (no: 0, Sometimes: 1, Always: 3. Max: 3):**
-   - $x'_{13} = \frac{1 - 0}{3} \approx \mathbf{0.3333}$
-   - $x'_{23} = \frac{1 - 0}{3} \approx \mathbf{0.3333}$
+2. **MTRANS (Nominal - Simple Matching):**
+* Objek 1: `Public_Transportation`
+* Objek 2: `Public_Transportation`
+* Karena nilainya **SAMA**, maka berdasarkan Slide 4: $d = \frac{1-1}{1} = \mathbf{0}$
 
-4. **Gender (Female: 1, Male: 0):**
-   - $x'_{14} = \mathbf{1}$
-   - $x'_{24} = \mathbf{0}$
 
+3. **CAEC (Ordinal - Ranking):**
+* $M = 4$, Keduanya `Sometimes` ($r=2$)
+* $x'_{13} = \frac{2 - 1}{4 - 1} = \frac{1}{3} \approx \mathbf{0.3333}$
+* $x'_{23} = \frac{2 - 1}{4 - 1} = \frac{1}{3} \approx \mathbf{0.3333}$
+
+
+4. **Gender (Biner - Symmetric):**
+* Keduanya `Female`, maka selisihnya = **0**
 ---
 
 **Langkah 2: Menghitung Jarak Euclidean**
 
 Sekarang kita masukkan nilai yang sudah dinormalisasi ke dalam rumus:
 
-$$d(1,2) = \sqrt{(0.1866 - 0.3582)^2 + (0 - 0.25)^2 + (0.3333 - 0.3333)^2 + (1 - 0)^2}$$
+$$d(1,2) = \sqrt{(0.1866 - 0.1269)^2 + (0)^2 + (0.3333 - 0.3333)^2 + (0)^2}$$
 
-$$d(1,2) = \sqrt{(-0.1716)^2 + (-0.25)^2 + (0)^2 + (1)^2}$$
+$$d(1,2) = \sqrt{(0.0597)^2 + 0 + 0 + 0}$$
 
-$$d(1,2) = \sqrt{0.0294 + 0.0625 + 0 + 1}$$
+$$d(1,2) = \sqrt{0.00356}$$
 
-$$d(1,2) = \sqrt{1.0919} \approx \mathbf{1.0449}$$
+$$d(1,2) = \mathbf{0.0597}$$
 
 ---
 
