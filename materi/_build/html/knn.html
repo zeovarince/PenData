@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Preprocessing Data &#8212; Catatan Matakuliah Penambanngan Data</title>
+    <title>K-Nearest Neighbors (KNN) Imputation &#8212; Catatan Matakuliah Penambanngan Data</title>
   
   
   
@@ -59,11 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'preprocesdata';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'knn';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Normalisasi Data" href="normalisasi.html" />
-    <link rel="prev" title="Pengukuran Jarak Data Campuran (Mixed Type Attributes)" href="UkurJarak.html" />
+    <link rel="prev" title="Normalisasi Data" href="normalisasi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -191,10 +190,9 @@
 <li class="toctree-l2"><a class="reference internal" href="UkurJarak.html">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Preprocessing Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="preprocesdata.html">Preprocessing Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="normalisasi.html">Normalisasi Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="knn.html">K-Nearest Neighbors (KNN) Imputation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbors (WKNN) Imputation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">K-Nearest Neighbors (KNN) Imputation</a></li>
 </ul>
 </details></li>
 </ul>
@@ -268,7 +266,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpreprocesdata.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fknn.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -298,7 +296,7 @@
       
       
       
-      <li><a href="_sources/preprocesdata.md" target="_blank"
+      <li><a href="_sources/knn.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Preprocessing Data</h1>
+    <h1>K-Nearest Neighbors (KNN) Imputation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,15 +390,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data-dalam-penambangan-data">Preprocessing Data dalam Penambangan Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-pembersihan-data">A. Pembersihan Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-integrasi-data">B. Integrasi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-transformasi-data">C. Transformasi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-reduksi-data">D. Reduksi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-utama-melakukan-data-preprocessing">Tujuan Utama Melakukan Data Preprocessing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm">Kapan Data Preprocessing Dilakukan? (Pendekatan CRISP-DM)</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values-k-nearest-neighbors-knn-imputation">Penanganan Missing Values: K-Nearest Neighbors (KNN) Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-knn">Konsep Dasar KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-vs-kekurangan-knn-imputation">Kelebihan vs Kekurangan KNN Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-kapan-dan-mengapa-menggunakan-knn-imputation">Tujuan, Kapan, dan Mengapa Menggunakan KNN Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-perhitungan-jarak-euclidean-distance">Rumus Perhitungan Jarak (Euclidean Distance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual-knn-studi-kasus-dataset-mahasiswa">Perhitungan Manual KNN (Studi Kasus Dataset Mahasiswa)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-python-knn-imputation">Implementasi Kode Python (KNN Imputation)</a></li>
 </ul>
             </nav>
         </div>
@@ -412,87 +408,151 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-data">
-<h1>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h1>
-<section id="preprocessing-data-dalam-penambangan-data">
-<h2>Preprocessing Data dalam Penambangan Data<a class="headerlink" href="#preprocessing-data-dalam-penambangan-data" title="Link to this heading">#</a></h2>
-<p><strong>Preprocessing Data</strong> adalah langkah awal yang sangat penting dalam siklus <em>Data Mining</em>, yang berfokus pada transformasi data mentah menjadi format yang lebih bersih, terstruktur, dan siap untuk menganalisis pola melalui algoritma <em>Machine Learning</em>.</p>
-<p>Salah satu prinsip kunci yang mendasari pentingnya tahap ini adalah <strong>“Garbage In, Garbage Out” (GIGO)</strong>. Tidak peduli seberapa canggih algoritma pemodelan yang digunakan, jika data yang dimasukkan berkualitas rendah (misalnya, mengandung nilai kosong, <em>noise</em>, atau ketidakkonsistenan), maka hasil yang diperoleh akan menjadi wawasan atau prediksi yang tidak akurat.</p>
-<p>Secara rinci, tahapan <em>Preprocessing Data</em> terdiri dari empat proses utama, yaitu:</p>
-<section id="a-pembersihan-data">
-<h3>A. Pembersihan Data<a class="headerlink" href="#a-pembersihan-data" title="Link to this heading">#</a></h3>
-<p>Data di dunia nyata sering kali tidak lengkap, berisik, dan rentan terhadap kesalahan. Proses ini bertujuan untuk “memperbaiki” data tersebut.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="k-nearest-neighbors-knn-imputation">
+<h1>K-Nearest Neighbors (KNN) Imputation<a class="headerlink" href="#k-nearest-neighbors-knn-imputation" title="Link to this heading">#</a></h1>
+<section id="penanganan-missing-values-k-nearest-neighbors-knn-imputation">
+<h2>Penanganan Missing Values: K-Nearest Neighbors (KNN) Imputation<a class="headerlink" href="#penanganan-missing-values-k-nearest-neighbors-knn-imputation" title="Link to this heading">#</a></h2>
+<p>Setelah data dinormalisasi agar memiliki skala yang seimbang, kita sekarang dapat menangani masalah <em>missing values</em> (data yang hilang). Salah satu metode yang paling cerdas dan akurat untuk imputasi adalah menggunakan <strong>K-Nearest Neighbors (KNN)</strong>.</p>
+</section>
+<section id="konsep-dasar-knn">
+<h2>Konsep Dasar KNN<a class="headerlink" href="#konsep-dasar-knn" title="Link to this heading">#</a></h2>
+<p>Ide dasar dari KNN sangat intuitif: <em>“Beritahu saya siapa tetangga terdekat Anda, maka saya akan tahu siapa Anda.”</em></p>
+<p>Jika sebuah data kehilangan nilai pada fitur tertentu (misal: JMK), KNN akan mencari sejumlah <strong><span class="math notranslate nohighlight">\(K\)</span> data lain yang paling mirip (terdekat)</strong> dengannya berdasarkan fitur-fitur lain yang tersedia (seperti IPK dan PO). Nilai yang hilang kemudian diisi menggunakan rata-rata dari nilai-nilai tetangga terdekat tersebut.</p>
+</section>
+<section id="kelebihan-vs-kekurangan-knn-imputation">
+<h2>Kelebihan vs Kekurangan KNN Imputation<a class="headerlink" href="#kelebihan-vs-kekurangan-knn-imputation" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>KNN Imputer</p></th>
+<th class="head"><p>Mean/Median Imputation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Akurasi</p></td>
+<td><p>Tinggi (konteks-aware)</p></td>
+<td><p>Rendah (global average)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kompleksitas</p></td>
+<td><p>O(n²) lambat untuk data besar</p></td>
+<td><p>O(1) sangat cepat</p></td>
+</tr>
+<tr class="row-even"><td><p>Memori</p></td>
+<td><p>Butuh seluruh dataset</p></td>
+<td><p>Hanya statistik kolom</p></td>
+</tr>
+<tr class="row-odd"><td><p>Preprocessing</p></td>
+<td><p>Wajib normalisasi</p></td>
+<td><p>Tidak perlu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tujuan-kapan-dan-mengapa-menggunakan-knn-imputation">
+<h2>Tujuan, Kapan, dan Mengapa Menggunakan KNN Imputation<a class="headerlink" href="#tujuan-kapan-dan-mengapa-menggunakan-knn-imputation" title="Link to this heading">#</a></h2>
+<p><strong>1. Tujuan Menggunakan KNN Imputation:</strong>
+Tujuan utama metode ini adalah untuk memperkirakan dan mengisi nilai yang hilang (<em>missing value</em>) pada sebuah data dengan memanfaatkan informasi dari tetangga terdekatnya. Alih-alih menebak secara buta, KNN mencoba merekonstruksi nilai yang hilang berdasarkan kemiripan karakteristik multidimensional dari data tersebut terhadap data lainnya di dalam dataset.</p>
+<p><strong>2. Kapan Harus Menggunakan KNN Imputation?</strong></p>
 <ul class="simple">
-<li><p><strong>Menangani Missing Values:</strong> Ketidakhadiran nilai pada atribut tertentu bisa disebabkan oleh kesalahan input, kerusakan sensor, atau data yang memang tidak tersedia. Beberapa metode untuk mengatasinya meliputi:</p>
-<ul>
-<li><p>Menghapus <em>record</em> (baris) atau atribut (kolom) jika nilai yang hilang terlalu banyak.</p></li>
-<li><p>Imputasi menggunakan ukuran tendensi sentral seperti Mean, Median, atau Modus.</p></li>
-<li><p>Imputasi berbasis pemodelan prediksi, seperti menggunakan algoritma regresi atau <strong>K-Nearest Neighbors (KNN) / Weighted KNN (WKNN)</strong> untuk memprediksi nilai yang hilang berdasarkan kemiripan data.</p></li>
+<li><p><strong>Setelah Data Dinormalisasi:</strong> Ini adalah <strong>syarat mutlak</strong>. Karena KNN bekerja berdasarkan perhitungan jarak (seperti <em>Euclidean</em>), fitur dengan skala besar akan mendominasi perhitungan jika data tidak dinormalisasi terlebih dahulu.</p></li>
+<li><p><strong>Terdapat Pola Relasi Antar Fitur:</strong> Digunakan ketika kamu yakin bahwa fitur-fitur dalam dataset memiliki hubungan satu sama lain (misalnya, ada korelasi logis antara IPK, Penghasilan Orang Tua, dan Jumlah Mata Kuliah).</p></li>
+<li><p><strong>Missing Value Bersifat Acak (MAR / MCAR):</strong> Sangat efektif jika data yang hilang terjadi secara acak (<em>Missing at Random</em>), bukan karena suatu pola kesalahan sistematis yang disengaja.</p></li>
 </ul>
-</li>
-<li><p><strong>Menangani Noisy Data &amp; Outliers:</strong> <em>Noise</em> adalah variasi acak atau kesalahan dalam variabel yang diukur, sedangkan <em>outlier</em> adalah data yang menyimpang jauh dari distribusi normal. Teknik penanganannya bisa menggunakan <em>Binning</em>, <em>Clustering</em> (untuk mendeteksi pencilan), atau regresi linear.</p></li>
+<p><strong>3. Mengapa Menggunakan KNN (Dibandingkan Metode Lain)?</strong>
+Cara paling tradisional untuk mengisi data yang kosong adalah menggunakan nilai <strong>Rata-rata (Mean)</strong> atau <strong>Nilai Tengah (Median)</strong> dari kolom tersebut. Namun, metode tradisional ini memiliki kelemahan fatal: <em>mereka mengabaikan konteks</em>.</p>
+<ul class="simple">
+<li><p><strong>Contoh Kasus:</strong> Misalkan kita memiliki data kosong pada fitur “Gaji” untuk seseorang yang berumur 22 tahun dan baru lulus kuliah. Jika kita menggunakan metode <em>Mean</em>, sistem mungkin akan mengisi gajinya dengan Rp 10.000.000 (karena rata-rata gaji seluruh karyawan di perusahaan termasuk direktur). Ini tentu tidak masuk akal.</p></li>
+<li><p><strong>Keunggulan KNN:</strong> Dengan KNN, algoritma akan melihat <em>konteks</em>. KNN akan mencari tetangga terdekat (misalnya karyawan lain yang berumur mirip dan memiliki tingkat pendidikan yang sama). KNN kemudian akan mengambil rata-rata gaji dari <em>tetangga-tetangga yang mirip tersebut</em>, misalnya Rp 4.000.000. Hasil prediksi ini jauh lebih akurat, logis, dan menjaga variansi asli dari dataset.</p></li>
 </ul>
 </section>
-<section id="b-integrasi-data">
-<h3>B. Integrasi Data<a class="headerlink" href="#b-integrasi-data" title="Link to this heading">#</a></h3>
-<p>Dalam analisis berskala besar, data jarang berasal dari satu sumber tunggal. Integrasi data adalah proses menggabungkan data dari berbagai basis data, <em>data cube</em>, atau <em>flat file</em> ke dalam satu <em>data store</em> yang koheren.</p>
-<ul class="simple">
-<li><p>Tantangan utama di tahap ini adalah <strong>Entity Identification Problem</strong> (memastikan bahwa entitas yang sama dari sumber yang berbeda dapat dikenali, misalnya mencocokkan “customer_id” dari database A dengan “cust_number” dari database B) dan menangani redundansi fitur.</p></li>
-</ul>
-</section>
-<section id="c-transformasi-data">
-<h3>C. Transformasi Data<a class="headerlink" href="#c-transformasi-data" title="Link to this heading">#</a></h3>
-<p>Tahap ini mengubah atau mengkonsolidasikan data ke dalam bentuk yang paling optimal untuk algoritma <em>data mining</em>.</p>
-<ul class="simple">
-<li><p><strong>Normalisasi / Standardisasi:</strong> Algoritma berbasis jarak (seperti KNN, K-Means) sangat sensitif terhadap skala data. Normalisasi mengubah nilai numerik ke dalam skala yang seragam (misalnya: 0 hingga 1), sehingga fitur dengan rentang nilai besar (seperti gaji) tidak mendominasi fitur dengan rentang kecil (seperti umur).</p></li>
-<li><p><strong>Diskritisasi:</strong> Mengubah atribut kontinu menjadi interval diskrit atau atribut nominal. Contoh: Mengubah rentang umur 1-100 menjadi kategori “Anak-anak”, “Remaja”, “Dewasa”, dan “Lansia”.</p></li>
-<li><p><strong>Konstruksi Fitur:</strong> Menciptakan atribut baru dari himpunan atribut yang sudah ada untuk membantu meningkatkan akurasi model.</p></li>
-</ul>
-</section>
-<section id="d-reduksi-data">
-<h3>D. Reduksi Data<a class="headerlink" href="#d-reduksi-data" title="Link to this heading">#</a></h3>
-<p>Dataset modern sering kali berukuran sangat besar (bisa mencapai terabyte). Melakukan analisis kompleks pada data sebesar ini sangat memakan waktu. <em>Reduksi Data</em> bertujuan untuk mendapatkan representasi dataset yang jauh lebih kecil, namun tetap mampu menghasilkan output analitis yang sama (atau hampir sama).</p>
-<ul class="simple">
-<li><p><strong>Pengurangan Dimensi:</strong> Mengurangi jumlah fitur/atribut menggunakan teknik seperti PCA (<em>Principal Component Analysis</em>).</p></li>
-<li><p><strong>Pengurangan Numeris:</strong> Mengganti data asli dengan model parametrik yang lebih kecil (hanya menyimpan parameter modelnya saja) atau menggunakan metode non-parametrik seperti <em>sampling</em> atau histogram.</p></li>
-</ul>
-</section>
-<section id="tujuan-utama-melakukan-data-preprocessing">
-<h3>Tujuan Utama Melakukan Data Preprocessing<a class="headerlink" href="#tujuan-utama-melakukan-data-preprocessing" title="Link to this heading">#</a></h3>
-<p>Secara teknis dan analitis, <em>data preprocessing</em> bukan sekadar langkah “bersih-bersih” biasa. Tahapan ini memiliki tujuan fundamental yang berdampak langsung pada performa algoritma <em>machine learning</em> dan <em>data mining</em>:</p>
-<ol class="arabic simple">
-<li><p><strong>Meningkatkan Kualitas Data (Data Quality):</strong> Kualitas data diukur dari beberapa dimensi, yaitu akurasi, kelengkapan (<em>completeness</em>), konsistensi, ketepatan waktu (<em>timeliness</em>), dan validitas. Preprocessing memastikan data yang masuk memenuhi standar kualitas ini sebelum dianalisis.</p></li>
-<li><p><strong>Mencegah Bias dan <em>Overfitting</em>:</strong> Data dunia nyata sering kali mengandung <em>noise</em> atau pola acak yang tidak relevan. Jika data ini langsung dilatih, model bisa mengalami <em>overfitting</em> (terlalu menghafal data latih termasuk <em>noise</em>-nya) sehingga gagal melakukan prediksi pada data baru.</p></li>
-<li><p><strong>Mempercepat Konvergensi Algoritma:</strong> Banyak algoritma optimasi (seperti <em>Gradient Descent</em> pada <em>Neural Networks</em> atau Regresi Logistik) akan bekerja jauh lebih lambat jika skala fitur-fiturnya tidak seimbang. Teknik transformasi seperti Normalisasi memastikan algoritma mencapai titik optimal (konvergen) dengan lebih cepat dan efisien.</p></li>
-<li><p><strong>Menghindari <em>Curse of Dimensionality</em> (Kutukan Dimensi):</strong> Dataset dengan ratusan atau ribuan fitur/kolom dapat membuat model kebingungan dan menurunkan akurasi algoritma berbasis jarak (seperti KNN). Preprocessing melalui teknik <em>dimensionality reduction</em> bertujuan untuk mengekstraksi fitur yang benar-benar bermakna saja.</p></li>
-<li><p><strong>Memenuhi Asumsi Matematis Algoritma:</strong> Setiap algoritma memiliki “syarat dan ketentuan” matematis. Misalnya:</p>
-<ul class="simple">
-<li><p><strong>KNN dan K-Means:</strong> Sangat sensitif terhadap skala data (membutuhkan Normalisasi/Standardisasi).</p></li>
-<li><p><strong>Naive Bayes:</strong> Asumsi independensi antar fitur dan sering kali bekerja lebih baik dengan data diskrit.</p></li>
-<li><p><strong>Regresi Linear:</strong> Membutuhkan penanganan <em>outlier</em> yang ketat karena garis regresi sangat mudah ditarik oleh nilai ekstrem.</p></li>
-</ul>
-</li>
-</ol>
+<section id="rumus-perhitungan-jarak-euclidean-distance">
+<h2>Rumus Perhitungan Jarak (Euclidean Distance)<a class="headerlink" href="#rumus-perhitungan-jarak-euclidean-distance" title="Link to this heading">#</a></h2>
+<p>Untuk mencari “tetangga terdekat”, kita menghitung jarak antar data. Rumus jarak yang paling umum adalah <strong>Jarak Euclidean</strong>:</p>
+<div class="math notranslate nohighlight">
+\[d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + ... + (n_2 - n_1)^2}\]</div>
+<p><em>Di mana <span class="math notranslate nohighlight">\(d\)</span> adalah jarak, dan <span class="math notranslate nohighlight">\(x, y, n\)</span> adalah fitur-fitur yang digunakan.</em></p>
 </section>
 <hr class="docutils" />
-<section id="kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm">
-<h3>Kapan Data Preprocessing Dilakukan? (Pendekatan CRISP-DM)<a class="headerlink" href="#kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm" title="Link to this heading">#</a></h3>
-<p>Dalam industri <em>Data Science</em>, standar proses yang paling banyak digunakan adalah <strong>CRISP-DM</strong> (<em>Cross-Industry Standard Process for Data Mining</em>). Metodologi ini membagi proyek penambangan data ke dalam enam fase utama.</p>
-<p><em>Data Preprocessing</em> secara eksklusif terjadi pada fase <strong>Data Preparation (Persiapan Data)</strong>. Menariknya, para praktisi data mengakui bahwa <strong>fase ini memakan sekitar 60% hingga 80% dari total waktu dan upaya</strong> dalam keseluruhan proyek penambangan data.</p>
-<p>Berikut adalah posisi <em>Data Preprocessing</em> dalam alur CRISP-DM:</p>
-<ol class="arabic simple">
-<li><p><strong>Business Understanding (Pemahaman Bisnis):</strong> Menentukan tujuan proyek dari perspektif bisnis.</p></li>
-<li><p><strong>Data Understanding (Pemahaman Data):</strong> Mengumpulkan data mentah, mengeksplorasi data awal (EDA - <em>Exploratory Data Analysis</em>), dan mengidentifikasi masalah kualitas data (mendeteksi adanya <em>missing values</em> atau <em>outlier</em>).</p></li>
-<li><p><strong>Data Preparation (Fase Data Preprocessing):</strong>  <strong>Di sinilah preprocessing dilakukan secara penuh.</strong> Data mentah dibersihkan, diintegrasikan, diubah formatnya (transformasi/normalisasi), dan direduksi jika perlu. Output dari fase ini adalah dataset final yang bersih dan siap dimodelkan.</p></li>
-<li><p><strong>Modeling (Pemodelan):</strong> Dataset hasil <em>preprocessing</em> mulai dimasukkan ke dalam algoritma <em>machine learning</em> (seperti WKNN, Decision Tree, atau SVM). Jika model gagal berjalan, analis sering kali harus mundur kembali ke fase <em>Data Preparation</em> untuk memperbaiki datanya.</p></li>
-<li><p><strong>Evaluation (Evaluasi):</strong> Mengevaluasi apakah model sudah menjawab tujuan bisnis.</p></li>
-<li><p><strong>Deployment (Penyebaran):</strong> Menerapkan model ke dalam sistem produksi (<em>production</em>).</p></li>
-</ol>
-<p>Dengan memahami alur ini, terlihat jelas bahwa <em>preprocessing</em> adalah jembatan kritis. Data mentah tidak akan pernah bisa melompat langsung ke tahap <em>Modeling</em> tanpa melalui “pabrik pemrosesan” di tahap <em>Data Preparation</em>.</p>
-</section>
-</section>
-<div class="toctree-wrapper compound">
+<section id="perhitungan-manual-knn-studi-kasus-dataset-mahasiswa">
+<h2>Perhitungan Manual KNN (Studi Kasus Dataset Mahasiswa)<a class="headerlink" href="#perhitungan-manual-knn-studi-kasus-dataset-mahasiswa" title="Link to this heading">#</a></h2>
+<p>Agar perhitungan jarak akurat dan tidak didominasi oleh fitur yang besar, kita <strong>WAJIB</strong> menggunakan data yang sudah dinormalisasi (misalnya hasil <strong>Min-Max Scaling</strong> sebelumnya).</p>
+<p><strong>Tabel Data (Fitur X Menggunakan Hasil Min-Max, Target Y menggunakan Nilai Asli JMK):</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>ID</p></th>
+<th class="head text-center"><p>IPK (Norm)</p></th>
+<th class="head text-center"><p>PO (Norm)</p></th>
+<th class="head text-center"><p>JMK (Asli)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>0.5</p></td>
+<td class="text-center"><p>0.5</p></td>
+<td class="text-center"><p>3</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>3</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-center"><p>0.5</p></td>
+<td class="text-center"><p>0.5</p></td>
+<td class="text-center"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>1.0</p></td>
+<td class="text-center"><p>3</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>7</strong></p></td>
+<td class="text-center"><p><strong>0.0</strong></p></td>
+<td class="text-center"><p><strong>0.5</strong></p></td>
+<td class="text-center"><p><strong>?</strong></p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p>Kita ingin mencari nilai JMK untuk <strong>ID 7</strong>, dan kita tentukan <strong><span class="math notranslate nohighlight">\(K = 3\)</span></strong> (mencari 3 tetangga terdekat).</p>
+<p><strong>Langkah 1: Hitung Jarak Euclidean dari ID 7 ke semua data lain</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(7, 1) = \sqrt{(0.0 - 0.0)^2 + (0.5 - 0.0)^2} = \sqrt{0 + 0.25} = 0.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(7, 2) = \sqrt{(0.0 - 0.5)^2 + (0.5 - 0.5)^2} = \sqrt{0.25 + 0} = 0.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(7, 3) = \sqrt{(0.0 - 1.0)^2 + (0.5 - 0.0)^2} = \sqrt{1.0 + 0.25} = \sqrt{1.25} \approx 1.118\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(7, 4) = \sqrt{(0.0 - 0.0)^2 + (0.5 - 0.0)^2} = \sqrt{0 + 0.25} = 0.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(7, 5) = \sqrt{(0.0 - 0.5)^2 + (0.5 - 0.5)^2} = \sqrt{0.25 + 0} = 0.5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(7, 6) = \sqrt{(0.0 - 1.0)^2 + (0.5 - 1.0)^2} = \sqrt{1.0 + 0.25} = \sqrt{1.25} \approx 1.118\)</span></p></li>
+</ul>
+<p><strong>Langkah 2: Tentukan K Tetangga Terdekat (K=3)</strong>
+Jarak terkecil adalah <span class="math notranslate nohighlight">\(0.5\)</span>. Karena ada empat data dengan jarak <span class="math notranslate nohighlight">\(0.5\)</span> (ID 1, 2, 4, 5), kita bisa mengambil tiga yang pertama sebagai tetangga:</p>
+<ol class="arabic simple">
+<li><p><strong>Tetangga 1:</strong> ID 1 (Jarak = 0.5, JMK = 2)</p></li>
+<li><p><strong>Tetangga 2:</strong> ID 2 (Jarak = 0.5, JMK = 3)</p></li>
+<li><p><strong>Tetangga 3:</strong> ID 4 (Jarak = 0.5, JMK = 3)</p></li>
+</ol>
+<p><strong>Langkah 3: Hitung Rata-rata Nilai Tetangga</strong>
+$<span class="math notranslate nohighlight">\(JMK_{prediksi} = \frac{JMK_1 + JMK_2 + JMK_4}{3}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(JMK_{prediksi} = \frac{2 + 3 + 3}{3} = \frac{8}{3} \approx 2.67\)</span>$</p>
+<p>Jadi, berdasarkan perhitungan KNN (<span class="math notranslate nohighlight">\(K=3\)</span>), nilai JMK untuk data ID 7 yang hilang diimputasi menjadi <strong>2.67</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="implementasi-kode-python-knn-imputation">
+<h2>Implementasi Kode Python (KNN Imputation)<a class="headerlink" href="#implementasi-kode-python-knn-imputation" title="Link to this heading">#</a></h2>
+<p>Di Python, kita bisa menggunakan modul bawaan <code class="docutils literal notranslate"><span class="pre">KNNImputer</span></code> dari <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> yang sudah dioptimalkan untuk pekerjaan ini.</p>
+<hr class="docutils" />
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -526,22 +586,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="UkurJarak.html"
+       href="normalisasi.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="normalisasi.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Normalisasi Data</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -559,15 +610,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data-dalam-penambangan-data">Preprocessing Data dalam Penambangan Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-pembersihan-data">A. Pembersihan Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-integrasi-data">B. Integrasi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-transformasi-data">C. Transformasi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-reduksi-data">D. Reduksi Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-utama-melakukan-data-preprocessing">Tujuan Utama Melakukan Data Preprocessing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm">Kapan Data Preprocessing Dilakukan? (Pendekatan CRISP-DM)</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values-k-nearest-neighbors-knn-imputation">Penanganan Missing Values: K-Nearest Neighbors (KNN) Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-knn">Konsep Dasar KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-vs-kekurangan-knn-imputation">Kelebihan vs Kekurangan KNN Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-kapan-dan-mengapa-menggunakan-knn-imputation">Tujuan, Kapan, dan Mengapa Menggunakan KNN Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-perhitungan-jarak-euclidean-distance">Rumus Perhitungan Jarak (Euclidean Distance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual-knn-studi-kasus-dataset-mahasiswa">Perhitungan Manual KNN (Studi Kasus Dataset Mahasiswa)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-python-knn-imputation">Implementasi Kode Python (KNN Imputation)</a></li>
 </ul>
   </nav></div>
 

@@ -15,3 +15,5 @@ chapters:
 - file: preprocesdata
   sections:
   - file: normalisasi
+  - file: knn
+  - file: wknn
