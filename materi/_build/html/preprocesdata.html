@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Matakuliah Penambangan Data &#8212; Catatan Matakuliah Penambanngan Data</title>
+    <title>Preprocessing Data &#8212; Catatan Matakuliah Penambanngan Data</title>
   
   
   
@@ -57,12 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'preprocesdata';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pengantar Penambangan Data" href="Pengantar.html" />
+    <link rel="prev" title="Pengukuran Jarak Data Campuran (Mixed Type Attributes)" href="UkurJarak.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -145,7 +141,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -176,13 +172,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Matakuliah Penambangan Data
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="eksplorData.html">Eksplorasi Data IRIS</a></li>
@@ -192,7 +188,7 @@
 <li class="toctree-l2"><a class="reference internal" href="UkurJarak.html">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="preprocesdata.html">Preprocessing Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocessing Data</a></li>
 </ul>
 
     </div>
@@ -264,7 +260,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpreprocesdata.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +290,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/preprocesdata.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,7 +374,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Matakuliah Penambangan Data</h1>
+    <h1>Preprocessing Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,9 +384,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-me">💫 About Me:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#socials">🌐 Socials:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tech-stack">💻 Tech Stack:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data-dalam-penambangan-data">Preprocessing Data dalam Penambangan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-pembersihan-data">A. Pembersihan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-integrasi-data">B. Integrasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-transformasi-data">C. Transformasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-reduksi-data">D. Reduksi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-utama-melakukan-data-preprocessing">Tujuan Utama Melakukan Data Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm">Kapan Data Preprocessing Dilakukan? (Pendekatan CRISP-DM)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -402,29 +404,84 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="matakuliah-penambangan-data">
-<h1>Matakuliah Penambangan Data<a class="headerlink" href="#matakuliah-penambangan-data" title="Link to this heading">#</a></h1>
-<hr>
-<section id="about-me">
-<h2>💫 About Me:<a class="headerlink" href="#about-me" title="Link to this heading">#</a></h2>
-<p><code> Student | Developer | Learner </code><br><hr>👋 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Hello</span> <span class="pre">World!</span> <span class="pre">I'm</span> <span class="pre">A.</span> <span class="pre">Choiril</span> <span class="pre">Anwar</span> <span class="pre">EL-Asfihani</span> <span class="pre">Risydan</span> <span class="pre">||</span> <span class="pre">NIM</span> <span class="pre">:</span> <span class="pre">240411100098&quot;;</span></code> <br><br> 🎓 Informatics student in Universitas Trunojoyo Madura since of 2024<br> 🛠️ Spending my days exploring <strong>Web Dev</strong> <br> 📚 Currently compiling knowledge and leveling up my skills step-by-step<br> ⚡ Fun fact: I turn caffeine into code.</p>
-</section>
-<section id="socials">
-<h2>🌐 Socials:<a class="headerlink" href="#socials" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="mailto:achoirilanwar01&#37;&#52;&#48;gmail&#46;com"><img alt="email" src="https://img&#46;shields&#46;io/badge/Email-D14836?logo=gmail&amp;logoColor=white" /></a> <a class="reference external" href="https://instagram.com/2ez4rielz"><img alt="Instagram" src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&amp;logoColor=white" /></a></p>
-</section>
-<section id="tech-stack">
-<h2>💻 Tech Stack:<a class="headerlink" href="#tech-stack" title="Link to this heading">#</a></h2>
-<p><img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&amp;logo=html5&amp;logoColor=white" /> <img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&amp;logo=css3&amp;logoColor=white" /> <img alt="Bootstrap" src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&amp;logo=bootstrap&amp;logoColor=white" /> <img alt="PHP" src="https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&amp;logo=php&amp;logoColor=white" /> <img alt="MySQL" src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&amp;logo=mysql&amp;logoColor=white" /> <img alt="Python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&amp;logo=python&amp;logoColor=ffdd54" /> <img alt="Canva" src="https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&amp;logo=Canva&amp;logoColor=white" /> <img alt="GitHub" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&amp;logo=github&amp;logoColor=white" /> <img alt="LaTeX" src="https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&amp;logo=latex&amp;logoColor=white" /> <img alt="Markdown" src="https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&amp;logo=markdown&amp;logoColor=white" /></p>
-<br>
-<p>Check out the content pages bundled with this.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-data">
+<h1>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h1>
+<section id="preprocessing-data-dalam-penambangan-data">
+<h2>Preprocessing Data dalam Penambangan Data<a class="headerlink" href="#preprocessing-data-dalam-penambangan-data" title="Link to this heading">#</a></h2>
+<p><strong>Preprocessing Data</strong> adalah langkah awal yang sangat penting dalam siklus <em>Data Mining</em>, yang berfokus pada transformasi data mentah menjadi format yang lebih bersih, terstruktur, dan siap untuk menganalisis pola melalui algoritma <em>Machine Learning</em>.</p>
+<p>Salah satu prinsip kunci yang mendasari pentingnya tahap ini adalah <strong>“Garbage In, Garbage Out” (GIGO)</strong>. Tidak peduli seberapa canggih algoritma pemodelan yang digunakan, jika data yang dimasukkan berkualitas rendah (misalnya, mengandung nilai kosong, <em>noise</em>, atau ketidakkonsistenan), maka hasil yang diperoleh akan menjadi wawasan atau prediksi yang tidak akurat.</p>
+<p>Secara rinci, tahapan <em>Preprocessing Data</em> terdiri dari empat proses utama, yaitu:</p>
+<section id="a-pembersihan-data">
+<h3>A. Pembersihan Data<a class="headerlink" href="#a-pembersihan-data" title="Link to this heading">#</a></h3>
+<p>Data di dunia nyata sering kali tidak lengkap, berisik, dan rentan terhadap kesalahan. Proses ini bertujuan untuk “memperbaiki” data tersebut.</p>
+<ul class="simple">
+<li><p><strong>Menangani Missing Values:</strong> Ketidakhadiran nilai pada atribut tertentu bisa disebabkan oleh kesalahan input, kerusakan sensor, atau data yang memang tidak tersedia. Beberapa metode untuk mengatasinya meliputi:</p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MemahamiData.html">Memahami Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="preprocesdata.html">Preprocessing Data</a></li>
+<li><p>Menghapus <em>record</em> (baris) atau atribut (kolom) jika nilai yang hilang terlalu banyak.</p></li>
+<li><p>Imputasi menggunakan ukuran tendensi sentral seperti Mean, Median, atau Modus.</p></li>
+<li><p>Imputasi berbasis pemodelan prediksi, seperti menggunakan algoritma regresi atau <strong>K-Nearest Neighbors (KNN) / Weighted KNN (WKNN)</strong> untuk memprediksi nilai yang hilang berdasarkan kemiripan data.</p></li>
 </ul>
-</div>
+</li>
+<li><p><strong>Menangani Noisy Data &amp; Outliers:</strong> <em>Noise</em> adalah variasi acak atau kesalahan dalam variabel yang diukur, sedangkan <em>outlier</em> adalah data yang menyimpang jauh dari distribusi normal. Teknik penanganannya bisa menggunakan <em>Binning</em>, <em>Clustering</em> (untuk mendeteksi pencilan), atau regresi linear.</p></li>
+</ul>
+</section>
+<section id="b-integrasi-data">
+<h3>B. Integrasi Data<a class="headerlink" href="#b-integrasi-data" title="Link to this heading">#</a></h3>
+<p>Dalam analisis berskala besar, data jarang berasal dari satu sumber tunggal. Integrasi data adalah proses menggabungkan data dari berbagai basis data, <em>data cube</em>, atau <em>flat file</em> ke dalam satu <em>data store</em> yang koheren.</p>
+<ul class="simple">
+<li><p>Tantangan utama di tahap ini adalah <strong>Entity Identification Problem</strong> (memastikan bahwa entitas yang sama dari sumber yang berbeda dapat dikenali, misalnya mencocokkan “customer_id” dari database A dengan “cust_number” dari database B) dan menangani redundansi fitur.</p></li>
+</ul>
+</section>
+<section id="c-transformasi-data">
+<h3>C. Transformasi Data<a class="headerlink" href="#c-transformasi-data" title="Link to this heading">#</a></h3>
+<p>Tahap ini mengubah atau mengkonsolidasikan data ke dalam bentuk yang paling optimal untuk algoritma <em>data mining</em>.</p>
+<ul class="simple">
+<li><p><strong>Normalisasi / Standardisasi:</strong> Algoritma berbasis jarak (seperti KNN, K-Means) sangat sensitif terhadap skala data. Normalisasi mengubah nilai numerik ke dalam skala yang seragam (misalnya: 0 hingga 1), sehingga fitur dengan rentang nilai besar (seperti gaji) tidak mendominasi fitur dengan rentang kecil (seperti umur).</p></li>
+<li><p><strong>Diskritisasi:</strong> Mengubah atribut kontinu menjadi interval diskrit atau atribut nominal. Contoh: Mengubah rentang umur 1-100 menjadi kategori “Anak-anak”, “Remaja”, “Dewasa”, dan “Lansia”.</p></li>
+<li><p><strong>Konstruksi Fitur:</strong> Menciptakan atribut baru dari himpunan atribut yang sudah ada untuk membantu meningkatkan akurasi model.</p></li>
+</ul>
+</section>
+<section id="d-reduksi-data">
+<h3>D. Reduksi Data<a class="headerlink" href="#d-reduksi-data" title="Link to this heading">#</a></h3>
+<p>Dataset modern sering kali berukuran sangat besar (bisa mencapai terabyte). Melakukan analisis kompleks pada data sebesar ini sangat memakan waktu. <em>Reduksi Data</em> bertujuan untuk mendapatkan representasi dataset yang jauh lebih kecil, namun tetap mampu menghasilkan output analitis yang sama (atau hampir sama).</p>
+<ul class="simple">
+<li><p><strong>Pengurangan Dimensi:</strong> Mengurangi jumlah fitur/atribut menggunakan teknik seperti PCA (<em>Principal Component Analysis</em>).</p></li>
+<li><p><strong>Pengurangan Numeris:</strong> Mengganti data asli dengan model parametrik yang lebih kecil (hanya menyimpan parameter modelnya saja) atau menggunakan metode non-parametrik seperti <em>sampling</em> atau histogram.</p></li>
+</ul>
+</section>
+<section id="tujuan-utama-melakukan-data-preprocessing">
+<h3>Tujuan Utama Melakukan Data Preprocessing<a class="headerlink" href="#tujuan-utama-melakukan-data-preprocessing" title="Link to this heading">#</a></h3>
+<p>Secara teknis dan analitis, <em>data preprocessing</em> bukan sekadar langkah “bersih-bersih” biasa. Tahapan ini memiliki tujuan fundamental yang berdampak langsung pada performa algoritma <em>machine learning</em> dan <em>data mining</em>:</p>
+<ol class="arabic simple">
+<li><p><strong>Meningkatkan Kualitas Data (Data Quality):</strong> Kualitas data diukur dari beberapa dimensi, yaitu akurasi, kelengkapan (<em>completeness</em>), konsistensi, ketepatan waktu (<em>timeliness</em>), dan validitas. Preprocessing memastikan data yang masuk memenuhi standar kualitas ini sebelum dianalisis.</p></li>
+<li><p><strong>Mencegah Bias dan <em>Overfitting</em>:</strong> Data dunia nyata sering kali mengandung <em>noise</em> atau pola acak yang tidak relevan. Jika data ini langsung dilatih, model bisa mengalami <em>overfitting</em> (terlalu menghafal data latih termasuk <em>noise</em>-nya) sehingga gagal melakukan prediksi pada data baru.</p></li>
+<li><p><strong>Mempercepat Konvergensi Algoritma:</strong> Banyak algoritma optimasi (seperti <em>Gradient Descent</em> pada <em>Neural Networks</em> atau Regresi Logistik) akan bekerja jauh lebih lambat jika skala fitur-fiturnya tidak seimbang. Teknik transformasi seperti Normalisasi memastikan algoritma mencapai titik optimal (konvergen) dengan lebih cepat dan efisien.</p></li>
+<li><p><strong>Menghindari <em>Curse of Dimensionality</em> (Kutukan Dimensi):</strong> Dataset dengan ratusan atau ribuan fitur/kolom dapat membuat model kebingungan dan menurunkan akurasi algoritma berbasis jarak (seperti KNN). Preprocessing melalui teknik <em>dimensionality reduction</em> bertujuan untuk mengekstraksi fitur yang benar-benar bermakna saja.</p></li>
+<li><p><strong>Memenuhi Asumsi Matematis Algoritma:</strong> Setiap algoritma memiliki “syarat dan ketentuan” matematis. Misalnya:</p>
+<ul class="simple">
+<li><p><strong>KNN dan K-Means:</strong> Sangat sensitif terhadap skala data (membutuhkan Normalisasi/Standardisasi).</p></li>
+<li><p><strong>Naive Bayes:</strong> Asumsi independensi antar fitur dan sering kali bekerja lebih baik dengan data diskrit.</p></li>
+<li><p><strong>Regresi Linear:</strong> Membutuhkan penanganan <em>outlier</em> yang ketat karena garis regresi sangat mudah ditarik oleh nilai ekstrem.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm">
+<h3>Kapan Data Preprocessing Dilakukan? (Pendekatan CRISP-DM)<a class="headerlink" href="#kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm" title="Link to this heading">#</a></h3>
+<p>Dalam industri <em>Data Science</em>, standar proses yang paling banyak digunakan adalah <strong>CRISP-DM</strong> (<em>Cross-Industry Standard Process for Data Mining</em>). Metodologi ini membagi proyek penambangan data ke dalam enam fase utama.</p>
+<p><em>Data Preprocessing</em> secara eksklusif terjadi pada fase <strong>Data Preparation (Persiapan Data)</strong>. Menariknya, para praktisi data mengakui bahwa <strong>fase ini memakan sekitar 60% hingga 80% dari total waktu dan upaya</strong> dalam keseluruhan proyek penambangan data.</p>
+<p>Berikut adalah posisi <em>Data Preprocessing</em> dalam alur CRISP-DM:</p>
+<ol class="arabic simple">
+<li><p><strong>Business Understanding (Pemahaman Bisnis):</strong> Menentukan tujuan proyek dari perspektif bisnis.</p></li>
+<li><p><strong>Data Understanding (Pemahaman Data):</strong> Mengumpulkan data mentah, mengeksplorasi data awal (EDA - <em>Exploratory Data Analysis</em>), dan mengidentifikasi masalah kualitas data (mendeteksi adanya <em>missing values</em> atau <em>outlier</em>).</p></li>
+<li><p><strong>Data Preparation (Fase Data Preprocessing):</strong>  <strong>Di sinilah preprocessing dilakukan secara penuh.</strong> Data mentah dibersihkan, diintegrasikan, diubah formatnya (transformasi/normalisasi), dan direduksi jika perlu. Output dari fase ini adalah dataset final yang bersih dan siap dimodelkan.</p></li>
+<li><p><strong>Modeling (Pemodelan):</strong> Dataset hasil <em>preprocessing</em> mulai dimasukkan ke dalam algoritma <em>machine learning</em> (seperti WKNN, Decision Tree, atau SVM). Jika model gagal berjalan, analis sering kali harus mundur kembali ke fase <em>Data Preparation</em> untuk memperbaiki datanya.</p></li>
+<li><p><strong>Evaluation (Evaluasi):</strong> Mengevaluasi apakah model sudah menjawab tujuan bisnis.</p></li>
+<li><p><strong>Deployment (Penyebaran):</strong> Menerapkan model ke dalam sistem produksi (<em>production</em>).</p></li>
+</ol>
+<p>Dengan memahami alur ini, terlihat jelas bahwa <em>preprocessing</em> adalah jembatan kritis. Data mentah tidak akan pernah bisa melompat langsung ke tahap <em>Modeling</em> tanpa melalui “pabrik pemrosesan” di tahap <em>Data Preparation</em>.</p>
+</section>
 </section>
 </section>
 
@@ -458,14 +515,14 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="Pengantar.html"
-       title="next page">
+    <a class="left-prev"
+       href="UkurJarak.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pengantar Penambangan Data</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -483,9 +540,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-me">💫 About Me:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#socials">🌐 Socials:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tech-stack">💻 Tech Stack:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data-dalam-penambangan-data">Preprocessing Data dalam Penambangan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-pembersihan-data">A. Pembersihan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-integrasi-data">B. Integrasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-transformasi-data">C. Transformasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-reduksi-data">D. Reduksi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-utama-melakukan-data-preprocessing">Tujuan Utama Melakukan Data Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kapan-data-preprocessing-dilakukan-pendekatan-crisp-dm">Kapan Data Preprocessing Dilakukan? (Pendekatan CRISP-DM)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
