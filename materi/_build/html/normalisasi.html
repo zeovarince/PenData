@@ -194,6 +194,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="preprocesdata.html">Preprocessing Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Normalisasi Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="knn.html">K-Nearest Neighbors (KNN) Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbors (WKNN) Imputation</a></li>
 </ul>
 </details></li>
 </ul>
@@ -416,7 +417,9 @@ document.write(`
 <p>Untuk mengatasi ini, kita melakukan <strong>Normalisasi Data</strong>: proses menskalakan nilai-nilai atribut dari data mentah agar jatuh dalam rentang kecil yang spesifik tanpa mengubah karakteristik dasar dari distribusi data tersebut.</p>
 <p>Berikut adalah 4 metode normalisasi beserta penerapannya pada dataset mahasiswa.</p>
 <p><strong>Sumber Data Yang Akan Digunakan:</strong> <a class="reference download internal" download="" href="_downloads/6b563c7272bbcbf8aac132414175d54f/Book1.xlsx"><span class="xref download myst">Download Book1.xlsx</span></a></p>
-<p><em>(Catatan: Nilai <code class="docutils literal notranslate"><span class="pre">?</span></code> pada kolom <strong>JMK</strong> di baris 7 dianggap sebagai Missing Value atau NaN, dan diabaikan dalam penentuan batas hitung) Dan yang digunakan adalah data mentah pada Sheet1</em></p>
+<blockquote>
+<div><p><em>(Catatan: Nilai <code class="docutils literal notranslate"><span class="pre">?</span></code> pada kolom <strong>JMK</strong> di baris 7 dianggap sebagai Missing Value atau NaN, dan diabaikan dalam penentuan batas hitung) Dan yang digunakan adalah data mentah pada Sheet1</em></p>
+</div></blockquote>
 </section>
 <hr class="docutils" />
 <section id="a-min-max-scaling-normalisasi-min-max">

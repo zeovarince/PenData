@@ -25,7 +25,7 @@ Berikut adalah 4 metode normalisasi beserta penerapannya pada dataset mahasiswa.
 
  **Sumber Data Yang Akan Digunakan:** [Download Book1.xlsx](./Book1.xlsx)
  
-*(Catatan: Nilai `?` pada kolom **JMK** di baris 7 dianggap sebagai Missing Value atau NaN, dan diabaikan dalam penentuan batas hitung) Dan yang digunakan adalah data mentah pada Sheet1*
+> *(Catatan: Nilai `?` pada kolom **JMK** di baris 7 dianggap sebagai Missing Value atau NaN, dan diabaikan dalam penentuan batas hitung) Dan yang digunakan adalah data mentah pada Sheet1*
 
 ---
 

@@ -143,7 +143,7 @@ $$JMK_{prediksi} = \frac{(4 \cdot 2) + (4 \cdot 3) + (4 \cdot 3)}{4 + 4 + 4} = \
 
 ---
 
-### B. Hasil WKNN Menggunakan Z-Score Standardization (Kejutan!)
+### B. Hasil WKNN Menggunakan Z-Score Standardization
 
 Z-Score mendistorsi jarak karena pembagian standar deviasi yang berbeda untuk tiap kolom. Posisi ID 7 berada di $(-1.0289, 0.4082)$. Hal ini mengubah peta jarak secara keseluruhan!
 
@@ -214,7 +214,7 @@ Dalam kasus ini:
 1. Normalisasi linier (Min-Max, Decimal, Mean) memberikan komposisi peta jarak yang proporsinya dipertahankan. Bobot jarak berbeda-beda (Min-Max/Mean $W=4$, Decimal $W=100$), namun ketiganya menebak JMK ID 7 adalah **2.67**.
 2. Z-Score Standardization merusak proporsi jarak asli dan menemukan tetangga yang *berbeda*, sehingga tebakannya menjadi **2.36**.
 
-## Implementasi Kode Eksekusi 4 Metode Sekaligus
+## Implementasi Code Python 4 Metode normalisasi dengan WKNN
 
 Berikut adalah *script* Python untuk mengotomatiskan komputasi ini:
 
@@ -260,3 +260,5 @@ for col in ['IPK', 'PO']:
 res_mean = wknn_imputer.fit_transform(df_mean[['IPK', 'PO', 'JMK']])
 print(f"4. Prediksi JMK (Mean Norm): {res_mean[6, 2]:.4f}")
 ```
+
+> Standarisasi Z-Score mengubah skala data karena setiap fitur dibagi dengan standar deviasi (σ) yang merepresentasikan tingkat penyebaran data. Fitur dengan σ kecil akan mengalami pembesaran nilai, sedangkan fitur dengan σ besar akan mengalami pengecilan nilai. Akibatnya, kontribusi masing-masing fitur dalam perhitungan jarak menjadi tidak seimbang. Hal ini menyebabkan perubahan struktur ruang data, sehingga jarak antar titik tidak lagi proporsional seperti pada normalisasi linear.

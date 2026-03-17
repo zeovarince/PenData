@@ -397,13 +397,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-python-wknn-imputation">Implementasi Kode Python (WKNN Imputation)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-wknn-dengan-berbagai-metode-normalisasi">Hasil wknn dengan berbagai metode normalisasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hasil-wknn-menggunakan-min-max-scaling">A. Hasil WKNN Menggunakan Min-Max Scaling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-hasil-wknn-menggunakan-z-score-standardization-kejutan">B. Hasil WKNN Menggunakan Z-Score Standardization (Kejutan!)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-hasil-wknn-menggunakan-z-score-standardization">B. Hasil WKNN Menggunakan Z-Score Standardization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-hasil-wknn-menggunakan-decimal-scaling">C. Hasil WKNN Menggunakan Decimal Scaling</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hasil-wknn-menggunakan-mean-normalization">D. Hasil WKNN Menggunakan Mean Normalization</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-eksekusi-4-metode-sekaligus">Implementasi Kode Eksekusi 4 Metode Sekaligus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code-python-4-metode-normalisasi-dengan-wknn">Implementasi Code Python 4 Metode normalisasi dengan WKNN</a></li>
 </ul>
             </nav>
         </div>
@@ -739,8 +739,8 @@ Bobot (<span class="math notranslate nohighlight">\(W = 1/d^2\)</span>): <span c
 $<span class="math notranslate nohighlight">\(JMK_{prediksi} = \frac{(4 \cdot 2) + (4 \cdot 3) + (4 \cdot 3)}{4 + 4 + 4} = \frac{32}{12} \approx \mathbf{2.6667}\)</span>$</p>
 </section>
 <hr class="docutils" />
-<section id="b-hasil-wknn-menggunakan-z-score-standardization-kejutan">
-<h3>B. Hasil WKNN Menggunakan Z-Score Standardization (Kejutan!)<a class="headerlink" href="#b-hasil-wknn-menggunakan-z-score-standardization-kejutan" title="Link to this heading">#</a></h3>
+<section id="b-hasil-wknn-menggunakan-z-score-standardization">
+<h3>B. Hasil WKNN Menggunakan Z-Score Standardization<a class="headerlink" href="#b-hasil-wknn-menggunakan-z-score-standardization" title="Link to this heading">#</a></h3>
 <p>Z-Score mendistorsi jarak karena pembagian standar deviasi yang berbeda untuk tiap kolom. Posisi ID 7 berada di <span class="math notranslate nohighlight">\((-1.0289, 0.4082)\)</span>. Hal ini mengubah peta jarak secara keseluruhan!</p>
 <p><strong>1. Perhitungan Jarak Euclidean dari ID 7:</strong></p>
 <ul class="simple">
@@ -810,8 +810,8 @@ $<span class="math notranslate nohighlight">\(JMK_{prediksi} = \frac{(4 \cdot 2)
 <li><p>Z-Score Standardization merusak proporsi jarak asli dan menemukan tetangga yang <em>berbeda</em>, sehingga tebakannya menjadi <strong>2.36</strong>.</p></li>
 </ol>
 </section>
-<section id="implementasi-kode-eksekusi-4-metode-sekaligus">
-<h2>Implementasi Kode Eksekusi 4 Metode Sekaligus<a class="headerlink" href="#implementasi-kode-eksekusi-4-metode-sekaligus" title="Link to this heading">#</a></h2>
+<section id="implementasi-code-python-4-metode-normalisasi-dengan-wknn">
+<h2>Implementasi Code Python 4 Metode normalisasi dengan WKNN<a class="headerlink" href="#implementasi-code-python-4-metode-normalisasi-dengan-wknn" title="Link to this heading">#</a></h2>
 <p>Berikut adalah <em>script</em> Python untuk mengotomatiskan komputasi ini:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -863,13 +863,14 @@ $<span class="math notranslate nohighlight">\(JMK_{prediksi} = \frac{(4 \cdot 2)
 1. Prediksi JMK (Min-Max)  : 2.6667
 2. Prediksi JMK (Z-Score)  : 2.3521
 3. Prediksi JMK (Decimal)  : 2.6667
+4. Prediksi JMK (Mean Norm): 2.6667
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4. Prediksi JMK (Mean Norm): 2.6667
-</pre></div>
 </div>
 </div>
-</div>
+<blockquote>
+<div><p>Standarisasi Z-Score mengubah skala data karena setiap fitur dibagi dengan standar deviasi (σ) yang merepresentasikan tingkat penyebaran data. Fitur dengan σ kecil akan mengalami pembesaran nilai, sedangkan fitur dengan σ besar akan mengalami pengecilan nilai. Akibatnya, kontribusi masing-masing fitur dalam perhitungan jarak menjadi tidak seimbang. Hal ini menyebabkan perubahan struktur ruang data, sehingga jarak antar titik tidak lagi proporsional seperti pada normalisasi linear.</p>
+</div></blockquote>
 </section>
 </section>
 
@@ -934,13 +935,13 @@ $<span class="math notranslate nohighlight">\(JMK_{prediksi} = \frac{(4 \cdot 2)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-python-wknn-imputation">Implementasi Kode Python (WKNN Imputation)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-wknn-dengan-berbagai-metode-normalisasi">Hasil wknn dengan berbagai metode normalisasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hasil-wknn-menggunakan-min-max-scaling">A. Hasil WKNN Menggunakan Min-Max Scaling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-hasil-wknn-menggunakan-z-score-standardization-kejutan">B. Hasil WKNN Menggunakan Z-Score Standardization (Kejutan!)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-hasil-wknn-menggunakan-z-score-standardization">B. Hasil WKNN Menggunakan Z-Score Standardization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-hasil-wknn-menggunakan-decimal-scaling">C. Hasil WKNN Menggunakan Decimal Scaling</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hasil-wknn-menggunakan-mean-normalization">D. Hasil WKNN Menggunakan Mean Normalization</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-eksekusi-4-metode-sekaligus">Implementasi Kode Eksekusi 4 Metode Sekaligus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code-python-4-metode-normalisasi-dengan-wknn">Implementasi Code Python 4 Metode normalisasi dengan WKNN</a></li>
 </ul>
   </nav></div>
 
