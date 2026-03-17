@@ -22,7 +22,10 @@ Perbedaan skala ini menjadi masalah besar bagi algoritma *machine learning* yang
 Untuk mengatasi ini, kita melakukan **Normalisasi Data**: proses menskalakan nilai-nilai atribut dari data mentah agar jatuh dalam rentang kecil yang spesifik tanpa mengubah karakteristik dasar dari distribusi data tersebut.
 
 Berikut adalah 4 metode normalisasi beserta penerapannya pada dataset mahasiswa.
-*(Catatan: Nilai `?` pada kolom **JMK** di baris 7 dianggap sebagai Missing Value atau NaN, dan diabaikan dalam penentuan batas hitung).*
+
+ **Sumber Data Yang Akan Digunakan:** [Download Book1.xlsx](./Book1.xlsx)
+ 
+*(Catatan: Nilai `?` pada kolom **JMK** di baris 7 dianggap sebagai Missing Value atau NaN, dan diabaikan dalam penentuan batas hitung) Dan yang digunakan adalah data mentah pada Sheet1*
 
 ---
 
@@ -70,7 +73,7 @@ import numpy as np
 from IPython.display import display
 
 # Membaca data dan mengubah '?' menjadi NaN
-df = pd.read_csv("Book1.xlsx - Sheet1.csv")
+df = pd.read_excel("Book1.xlsx", sheet_name="Sheet1")
 df['JMK'] = pd.to_numeric(df['JMK'], errors='coerce')
 
 # Proses Min-Max Scaling manual
@@ -134,7 +137,7 @@ $$Z = \frac{X - \mu}{\sigma}$$
 import pandas as pd
 
 # Membaca data
-df = pd.read_csv("Book1.xlsx - Sheet1.csv")
+df = pd.read_excel("Book1.xlsx", sheet_name="Sheet1")
 df['JMK'] = pd.to_numeric(df['JMK'], errors='coerce')
 
 df_zscore = df.copy()
@@ -199,7 +202,7 @@ import pandas as pd
 import numpy as np
 
 # Membaca data
-df = pd.read_csv("Book1.xlsx - Sheet1.csv")
+df = pd.read_excel("Book1.xlsx", sheet_name="Sheet1")
 df['JMK'] = pd.to_numeric(df['JMK'], errors='coerce')
 
 df_decimal = df.copy()
@@ -262,7 +265,7 @@ $$X_{norm} = \frac{X - \mu}{X_{max} - X_{min}}$$
 import pandas as pd
 
 # Membaca data
-df = pd.read_csv("Book1.xlsx - Sheet1.csv")
+df = pd.read_excel("Book1.xlsx", sheet_name="Sheet1")
 df['JMK'] = pd.to_numeric(df['JMK'], errors='coerce')
 
 df_mean_norm = df.copy()
