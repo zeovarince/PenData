@@ -13,3 +13,5 @@ chapters:
   - file: MengukurJarak
   - file: UkurJarak
 - file: preprocesdata
+  sections:
+  - file: normalisasi
