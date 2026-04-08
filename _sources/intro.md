@@ -1,7 +1,7 @@
 # Matakuliah Penambangan Data
 <hr>
 
-<img align="left" width="100px" height="100px" alt="side_sticker" src="https://drive.google.com/uc?export=view&id=16HBYB2UYM8a-zMUEFwXnwi4amxjW-Oix"/>
+<img align="left" width="100px" height="100px" alt="side_sticker" src="img/output-onlinegiftools (1).gif"/>
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&size=25&pause=1000&color=DE1A58&center=true&vCenter=true&width=1000&lines=Welcome+to+Catatan+Penambangan+Data+;A.Choiril+Anwar+EL-+Asfihani+Risydan" alt="TrunodjoyoClassroom Typing SVG" />
 </p>
