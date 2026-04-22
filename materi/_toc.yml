@@ -3,8 +3,10 @@
 
 format: jb-book
 root: intro
+
 chapters:
 - file: Pengantar
+
 - file: MemahamiData
   sections:
   - file: eksplorData
@@ -12,8 +14,12 @@ chapters:
   - file: visualisasi
   - file: MengukurJarak
   - file: UkurJarak
+
 - file: preprocesdata
   sections:
   - file: normalisasi
   - file: knn
   - file: wknn
+
+- file: uts
+- file: jwb_uts

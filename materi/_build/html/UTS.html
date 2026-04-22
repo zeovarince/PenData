@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>UTS Penambangan Data &#8212; Catatan Matakuliah Penambanngan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'uts';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Jawaban UTS" href="jwb_uts.html" />
+    <link rel="prev" title="Weighted K-Nearest Neighbors (WKNN) Imputation" href="wknn.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Catatan Matakuliah Penambanngan Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpeg" class="logo__image only-dark" alt="Catatan Matakuliah Penambanngan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Matakuliah Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="eksplorData.html">Eksplorasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MengukurJarak.html">Mengukur Jarak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UkurJarak.html">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="preprocesdata.html">Preprocessing Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="normalisasi.html">Normalisasi Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knn.html">K-Nearest Neighbors (KNN) Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbors (WKNN) Imputation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS Penambangan Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="jwb_uts.html">Jawaban UTS</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Futs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/uts.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>UTS Penambangan Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">UTS Penambangan Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-data-kesuburan-tanah">Analisa Data Kesuburan Tanah</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-analisis-data-dengan-menggunakan">1. Lakukan analisis data dengan menggunakan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-klasifikasi-kesuburan-tanah">Dataset Klasifikasi Kesuburan Tanah</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-umum">Deskripsi Umum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-dataset">Informasi <code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur">Penjelasan Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ph-tanah">1. <code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-total">2. <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-tersedia-ppm">3. <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">Tersedia</span> <span class="pre">(ppm)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-tersedia-meq-100g">4. <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">Tersedia</span> <span class="pre">(meq/100g)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-organik">5. <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">Organik</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ktk-meq-100g">6. <code class="docutils literal notranslate"><span class="pre">KTK</span> <span class="pre">(meq/100g)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kejenuhan-basa">7. <code class="docutils literal notranslate"><span class="pre">Kejenuhan</span> <span class="pre">Basa</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tekstur-tanah">8. <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kadar-air">9. <code class="docutils literal notranslate"><span class="pre">Kadar</span> <span class="pre">Air</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-density-g-cm3">10. <code class="docutils literal notranslate"><span class="pre">Bulk</span> <span class="pre">Density</span> <span class="pre">(g/cm³)</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas">Definisi Kelas</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="uts-penambangan-data">
+<h1>UTS Penambangan Data<a class="headerlink" href="#uts-penambangan-data" title="Link to this heading">#</a></h1>
+<section id="analisa-data-kesuburan-tanah">
+<h2>Analisa Data Kesuburan Tanah<a class="headerlink" href="#analisa-data-kesuburan-tanah" title="Link to this heading">#</a></h2>
+<p>bedasarkan dataset yang telah disediakan, lakukan analisis data dengan menggunakan algoritma K-Nearest Neighbors (KNN) untuk mengklasifikasikan kondisi tanah menjadi subur atau tidak subur. Berikut adalah langkah-langkah yang harus dilakukan:</p>
+<section id="lakukan-analisis-data-dengan-menggunakan">
+<h3>1. Lakukan analisis data dengan menggunakan<a class="headerlink" href="#lakukan-analisis-data-dengan-menggunakan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>K-Nearest Neighbors (KNN)</strong></p></li>
+<li><p><strong>2. Lakukan Pemrosesan Data tersebut</strong></p></li>
+<li><p><strong>Hitung Metrik Evaluasi</strong></p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Accuracy</strong></p></td>
+<td><p>Persentase prediksi benar dari total data</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Precision</strong></p></td>
+<td><p>Ketepatan prediksi kelas positif</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Recall</strong></p></td>
+<td><p>Kemampuan mendeteksi seluruh kelas positif</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>F1-Score</strong></p></td>
+<td><p>Harmonic mean antara Precision dan Recall</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="dataset-klasifikasi-kesuburan-tanah">
+<h1>Dataset Klasifikasi Kesuburan Tanah<a class="headerlink" href="#dataset-klasifikasi-kesuburan-tanah" title="Link to this heading">#</a></h1>
+<section id="deskripsi-umum">
+<h2>Deskripsi Umum<a class="headerlink" href="#deskripsi-umum" title="Link to this heading">#</a></h2>
+<p>Dataset berisi <strong>2.000 sampel</strong> data tanah dengan <strong>10 fitur agronomis</strong> dan <strong>1 kolom label</strong> yang membagi kondisi tanah menjadi dua kelas: <strong>Subur</strong> dan <strong>Tidak Subur</strong>. Data mengandung missing values (data hilang)
+<a class="reference external" href="https://docs.google.com/spreadsheets/d/1_VTOGjavAI1Axd4gFRhXrIKRVVjY9zvM/edit?usp=sharing&amp;amp;ouid=108447658857677622027&amp;amp;rtpof=true&amp;amp;sd=true">Unduh data Kesuburan Tanah</a></p>
+</section>
+<hr class="docutils" />
+<section id="informasi-dataset">
+<h2>Informasi <code class="docutils literal notranslate"><span class="pre">Dataset</span></code><a class="headerlink" href="#informasi-dataset" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Atribut</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah Sampel</p></td>
+<td><p>2.000 baris</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah Fitur</p></td>
+<td><p>10 fitur (9 numerik, 1 kategorikal)</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah Kelas</p></td>
+<td><p>2 kelas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Target / Label</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Subur</span></code> / <code class="docutils literal notranslate"><span class="pre">Tidak</span> <span class="pre">Subur</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Fitur Numerik</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">Tersedia</span> <span class="pre">(ppm)</span></code>, <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">Tersedia</span> <span class="pre">(meq/100g)</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">Organik</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">KTK</span> <span class="pre">(meq/100g)</span></code>, <code class="docutils literal notranslate"><span class="pre">Kejenuhan</span> <span class="pre">Basa</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">Kadar</span> <span class="pre">Air</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">Bulk</span> <span class="pre">Density</span> <span class="pre">(g/cm³)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Fitur Kategorikal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> (Pasir, Liat, Lempung, Lempung Berpasir, Lempung Berliat)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-fitur">
+<h2>Penjelasan Fitur<a class="headerlink" href="#penjelasan-fitur" title="Link to this heading">#</a></h2>
+<section id="ph-tanah">
+<h3>1. <code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code><a class="headerlink" href="#ph-tanah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Skala pH (0–14)</p></li>
+<li><p><strong>Deskripsi:</strong> Tingkat keasaman atau kebasaan tanah. pH optimal untuk pertanian berkisar 6,0–7,5.</p></li>
+<li><p><strong>Nilai Subur:</strong> 6,0 – 7,5</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 3,5 – 5,4 (asam kuat) atau 7,6 – 9,0 (basa kuat)</p></li>
+</ul>
+</section>
+<section id="n-total">
+<h3>2. <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code><a class="headerlink" href="#n-total" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Persen (%)</p></li>
+<li><p><strong>Deskripsi:</strong> Kandungan nitrogen total dalam tanah. Nitrogen sangat penting untuk pertumbuhan vegetatif tanaman.</p></li>
+<li><p><strong>Nilai Subur:</strong> 0,21 – 0,50%</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 0,01 – 0,20%</p></li>
+</ul>
+</section>
+<section id="p-tersedia-ppm">
+<h3>3. <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">Tersedia</span> <span class="pre">(ppm)</span></code><a class="headerlink" href="#p-tersedia-ppm" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Parts per million (ppm)</p></li>
+<li><p><strong>Deskripsi:</strong> Fosfor tersedia yang dapat diserap tanaman. Fosfor berperan dalam pembentukan akar dan buah.</p></li>
+<li><p><strong>Nilai Subur:</strong> 15 – 60 ppm</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 1 – 14 ppm</p></li>
+</ul>
+</section>
+<section id="k-tersedia-meq-100g">
+<h3>4. <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">Tersedia</span> <span class="pre">(meq/100g)</span></code><a class="headerlink" href="#k-tersedia-meq-100g" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Milliequivalent per 100 gram tanah</p></li>
+<li><p><strong>Deskripsi:</strong> Kalium tersedia dalam tanah. Penting untuk ketahanan tanaman dan proses fotosintesis.</p></li>
+<li><p><strong>Nilai Subur:</strong> 0,30 – 0,80 meq/100g</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 0,05 – 0,29 meq/100g</p></li>
+</ul>
+</section>
+<section id="c-organik">
+<h3>5. <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">Organik</span> <span class="pre">(%)</span></code><a class="headerlink" href="#c-organik" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Persen (%)</p></li>
+<li><p><strong>Deskripsi:</strong> Kandungan karbon organik tanah, indikator utama kesuburan dan kesehatan biologi tanah.</p></li>
+<li><p><strong>Nilai Subur:</strong> 2,0 – 5,0%</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 0,2 – 1,9%</p></li>
+</ul>
+</section>
+<section id="ktk-meq-100g">
+<h3>6. <code class="docutils literal notranslate"><span class="pre">KTK</span> <span class="pre">(meq/100g)</span></code><a class="headerlink" href="#ktk-meq-100g" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Milliequivalent per 100 gram tanah</p></li>
+<li><p><strong>Deskripsi:</strong> Kapasitas Tukar Kation — kemampuan tanah mengikat dan menyediakan unsur hara bagi tanaman. Semakin tinggi semakin subur.</p></li>
+<li><p><strong>Nilai Subur:</strong> 20 – 45 meq/100g</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 5 – 19 meq/100g</p></li>
+</ul>
+</section>
+<section id="kejenuhan-basa">
+<h3>7. <code class="docutils literal notranslate"><span class="pre">Kejenuhan</span> <span class="pre">Basa</span> <span class="pre">(%)</span></code><a class="headerlink" href="#kejenuhan-basa" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Persen (%)</p></li>
+<li><p><strong>Deskripsi:</strong> Persentase kation basa (Ca, Mg, K, Na) dari total KTK. Menggambarkan kualitas kesuburan kimia tanah.</p></li>
+<li><p><strong>Nilai Subur:</strong> 60 – 100%</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 10 – 59%</p></li>
+</ul>
+</section>
+<section id="tekstur-tanah">
+<h3>8. <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code><a class="headerlink" href="#tekstur-tanah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Tipe:</strong> Kategorikal</p></li>
+<li><p><strong>Deskripsi:</strong> Komposisi partikel tanah yang memengaruhi drainase, aerasi, dan kemampuan menahan air.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Tekstur yang Umum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Subur</strong></p></td>
+<td><p>Lempung, Lempung Berpasir, Lempung Berliat</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tidak Subur</strong></p></td>
+<td><p>Pasir, Liat, Debu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="kadar-air">
+<h3>9. <code class="docutils literal notranslate"><span class="pre">Kadar</span> <span class="pre">Air</span> <span class="pre">(%)</span></code><a class="headerlink" href="#kadar-air" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Persen (%)</p></li>
+<li><p><strong>Deskripsi:</strong> Persentase kadar air dalam tanah. Terlalu kering atau terlalu basah sama-sama merugikan pertumbuhan tanaman.</p></li>
+<li><p><strong>Nilai Subur:</strong> 25 – 45%</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 5 – 20% (terlalu kering) atau 55 – 75% (terlalu basah)</p></li>
+</ul>
+</section>
+<section id="bulk-density-g-cm3">
+<h3>10. <code class="docutils literal notranslate"><span class="pre">Bulk</span> <span class="pre">Density</span> <span class="pre">(g/cm³)</span></code><a class="headerlink" href="#bulk-density-g-cm3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Satuan:</strong> Gram per sentimeter kubik</p></li>
+<li><p><strong>Deskripsi:</strong> Kerapatan tanah. Nilai tinggi menandakan tanah padat, aerasi buruk, dan sulit ditembus akar.</p></li>
+<li><p><strong>Nilai Subur:</strong> 0,9 – 1,2 g/cm³</p></li>
+<li><p><strong>Nilai Tidak Subur:</strong> 1,4 – 1,9 g/cm³</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="definisi-kelas">
+<h2>Definisi Kelas<a class="headerlink" href="#definisi-kelas" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Subur</strong></p></td>
+<td><p>Tanah dengan kondisi fisik, kimia, dan biologi yang optimal untuk pertumbuhan tanaman. Ditandai dengan pH seimbang, unsur hara cukup, tekstur ideal, dan struktur tanah yang baik.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tidak Subur</strong></p></td>
+<td><p>Tanah yang memiliki satu atau lebih kondisi pembatas seperti pH ekstrem, kekurangan unsur hara, tekstur buruk, kadar air tidak ideal, atau kerapatan tanah tinggi.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="wknn.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Weighted K-Nearest Neighbors (WKNN) Imputation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="jwb_uts.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Jawaban UTS</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">UTS Penambangan Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-data-kesuburan-tanah">Analisa Data Kesuburan Tanah</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-analisis-data-dengan-menggunakan">1. Lakukan analisis data dengan menggunakan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-klasifikasi-kesuburan-tanah">Dataset Klasifikasi Kesuburan Tanah</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-umum">Deskripsi Umum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-dataset">Informasi <code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur">Penjelasan Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ph-tanah">1. <code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-total">2. <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-tersedia-ppm">3. <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">Tersedia</span> <span class="pre">(ppm)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-tersedia-meq-100g">4. <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">Tersedia</span> <span class="pre">(meq/100g)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-organik">5. <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">Organik</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ktk-meq-100g">6. <code class="docutils literal notranslate"><span class="pre">KTK</span> <span class="pre">(meq/100g)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kejenuhan-basa">7. <code class="docutils literal notranslate"><span class="pre">Kejenuhan</span> <span class="pre">Basa</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tekstur-tanah">8. <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kadar-air">9. <code class="docutils literal notranslate"><span class="pre">Kadar</span> <span class="pre">Air</span> <span class="pre">(%)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-density-g-cm3">10. <code class="docutils literal notranslate"><span class="pre">Bulk</span> <span class="pre">Density</span> <span class="pre">(g/cm³)</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas">Definisi Kelas</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By A. Choiril Anwar EL-Asfihani Risydan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

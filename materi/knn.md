@@ -115,5 +115,3 @@ df_hasil_knn = pd.DataFrame(df_imputed_array, columns=df_knn.columns)
 print("\nData Setelah Imputasi KNN (Perhatikan baris indeks 6):")
 display(df_hasil_knn)
 ```
-
----
