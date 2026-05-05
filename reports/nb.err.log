@@ -27,54 +27,59 @@ import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 
-# 1. SETUP DATA INPUT
-# Mengambil data dari port input KNIME
 df_train = knio.input_tables[0].to_pandas()
 df_test = knio.input_tables[1].to_pandas()
 
-# Menentukan fitur yang digunakan dan kolom target
-selected_features = ['Weight', 'MTRANS', 'CAEC', 'Gender']
 target_col = 'NObeyesdad'
 
-# 2. ENCODING & PREPROCESSING
-# Menggabungkan data untuk memastikan konsistensi label angka
-df_all = pd.concat([df_train, df_test], axis=0)
+# AUTO DETECT FEATURE
+all_possible_features = ['Weight', 'MTRANS', 'CAEC', 'Gender']
+selected_features = [col for col in all_possible_features if col in df_train.columns]
 
-# Melakukan encoding pada kolom teks
-cols_to_encode = ['MTRANS', 'CAEC', 'Gender', target_col]
+# GABUNG
+df_all = pd.concat([df_train, df_test], axis=0).reset_index(drop=True)
+
+# ENCODING AMAN
+cols_to_encode = [col for col in ['MTRANS', 'CAEC', 'Gender', target_col] if col in df_all.columns]
+
+encoders = {}
 for col in cols_to_encode:
     le = LabelEncoder()
     df_all[col] = le.fit_transform(df_all[col].astype(str))
+    encoders[col] = le
 
-# Memisahkan kembali data latih dan data uji
-df_train_proc = df_all.iloc[:len(df_train), :]
-df_test_proc = df_all.iloc[len(df_train):, :]
+# SPLIT
+df_train_proc = df_all.iloc[:len(df_train)]
+df_test_proc = df_all.iloc[len(df_train):]
 
-X_train = df_train_proc[selected_features].values
-y_train = df_train_proc[target_col].values
-X_test = df_test_proc[selected_features].values
+X_train = df_train_proc[selected_features]
+y_train = df_train_proc[target_col]
 
-# 3. NORMALISASI DATA (Min-Max Scaling)
+X_test = df_test_proc[selected_features]
+
+# NORMALISASI
 scaler = MinMaxScaler()
-X_train_norm = scaler.fit_transform(X_train)
-X_test_norm = scaler.transform(X_test)
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
-# 4. TRAINING & PREDIKSI (Gaussian Naive Bayes)
+# MODEL
 model = GaussianNB()
-model.fit(X_train_norm, y_train)
+model.fit(X_train, y_train)
 
-# Melakukan prediksi pada 20% data testing
-y_pred_encoded = model.predict(X_test_norm)
+# PREDIKSI
+y_pred = model.predict(X_test)
 
-# 5. DECODE HASIL PREDIKSI
-# Mengembalikan hasil prediksi angka menjadi teks klasifikasi obesitas
-le_target = LabelEncoder()
-le_target.fit(df_all[target_col].astype(str))
-y_pred_text = le_target.inverse_transform(y_pred_encoded)
+# DECODE
+if target_col in encoders:
+    y_pred_text = encoders[target_col].inverse_transform(y_pred)
+else:
+    y_pred_text = y_pred
 
-# 6. OUTPUT KE KNIME
-df_test['Prediction_Naive_Bayes'] = y_pred_text
-knio.output_tables[0] = knio.Table.from_pandas(df_test)
+# OUTPUT
+df_output = df_test.copy()
+df_output['Prediction_Naive_Bayes'] = y_pred_text
+
+knio.output_tables[0] = knio.Table.from_pandas(df_output)
 ------------------
 
 

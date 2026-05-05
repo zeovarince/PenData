@@ -108,30 +108,134 @@ Proses analisis ini disusun menggunakan *node-based programming* di KNIME Analyt
 4. **Python Script**: Merupakan *engine* komputasi utama. Node ini menerima data latih dan uji, melakukan *preprocessing* (Label Encoding & Normalisasi), melatih model **Gaussian Naive Bayes** menggunakan `scikit-learn`, dan menghasilkan tabel data uji yang telah dilengkapi dengan kolom prediksi.
 5. **Scorer**: Diletakkan di akhir alur untuk mengevaluasi performa model. Node ini membandingkan kolom target asli (`NObeyesdad`) dengan kolom prediksi keluaran Python Script untuk menghasilkan nilai Akurasi dan *Confusion Matrix* secara visual.
 
-### 1. Analisis Akurasi (Accuracy Statistics)
+## 1. Analisis Akurasi (Accuracy Statistics)
+
 ![Accuracy Statistics Naive Bayes](img/accstk.png)
 
-Berdasarkan metrik evaluasi `Accuracy Statistics`, model Gaussian Naive Bayes yang dibangun menggunakan 4 atribut terpilih mendapatkan **Overall Accuracy sebesar 0.6028 (60.28%)**. Artinya, dari 423 data uji, model berhasil memprediksi dengan benar sekitar 255 data.
+Berdasarkan metrik evaluasi *Accuracy Statistics*, model Gaussian Naive Bayes yang dibangun menggunakan atribut terbatas memperoleh **Overall Accuracy sebesar 0.572 (57.2%)**. Artinya, dari seluruh data uji, model mampu mengklasifikasikan sekitar **57% data dengan benar**.
 
-Jika dibedah lebih dalam berdasarkan performa per kelas (Tingkat Obesitas):
-* **Performa Tertinggi (Excellent):** Kelas `Obesity_Type_III` memiliki nilai *Recall* 0.985 (98.5%) dan *Precision* 1.0 (100%). Artinya, model hampir tidak pernah meleset sedikitpun dalam mendeteksi seseorang yang berada di kategori obesitas ekstrem ini.
-* **Performa Terendah (Poor):** Kelas `Overweight_Level_II` memiliki *Recall* sangat rendah yaitu 0.172 (17.2%). Model sangat kesulitan dan sering salah dalam mengklasifikasikan kelas ini.
+Jika dianalisis lebih rinci berdasarkan performa tiap kelas:
 
-### 2. Analisis Confusion Matrix
-Confusion Matrix memberikan visualisasi detail mengenai letak kesalahan prediksi (Misclassification) yang dilakukan oleh model:
+### Performa Tinggi (Baik)
+- **Obesity_Type_II**
+  - Precision: 0.983
+  - Recall: 0.69  
+  Model sangat akurat ketika memprediksi kelas ini.
+
+- **Obesity_Type_III**
+  - Recall: 0.51
+  - F1-Score: 0.675  
+  Model cukup baik dalam mengenali kelas obesitas ekstrem.
+
+### Performa Menengah
+- **Insufficient_Weight**
+  - Recall: 0.672
+  - Precision: 0.82  
+  Model cukup stabil dalam mendeteksi kelas ini.
+
+- **Normal_Weight**
+  - F1-Score: 0.50  
+  Performa moderat, masih terdapat kesalahan klasifikasi.
+
+### Performa Rendah
+- **Obesity_Type_I**
+  - Precision: 0.152
+  - Recall: 0.476  
+  Banyak prediksi yang tidak tepat.
+
+- **Overweight_Level_I** dan **Overweight_Level_II**
+  - F1-Score < 0.5  
+  Model kesulitan membedakan kategori overweight.
+
+Selain itu, nilai **Cohen’s Kappa sebesar 0.503** menunjukkan tingkat kesepakatan *moderate*, yang berarti model lebih baik dibandingkan tebakan acak, namun belum optimal.
+
+---
+
+## 2. Analisis Confusion Matrix
+
 ![Confusion Matrix Naive Bayes](img/cmnb.png)
 
-* **Diagonal Utama (Prediksi Benar / True Positive):** Angka yang membentang dari kiri atas ke kanan bawah (45, 24, 39, 56, 64, 17, 10) mewakili jumlah prediksi yang tepat. Contoh puncaknya ada di baris ke-5, di mana 64 dari 65 data `Obesity_Type_III` berhasil ditebak dengan benar.
-* **Sebaran Kesalahan (False Positive / False Negative):** * Pada baris `Overweight_Level_I` (aslinya Overweight 1), terdapat **29 data** yang disalahartikan oleh model sebagai `Obesity_Type_I`.
-  * Pada baris `Overweight_Level_II` (aslinya Overweight 2), terdapat **26 data** yang ditebak sebagai `Obesity_Type_I` dan **17 data** ditebak sebagai `Obesity_Type_II`.
+Confusion Matrix memberikan gambaran detail mengenai distribusi prediksi benar dan kesalahan model.
 
-### 3. Insight dan Kesimpulan Evaluasi
-Mengapa akurasi berada di angka 60.28% dan mengapa model kebingungan di kelas *Overweight*? Hal ini dapat dijelaskan secara analitis:
+### Diagonal Utama (Prediksi Benar / True Positive)
+Nilai diagonal menunjukkan jumlah prediksi yang benar untuk masing-masing kelas:
 
-1. **Efek Penghapusan Fitur Tinggi Badan (Height):** Pada demonstrasi ini, kita hanya menggunakan 4 fitur (`Weight`, `MTRANS`, `CAEC`, `Gender`). Tanpa adanya atribut `Height` (Tinggi), model kehilangan instrumen untuk menghitung rasio indeks massa tubuh secara matematis. Model hanya mengandalkan `Weight` (Berat Mutlak) sebagai patokan utama.
-2. **Irisan Berat Badan:** Sangat mudah bagi model menebak `Obesity_Type_III` karena berat badan mereka pasti secara mutlak sangat tinggi. Namun, rentang berat badan antara orang `Overweight` dan `Obesity_Type_I` sangat beririsan (overlap). Orang yang pendek dengan berat 70kg bisa masuk obesitas, sedangkan orang tinggi dengan berat 70kg mungkin hanya overweight. Karena tinggi badannya tidak di-input, wajar jika Naive Bayes kebingungan dan sering salah tebak di area tengah ini.
+- Overweight_Level_I → **27**
+- Overweight_Level_II → **27**
+- Insufficient_Weight → **41**
+- Obesity_Type_I → **10**
+- Normal_Weight → **28**
+- Obesity_Type_III → **51**
+- Obesity_Type_II → **58**
 
-Secara keseluruhan, algoritma Gaussian Naive Bayes telah berjalan dengan sangat baik dan logis sesuai dengan data probabilitas yang diberikan kepadanya.
+Hal ini menunjukkan bahwa model sudah mampu melakukan klasifikasi dengan benar pada setiap kelas, meskipun tingkat keberhasilannya berbeda-beda.
+
+---
+
+### Sebaran Kesalahan (Misclassification)
+
+Beberapa pola kesalahan yang menonjol:
+
+- **Kebingungan antar kelas Overweight:**
+  - Overweight_Level_I sering diprediksi sebagai Overweight_Level_II (**14 data**) dan Normal_Weight (**15 data**)
+  - Overweight_Level_II sering tertukar dengan Overweight_Level_I (**23 data**)
+
+- **Kesalahan menuju kelas Obesitas:**
+  - Beberapa data Overweight diprediksi sebagai Obesity_Type_I
+
+- **Kesalahan pada kelas Normal:**
+  - Normal_Weight diprediksi sebagai Overweight_Level_I (**9 data**) dan Insufficient_Weight (**9 data**)
+
+Pola ini menunjukkan adanya **overlap karakteristik antar kelas**, terutama pada kategori tengah.
+
+---
+
+## 3. Insight dan Kesimpulan Evaluasi
+
+### 1. Keterbatasan Fitur
+Model hanya menggunakan beberapa atribut seperti:
+- Weight
+- CAEC
+- Gender  
+
+Tanpa fitur penting seperti **Height**, model tidak dapat menghitung proporsi tubuh (misalnya BMI).
+
+---
+
+### 2. Overlap Antar Kelas
+Rentang nilai antar kelas seperti:
+- Normal_Weight
+- Overweight
+- Obesity_Type_I  
+
+memiliki **irisan (overlap)** yang tinggi.
+
+Contoh:
+Berat 70 kg bisa masuk kategori berbeda tergantung tinggi badan.
+
+---
+
+### 3. Kinerja Baik pada Kelas Ekstrem
+Model sangat baik dalam mengenali:
+- Obesity_Type_II
+- Obesity_Type_III  
+
+Karena pola datanya lebih jelas dan tidak banyak overlap.
+
+---
+
+## 4. Kesimpulan Akhir
+
+Secara keseluruhan, algoritma Gaussian Naive Bayes:
+
+- Berjalan dengan baik secara teknis  
+- Mampu mengenali pola pada kelas ekstrem  
+- Masih kesulitan pada kelas dengan karakteristik mirip  
+- Menghasilkan akurasi moderat (**57.2%**)  
+
+Hal ini menunjukkan bahwa performa model sangat dipengaruhi oleh:
+- Kelengkapan fitur
+- Tingkat perbedaan antar kelas dalam dataset
 
 ## Implementasi Script Python (Node Python Script)
 Di dalam node Python Script, dilakukan pengolahan data menggunakan 4 atribut terpilih (Weight, MTRANS, CAEC, Gender). Berikut adalah source code lengkap yang diimplemetasikan 
@@ -142,54 +246,59 @@ import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 
-# 1. SETUP DATA INPUT
-# Mengambil data dari port input KNIME
 df_train = knio.input_tables[0].to_pandas()
 df_test = knio.input_tables[1].to_pandas()
 
-# Menentukan fitur yang digunakan dan kolom target
-selected_features = ['Weight', 'MTRANS', 'CAEC', 'Gender']
 target_col = 'NObeyesdad'
 
-# 2. ENCODING & PREPROCESSING
-# Menggabungkan data untuk memastikan konsistensi label angka
-df_all = pd.concat([df_train, df_test], axis=0)
+# AUTO DETECT FEATURE
+all_possible_features = ['Weight', 'MTRANS', 'CAEC', 'Gender']
+selected_features = [col for col in all_possible_features if col in df_train.columns]
 
-# Melakukan encoding pada kolom teks
-cols_to_encode = ['MTRANS', 'CAEC', 'Gender', target_col]
+# GABUNG
+df_all = pd.concat([df_train, df_test], axis=0).reset_index(drop=True)
+
+# ENCODING AMAN
+cols_to_encode = [col for col in ['MTRANS', 'CAEC', 'Gender', target_col] if col in df_all.columns]
+
+encoders = {}
 for col in cols_to_encode:
     le = LabelEncoder()
     df_all[col] = le.fit_transform(df_all[col].astype(str))
+    encoders[col] = le
 
-# Memisahkan kembali data latih dan data uji
-df_train_proc = df_all.iloc[:len(df_train), :]
-df_test_proc = df_all.iloc[len(df_train):, :]
+# SPLIT
+df_train_proc = df_all.iloc[:len(df_train)]
+df_test_proc = df_all.iloc[len(df_train):]
 
-X_train = df_train_proc[selected_features].values
-y_train = df_train_proc[target_col].values
-X_test = df_test_proc[selected_features].values
+X_train = df_train_proc[selected_features]
+y_train = df_train_proc[target_col]
 
-# 3. NORMALISASI DATA (Min-Max Scaling)
+X_test = df_test_proc[selected_features]
+
+# NORMALISASI
 scaler = MinMaxScaler()
-X_train_norm = scaler.fit_transform(X_train)
-X_test_norm = scaler.transform(X_test)
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
-# 4. TRAINING & PREDIKSI (Gaussian Naive Bayes)
+# MODEL
 model = GaussianNB()
-model.fit(X_train_norm, y_train)
+model.fit(X_train, y_train)
 
-# Melakukan prediksi pada 20% data testing
-y_pred_encoded = model.predict(X_test_norm)
+# PREDIKSI
+y_pred = model.predict(X_test)
 
-# 5. DECODE HASIL PREDIKSI
-# Mengembalikan hasil prediksi angka menjadi teks klasifikasi obesitas
-le_target = LabelEncoder()
-le_target.fit(df_all[target_col].astype(str))
-y_pred_text = le_target.inverse_transform(y_pred_encoded)
+# DECODE
+if target_col in encoders:
+    y_pred_text = encoders[target_col].inverse_transform(y_pred)
+else:
+    y_pred_text = y_pred
 
-# 6. OUTPUT KE KNIME
-df_test['Prediction_Naive_Bayes'] = y_pred_text
-knio.output_tables[0] = knio.Table.from_pandas(df_test)
+# OUTPUT
+df_output = df_test.copy()
+df_output['Prediction_Naive_Bayes'] = y_pred_text
+
+knio.output_tables[0] = knio.Table.from_pandas(df_output)
 ```
 
 ## Demonstrasi Perhitungan Manual Naive Bayes

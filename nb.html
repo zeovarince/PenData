@@ -411,12 +411,25 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-data-kategorikal">1. Encoding Data Kategorikal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-alur-kerja-workflow-knime">Implementasi Alur Kerja (Workflow) KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-akurasi-accuracy-statistics">1. Analisis Akurasi (Accuracy Statistics)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-confusion-matrix">2. Analisis Confusion Matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-dan-kesimpulan-evaluasi">3. Insight dan Kesimpulan Evaluasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-alur-kerja-workflow-knime">Implementasi Alur Kerja (Workflow) KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-akurasi-accuracy-statistics">1. Analisis Akurasi (Accuracy Statistics)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-tinggi-baik">Performa Tinggi (Baik)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-menengah">Performa Menengah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-rendah">Performa Rendah</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-confusion-matrix">2. Analisis Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonal-utama-prediksi-benar-true-positive">Diagonal Utama (Prediksi Benar / True Positive)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-kesalahan-misclassification">Sebaran Kesalahan (Misclassification)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-dan-kesimpulan-evaluasi">3. Insight dan Kesimpulan Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan-fitur">1. Keterbatasan Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlap-antar-kelas">2. Overlap Antar Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-baik-pada-kelas-ekstrem">3. Kinerja Baik pada Kelas Ekstrem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">4. Kesimpulan Akhir</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-script-python-node-python-script">Implementasi Script Python (Node Python Script)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-perhitungan-manual-naive-bayes">Demonstrasi Perhitungan Manual Naive Bayes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-data-uji-data-dummy">1. Skenario Data Uji (Data Dummy)</a></li>
@@ -586,38 +599,165 @@ Diubah menjadi angka berdasarkan tingkatan intensitasnya (0 sampai 3). <em>Label
 <li><p><strong>Python Script</strong>: Merupakan <em>engine</em> komputasi utama. Node ini menerima data latih dan uji, melakukan <em>preprocessing</em> (Label Encoding &amp; Normalisasi), melatih model <strong>Gaussian Naive Bayes</strong> menggunakan <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, dan menghasilkan tabel data uji yang telah dilengkapi dengan kolom prediksi.</p></li>
 <li><p><strong>Scorer</strong>: Diletakkan di akhir alur untuk mengevaluasi performa model. Node ini membandingkan kolom target asli (<code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code>) dengan kolom prediksi keluaran Python Script untuk menghasilkan nilai Akurasi dan <em>Confusion Matrix</em> secara visual.</p></li>
 </ol>
-<section id="analisis-akurasi-accuracy-statistics">
-<h3>1. Analisis Akurasi (Accuracy Statistics)<a class="headerlink" href="#analisis-akurasi-accuracy-statistics" title="Link to this heading">#</a></h3>
-<p><img alt="Accuracy Statistics Naive Bayes" src="_images/accstk.png" /></p>
-<p>Berdasarkan metrik evaluasi <code class="docutils literal notranslate"><span class="pre">Accuracy</span> <span class="pre">Statistics</span></code>, model Gaussian Naive Bayes yang dibangun menggunakan 4 atribut terpilih mendapatkan <strong>Overall Accuracy sebesar 0.6028 (60.28%)</strong>. Artinya, dari 423 data uji, model berhasil memprediksi dengan benar sekitar 255 data.</p>
-<p>Jika dibedah lebih dalam berdasarkan performa per kelas (Tingkat Obesitas):</p>
-<ul class="simple">
-<li><p><strong>Performa Tertinggi (Excellent):</strong> Kelas <code class="docutils literal notranslate"><span class="pre">Obesity_Type_III</span></code> memiliki nilai <em>Recall</em> 0.985 (98.5%) dan <em>Precision</em> 1.0 (100%). Artinya, model hampir tidak pernah meleset sedikitpun dalam mendeteksi seseorang yang berada di kategori obesitas ekstrem ini.</p></li>
-<li><p><strong>Performa Terendah (Poor):</strong> Kelas <code class="docutils literal notranslate"><span class="pre">Overweight_Level_II</span></code> memiliki <em>Recall</em> sangat rendah yaitu 0.172 (17.2%). Model sangat kesulitan dan sering salah dalam mengklasifikasikan kelas ini.</p></li>
-</ul>
 </section>
-<section id="analisis-confusion-matrix">
-<h3>2. Analisis Confusion Matrix<a class="headerlink" href="#analisis-confusion-matrix" title="Link to this heading">#</a></h3>
-<p>Confusion Matrix memberikan visualisasi detail mengenai letak kesalahan prediksi (Misclassification) yang dilakukan oleh model:
-<img alt="Confusion Matrix Naive Bayes" src="_images/cmnb.png" /></p>
+<section id="analisis-akurasi-accuracy-statistics">
+<h2>1. Analisis Akurasi (Accuracy Statistics)<a class="headerlink" href="#analisis-akurasi-accuracy-statistics" title="Link to this heading">#</a></h2>
+<p><img alt="Accuracy Statistics Naive Bayes" src="img/accstk.png" /></p>
+<p>Berdasarkan metrik evaluasi <em>Accuracy Statistics</em>, model Gaussian Naive Bayes yang dibangun menggunakan atribut terbatas memperoleh <strong>Overall Accuracy sebesar 0.572 (57.2%)</strong>. Artinya, dari seluruh data uji, model mampu mengklasifikasikan sekitar <strong>57% data dengan benar</strong>.</p>
+<p>Jika dianalisis lebih rinci berdasarkan performa tiap kelas:</p>
+<section id="performa-tinggi-baik">
+<h3>Performa Tinggi (Baik)<a class="headerlink" href="#performa-tinggi-baik" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Diagonal Utama (Prediksi Benar / True Positive):</strong> Angka yang membentang dari kiri atas ke kanan bawah (45, 24, 39, 56, 64, 17, 10) mewakili jumlah prediksi yang tepat. Contoh puncaknya ada di baris ke-5, di mana 64 dari 65 data <code class="docutils literal notranslate"><span class="pre">Obesity_Type_III</span></code> berhasil ditebak dengan benar.</p></li>
-<li><p><strong>Sebaran Kesalahan (False Positive / False Negative):</strong> * Pada baris <code class="docutils literal notranslate"><span class="pre">Overweight_Level_I</span></code> (aslinya Overweight 1), terdapat <strong>29 data</strong> yang disalahartikan oleh model sebagai <code class="docutils literal notranslate"><span class="pre">Obesity_Type_I</span></code>.</p>
+<li><p><strong>Obesity_Type_II</strong></p>
 <ul>
-<li><p>Pada baris <code class="docutils literal notranslate"><span class="pre">Overweight_Level_II</span></code> (aslinya Overweight 2), terdapat <strong>26 data</strong> yang ditebak sebagai <code class="docutils literal notranslate"><span class="pre">Obesity_Type_I</span></code> dan <strong>17 data</strong> ditebak sebagai <code class="docutils literal notranslate"><span class="pre">Obesity_Type_II</span></code>.</p></li>
+<li><p>Precision: 0.983</p></li>
+<li><p>Recall: 0.69<br />
+Model sangat akurat ketika memprediksi kelas ini.</p></li>
+</ul>
+</li>
+<li><p><strong>Obesity_Type_III</strong></p>
+<ul>
+<li><p>Recall: 0.51</p></li>
+<li><p>F1-Score: 0.675<br />
+Model cukup baik dalam mengenali kelas obesitas ekstrem.</p></li>
 </ul>
 </li>
 </ul>
 </section>
-<section id="insight-dan-kesimpulan-evaluasi">
-<h3>3. Insight dan Kesimpulan Evaluasi<a class="headerlink" href="#insight-dan-kesimpulan-evaluasi" title="Link to this heading">#</a></h3>
-<p>Mengapa akurasi berada di angka 60.28% dan mengapa model kebingungan di kelas <em>Overweight</em>? Hal ini dapat dijelaskan secara analitis:</p>
-<ol class="arabic simple">
-<li><p><strong>Efek Penghapusan Fitur Tinggi Badan (Height):</strong> Pada demonstrasi ini, kita hanya menggunakan 4 fitur (<code class="docutils literal notranslate"><span class="pre">Weight</span></code>, <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code>, <code class="docutils literal notranslate"><span class="pre">CAEC</span></code>, <code class="docutils literal notranslate"><span class="pre">Gender</span></code>). Tanpa adanya atribut <code class="docutils literal notranslate"><span class="pre">Height</span></code> (Tinggi), model kehilangan instrumen untuk menghitung rasio indeks massa tubuh secara matematis. Model hanya mengandalkan <code class="docutils literal notranslate"><span class="pre">Weight</span></code> (Berat Mutlak) sebagai patokan utama.</p></li>
-<li><p><strong>Irisan Berat Badan:</strong> Sangat mudah bagi model menebak <code class="docutils literal notranslate"><span class="pre">Obesity_Type_III</span></code> karena berat badan mereka pasti secara mutlak sangat tinggi. Namun, rentang berat badan antara orang <code class="docutils literal notranslate"><span class="pre">Overweight</span></code> dan <code class="docutils literal notranslate"><span class="pre">Obesity_Type_I</span></code> sangat beririsan (overlap). Orang yang pendek dengan berat 70kg bisa masuk obesitas, sedangkan orang tinggi dengan berat 70kg mungkin hanya overweight. Karena tinggi badannya tidak di-input, wajar jika Naive Bayes kebingungan dan sering salah tebak di area tengah ini.</p></li>
-</ol>
-<p>Secara keseluruhan, algoritma Gaussian Naive Bayes telah berjalan dengan sangat baik dan logis sesuai dengan data probabilitas yang diberikan kepadanya.</p>
+<section id="performa-menengah">
+<h3>Performa Menengah<a class="headerlink" href="#performa-menengah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Insufficient_Weight</strong></p>
+<ul>
+<li><p>Recall: 0.672</p></li>
+<li><p>Precision: 0.82<br />
+Model cukup stabil dalam mendeteksi kelas ini.</p></li>
+</ul>
+</li>
+<li><p><strong>Normal_Weight</strong></p>
+<ul>
+<li><p>F1-Score: 0.50<br />
+Performa moderat, masih terdapat kesalahan klasifikasi.</p></li>
+</ul>
+</li>
+</ul>
 </section>
+<section id="performa-rendah">
+<h3>Performa Rendah<a class="headerlink" href="#performa-rendah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Obesity_Type_I</strong></p>
+<ul>
+<li><p>Precision: 0.152</p></li>
+<li><p>Recall: 0.476<br />
+Banyak prediksi yang tidak tepat.</p></li>
+</ul>
+</li>
+<li><p><strong>Overweight_Level_I</strong> dan <strong>Overweight_Level_II</strong></p>
+<ul>
+<li><p>F1-Score &lt; 0.5<br />
+Model kesulitan membedakan kategori overweight.</p></li>
+</ul>
+</li>
+</ul>
+<p>Selain itu, nilai <strong>Cohen’s Kappa sebesar 0.503</strong> menunjukkan tingkat kesepakatan <em>moderate</em>, yang berarti model lebih baik dibandingkan tebakan acak, namun belum optimal.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-confusion-matrix">
+<h2>2. Analisis Confusion Matrix<a class="headerlink" href="#analisis-confusion-matrix" title="Link to this heading">#</a></h2>
+<p><img alt="Confusion Matrix Naive Bayes" src="_images/cmnb.png" /></p>
+<p>Confusion Matrix memberikan gambaran detail mengenai distribusi prediksi benar dan kesalahan model.</p>
+<section id="diagonal-utama-prediksi-benar-true-positive">
+<h3>Diagonal Utama (Prediksi Benar / True Positive)<a class="headerlink" href="#diagonal-utama-prediksi-benar-true-positive" title="Link to this heading">#</a></h3>
+<p>Nilai diagonal menunjukkan jumlah prediksi yang benar untuk masing-masing kelas:</p>
+<ul class="simple">
+<li><p>Overweight_Level_I → <strong>27</strong></p></li>
+<li><p>Overweight_Level_II → <strong>27</strong></p></li>
+<li><p>Insufficient_Weight → <strong>41</strong></p></li>
+<li><p>Obesity_Type_I → <strong>10</strong></p></li>
+<li><p>Normal_Weight → <strong>28</strong></p></li>
+<li><p>Obesity_Type_III → <strong>51</strong></p></li>
+<li><p>Obesity_Type_II → <strong>58</strong></p></li>
+</ul>
+<p>Hal ini menunjukkan bahwa model sudah mampu melakukan klasifikasi dengan benar pada setiap kelas, meskipun tingkat keberhasilannya berbeda-beda.</p>
+</section>
+<hr class="docutils" />
+<section id="sebaran-kesalahan-misclassification">
+<h3>Sebaran Kesalahan (Misclassification)<a class="headerlink" href="#sebaran-kesalahan-misclassification" title="Link to this heading">#</a></h3>
+<p>Beberapa pola kesalahan yang menonjol:</p>
+<ul class="simple">
+<li><p><strong>Kebingungan antar kelas Overweight:</strong></p>
+<ul>
+<li><p>Overweight_Level_I sering diprediksi sebagai Overweight_Level_II (<strong>14 data</strong>) dan Normal_Weight (<strong>15 data</strong>)</p></li>
+<li><p>Overweight_Level_II sering tertukar dengan Overweight_Level_I (<strong>23 data</strong>)</p></li>
+</ul>
+</li>
+<li><p><strong>Kesalahan menuju kelas Obesitas:</strong></p>
+<ul>
+<li><p>Beberapa data Overweight diprediksi sebagai Obesity_Type_I</p></li>
+</ul>
+</li>
+<li><p><strong>Kesalahan pada kelas Normal:</strong></p>
+<ul>
+<li><p>Normal_Weight diprediksi sebagai Overweight_Level_I (<strong>9 data</strong>) dan Insufficient_Weight (<strong>9 data</strong>)</p></li>
+</ul>
+</li>
+</ul>
+<p>Pola ini menunjukkan adanya <strong>overlap karakteristik antar kelas</strong>, terutama pada kategori tengah.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="insight-dan-kesimpulan-evaluasi">
+<h2>3. Insight dan Kesimpulan Evaluasi<a class="headerlink" href="#insight-dan-kesimpulan-evaluasi" title="Link to this heading">#</a></h2>
+<section id="keterbatasan-fitur">
+<h3>1. Keterbatasan Fitur<a class="headerlink" href="#keterbatasan-fitur" title="Link to this heading">#</a></h3>
+<p>Model hanya menggunakan beberapa atribut seperti:</p>
+<ul class="simple">
+<li><p>Weight</p></li>
+<li><p>CAEC</p></li>
+<li><p>Gender</p></li>
+</ul>
+<p>Tanpa fitur penting seperti <strong>Height</strong>, model tidak dapat menghitung proporsi tubuh (misalnya BMI).</p>
+</section>
+<hr class="docutils" />
+<section id="overlap-antar-kelas">
+<h3>2. Overlap Antar Kelas<a class="headerlink" href="#overlap-antar-kelas" title="Link to this heading">#</a></h3>
+<p>Rentang nilai antar kelas seperti:</p>
+<ul class="simple">
+<li><p>Normal_Weight</p></li>
+<li><p>Overweight</p></li>
+<li><p>Obesity_Type_I</p></li>
+</ul>
+<p>memiliki <strong>irisan (overlap)</strong> yang tinggi.</p>
+<p>Contoh:
+Berat 70 kg bisa masuk kategori berbeda tergantung tinggi badan.</p>
+</section>
+<hr class="docutils" />
+<section id="kinerja-baik-pada-kelas-ekstrem">
+<h3>3. Kinerja Baik pada Kelas Ekstrem<a class="headerlink" href="#kinerja-baik-pada-kelas-ekstrem" title="Link to this heading">#</a></h3>
+<p>Model sangat baik dalam mengenali:</p>
+<ul class="simple">
+<li><p>Obesity_Type_II</p></li>
+<li><p>Obesity_Type_III</p></li>
+</ul>
+<p>Karena pola datanya lebih jelas dan tidak banyak overlap.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-akhir">
+<h2>4. Kesimpulan Akhir<a class="headerlink" href="#kesimpulan-akhir" title="Link to this heading">#</a></h2>
+<p>Secara keseluruhan, algoritma Gaussian Naive Bayes:</p>
+<ul class="simple">
+<li><p>Berjalan dengan baik secara teknis</p></li>
+<li><p>Mampu mengenali pola pada kelas ekstrem</p></li>
+<li><p>Masih kesulitan pada kelas dengan karakteristik mirip</p></li>
+<li><p>Menghasilkan akurasi moderat (<strong>57.2%</strong>)</p></li>
+</ul>
+<p>Hal ini menunjukkan bahwa performa model sangat dipengaruhi oleh:</p>
+<ul class="simple">
+<li><p>Kelengkapan fitur</p></li>
+<li><p>Tingkat perbedaan antar kelas dalam dataset</p></li>
+</ul>
 </section>
 <section id="implementasi-script-python-node-python-script">
 <h2>Implementasi Script Python (Node Python Script)<a class="headerlink" href="#implementasi-script-python-node-python-script" title="Link to this heading">#</a></h2>
@@ -629,54 +769,59 @@ Diubah menjadi angka berdasarkan tingkatan intensitasnya (0 sampai 3). <em>Label
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
 
-<span class="c1"># 1. SETUP DATA INPUT</span>
-<span class="c1"># Mengambil data dari port input KNIME</span>
 <span class="n">df_train</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="n">df_test</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 
-<span class="c1"># Menentukan fitur yang digunakan dan kolom target</span>
-<span class="n">selected_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;MTRANS&#39;</span><span class="p">,</span> <span class="s1">&#39;CAEC&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
 <span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;NObeyesdad&#39;</span>
 
-<span class="c1"># 2. ENCODING &amp; PREPROCESSING</span>
-<span class="c1"># Menggabungkan data untuk memastikan konsistensi label angka</span>
-<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># AUTO DETECT FEATURE</span>
+<span class="n">all_possible_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;MTRANS&#39;</span><span class="p">,</span> <span class="s1">&#39;CAEC&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
+<span class="n">selected_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">all_possible_features</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
 
-<span class="c1"># Melakukan encoding pada kolom teks</span>
-<span class="n">cols_to_encode</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MTRANS&#39;</span><span class="p">,</span> <span class="s1">&#39;CAEC&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="n">target_col</span><span class="p">]</span>
+<span class="c1"># GABUNG</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># ENCODING AMAN</span>
+<span class="n">cols_to_encode</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;MTRANS&#39;</span><span class="p">,</span> <span class="s1">&#39;CAEC&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="n">target_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_all</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">encoders</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_to_encode</span><span class="p">:</span>
     <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
     <span class="n">df_all</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">encoders</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
 
-<span class="c1"># Memisahkan kembali data latih dan data uji</span>
-<span class="n">df_train_proc</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">),</span> <span class="p">:]</span>
-<span class="n">df_test_proc</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">):,</span> <span class="p">:]</span>
+<span class="c1"># SPLIT</span>
+<span class="n">df_train_proc</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">)]</span>
+<span class="n">df_test_proc</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">):]</span>
 
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">df_train_proc</span><span class="p">[</span><span class="n">selected_features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train_proc</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">df_test_proc</span><span class="p">[</span><span class="n">selected_features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">df_train_proc</span><span class="p">[</span><span class="n">selected_features</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train_proc</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
 
-<span class="c1"># 3. NORMALISASI DATA (Min-Max Scaling)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">df_test_proc</span><span class="p">[</span><span class="n">selected_features</span><span class="p">]</span>
+
+<span class="c1"># NORMALISASI</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="n">X_train_norm</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="n">X_test_norm</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-<span class="c1"># 4. TRAINING &amp; PREDIKSI (Gaussian Naive Bayes)</span>
+<span class="c1"># MODEL</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_norm</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-<span class="c1"># Melakukan prediksi pada 20% data testing</span>
-<span class="n">y_pred_encoded</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_norm</span><span class="p">)</span>
+<span class="c1"># PREDIKSI</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
-<span class="c1"># 5. DECODE HASIL PREDIKSI</span>
-<span class="c1"># Mengembalikan hasil prediksi angka menjadi teks klasifikasi obesitas</span>
-<span class="n">le_target</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">le_target</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
-<span class="n">y_pred_text</span> <span class="o">=</span> <span class="n">le_target</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred_encoded</span><span class="p">)</span>
+<span class="c1"># DECODE</span>
+<span class="k">if</span> <span class="n">target_col</span> <span class="ow">in</span> <span class="n">encoders</span><span class="p">:</span>
+    <span class="n">y_pred_text</span> <span class="o">=</span> <span class="n">encoders</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">y_pred_text</span> <span class="o">=</span> <span class="n">y_pred</span>
 
-<span class="c1"># 6. OUTPUT KE KNIME</span>
-<span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;Prediction_Naive_Bayes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred_text</span>
-<span class="n">knio</span><span class="o">.</span><span class="n">output_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df_test</span><span class="p">)</span>
+<span class="c1"># OUTPUT</span>
+<span class="n">df_output</span> <span class="o">=</span> <span class="n">df_test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_output</span><span class="p">[</span><span class="s1">&#39;Prediction_Naive_Bayes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred_text</span>
+
+<span class="n">knio</span><span class="o">.</span><span class="n">output_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df_output</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -817,12 +962,25 @@ Karena <code class="docutils literal notranslate"><span class="pre">Weight</span
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-data-kategorikal">1. Encoding Data Kategorikal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-alur-kerja-workflow-knime">Implementasi Alur Kerja (Workflow) KNIME</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-akurasi-accuracy-statistics">1. Analisis Akurasi (Accuracy Statistics)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-confusion-matrix">2. Analisis Confusion Matrix</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-dan-kesimpulan-evaluasi">3. Insight dan Kesimpulan Evaluasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-alur-kerja-workflow-knime">Implementasi Alur Kerja (Workflow) KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-akurasi-accuracy-statistics">1. Analisis Akurasi (Accuracy Statistics)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-tinggi-baik">Performa Tinggi (Baik)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-menengah">Performa Menengah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-rendah">Performa Rendah</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-confusion-matrix">2. Analisis Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonal-utama-prediksi-benar-true-positive">Diagonal Utama (Prediksi Benar / True Positive)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-kesalahan-misclassification">Sebaran Kesalahan (Misclassification)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-dan-kesimpulan-evaluasi">3. Insight dan Kesimpulan Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan-fitur">1. Keterbatasan Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlap-antar-kelas">2. Overlap Antar Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-baik-pada-kelas-ekstrem">3. Kinerja Baik pada Kelas Ekstrem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">4. Kesimpulan Akhir</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-script-python-node-python-script">Implementasi Script Python (Node Python Script)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-perhitungan-manual-naive-bayes">Demonstrasi Perhitungan Manual Naive Bayes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-data-uji-data-dummy">1. Skenario Data Uji (Data Dummy)</a></li>
