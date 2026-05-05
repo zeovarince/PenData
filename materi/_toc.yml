@@ -21,5 +21,6 @@ chapters:
   - file: knn
   - file: wknn
 
-- file: uts
+- file: soaluts
 - file: jwb_uts
+- file: nb

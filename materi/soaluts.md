@@ -13,10 +13,9 @@ bedasarkan dataset yang telah disediakan, lakukan analisis data dengan menggunak
 | **Precision** | Ketepatan prediksi kelas positif |
 | **Recall** | Kemampuan mendeteksi seluruh kelas positif |
 | **F1-Score** | Harmonic mean antara Precision dan Recall |
-| 
+| **Confusion Matrix** | Tabel yang menunjukkan jumlah TP, TN, FP, FN |
 
 ---
-
 # Dataset Klasifikasi Kesuburan Tanah
 
 ## Deskripsi Umum

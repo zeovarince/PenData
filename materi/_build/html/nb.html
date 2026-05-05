@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Naive Bayes &#8212; Catatan Matakuliah Penambanngan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nb';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Jawaban UTS" href="jwb_uts.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpeg" class="logo__image only-light" alt="Catatan Matakuliah Penambanngan Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpeg" class="logo__image only-dark" alt="Catatan Matakuliah Penambanngan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Matakuliah Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Pengantar.html">Pengantar Penambangan Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="MemahamiData.html">Memahami Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="eksplorData.html">Eksplorasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describeData.html">Describe Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisasi.html">Visualisasi Data IRIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MengukurJarak.html">Mengukur Jarak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UkurJarak.html">Pengukuran Jarak Data Campuran (Mixed Type Attributes)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="preprocesdata.html">Preprocessing Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="normalisasi.html">Normalisasi Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knn.html">K-Nearest Neighbors (KNN) Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbors (WKNN) Imputation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="soaluts.html">UTS Penambangan Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="jwb_uts.html">Jawaban UTS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Naive Bayes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnb.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/nb.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Naive Bayes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-data-menggunakan-naive-bayes">Analisis Data Menggunakan Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-dataset">Karakteristik Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-transformasi-data">Preprocessing (Transformasi Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-encoding-data">1. Proses Encoding Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-normalisasi-data">2. Proses Normalisasi Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-atribut-untuk-demonstrasi-manual">Seleksi Atribut untuk Demonstrasi Manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-digunakan">Atribut Yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-tidak-digunakan">Atribut Yang Tidak Digunakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-transformasi-data">Hasil Transformasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-data-kategorikal">1. Encoding Data Kategorikal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-alur-kerja-workflow-knime">Implementasi Alur Kerja (Workflow) KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-akurasi-accuracy-statistics">1. Analisis Akurasi (Accuracy Statistics)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-tinggi-baik">Performa Tinggi (Baik)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-menengah">Performa Menengah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-rendah">Performa Rendah</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-confusion-matrix">2. Analisis Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonal-utama-prediksi-benar-true-positive">Diagonal Utama (Prediksi Benar / True Positive)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-kesalahan-misclassification">Sebaran Kesalahan (Misclassification)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-dan-kesimpulan-evaluasi">3. Insight dan Kesimpulan Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan-fitur">1. Keterbatasan Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlap-antar-kelas">2. Overlap Antar Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-baik-pada-kelas-ekstrem">3. Kinerja Baik pada Kelas Ekstrem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">4. Kesimpulan Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-script-python-node-python-script">Implementasi Script Python (Node Python Script)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-perhitungan-manual-naive-bayes">Demonstrasi Perhitungan Manual Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-data-uji-data-dummy">1. Skenario Data Uji (Data Dummy)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-probabilitas-prior-p-c">2. Menghitung Probabilitas Prior <span class="math notranslate nohighlight">\(P(C)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-likelihood-p-x-mid-c">3. Menghitung Likelihood <span class="math notranslate nohighlight">\(P(X \mid C)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-probabilitas-posterior-p-c-mid-x">4. Menghitung Probabilitas Posterior <span class="math notranslate nohighlight">\(P(C \mid X)\)</span></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="naive-bayes">
+<h1>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Link to this heading">#</a></h1>
+<section id="analisis-data-menggunakan-naive-bayes">
+<h2>Analisis Data Menggunakan Naive Bayes<a class="headerlink" href="#analisis-data-menggunakan-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Tugas ini berfokus pada implementasi algoritma klasifikasi Gaussian Naive Bayes menggunakan library scikit-learn dari Python. Sesuai instruksi, penulisan script tidak dilakukan secara mandiri di IDE biasa, melainkan diintegrasikan ke dalam lingkungan KNIME Analytics Platform dengan memanfaatkan eksekusi melalui node Python Script.</p>
+</section>
+<section id="karakteristik-dataset">
+<h2>Karakteristik Dataset<a class="headerlink" href="#karakteristik-dataset" title="Link to this heading">#</a></h2>
+<p>Data yang digunakan untuk pelatihan dan pengujian model adalah dataset ObesityDataSet.csv.</p>
+<blockquote>
+<div><p><strong>Sumber Data:</strong> <a class="reference download internal" download="" href="_downloads/1d2b75d8217519343dd7845b42c23cc8/ObesityDataSet.csv"><span class="xref download myst">Download ObesityDataSet.csv</span></a></p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Parameter Utama</p></th>
+<th class="head text-left"><p>Detail Informasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Total Baris Data</strong></p></td>
+<td class="text-left"><p>2.111 baris</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Jumlah Fitur (Atribut)</strong></p></td>
+<td class="text-left"><p>16 kolom (Kombinasi data kategorikal dan numerik)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Rincian Fitur</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Gender</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Height</span></code>, <code class="docutils literal notranslate"><span class="pre">Weight</span></code>, <code class="docutils literal notranslate"><span class="pre">family_history_with_overweight</span></code>, <code class="docutils literal notranslate"><span class="pre">FAVC</span></code>, <code class="docutils literal notranslate"><span class="pre">FCVC</span></code>, <code class="docutils literal notranslate"><span class="pre">NCP</span></code>, <code class="docutils literal notranslate"><span class="pre">CAEC</span></code>, <code class="docutils literal notranslate"><span class="pre">SMOKE</span></code>, <code class="docutils literal notranslate"><span class="pre">CH2O</span></code>, <code class="docutils literal notranslate"><span class="pre">SCC</span></code>, <code class="docutils literal notranslate"><span class="pre">FAF</span></code>, <code class="docutils literal notranslate"><span class="pre">TUE</span></code>, <code class="docutils literal notranslate"><span class="pre">CALC</span></code>, <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Target Klasifikasi (Label)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code> (Tingkat Obesitas)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Kategori Kelas</strong></p></td>
+<td class="text-left"><p>• <code class="docutils literal notranslate"><span class="pre">Insufficient_Weight</span></code><br>• <code class="docutils literal notranslate"><span class="pre">Normal_Weight</span></code><br>• <code class="docutils literal notranslate"><span class="pre">Overweight_Level_I</span></code><br>• <code class="docutils literal notranslate"><span class="pre">Overweight_Level_II</span></code><br>• <code class="docutils literal notranslate"><span class="pre">Obesity_Type_I</span></code><br>• <code class="docutils literal notranslate"><span class="pre">Obesity_Type_II</span></code><br>• <code class="docutils literal notranslate"><span class="pre">Obesity_Type_III</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Kondisi Distribusi Data</strong></p></td>
+<td class="text-left"><p>✨ <strong>Cukup Seimbang (<em>Relatively Balanced</em>)</strong><br>Sebaran kelas cukup merata dan terdistribusi dengan baik, berada di rentang 272 hingga 351 sampel untuk masing-masing kategorinya.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="preprocessing-transformasi-data">
+<h2>Preprocessing (Transformasi Data)<a class="headerlink" href="#preprocessing-transformasi-data" title="Link to this heading">#</a></h2>
+<p>Dataset <em>Obesity</em> memiliki banyak atribut dengan tipe data campuran (kategorikal berupa teks dan numerik). Oleh karena itu, pada tahap <em>preprocessing</em>, dilakukan dua proses utama yaitu <strong>Encoding</strong> dan <strong>Normalisasi</strong> agar data siap diproses oleh model Gaussian Naive Bayes menggunakan <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<section id="proses-encoding-data">
+<h3>1. Proses Encoding Data<a class="headerlink" href="#proses-encoding-data" title="Link to this heading">#</a></h3>
+<p>Karena algoritma pada Python tidak bisa memproses data berupa teks secara langsung (seperti “Male”/”Female” atau “Yes”/”No”), dilakukan teknik <em>Label Encoding</em> menggunakan <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> untuk mengubah data kategorikal menjadi format numerik. Teknik ini tepat digunakan pada fitur bertipe <strong>ordinal</strong> dan <strong>biner</strong> yang memiliki urutan atau hanya dua kategori.</p>
+<p>Sebagai contoh representasi:</p>
+<ul class="simple">
+<li><p><strong>Gender</strong>: <code class="docutils literal notranslate"><span class="pre">Female</span></code> menjadi 0, <code class="docutils literal notranslate"><span class="pre">Male</span></code> menjadi 1</p></li>
+<li><p><strong>SMOKE (Merokok)</strong>: <code class="docutils literal notranslate"><span class="pre">no</span></code> menjadi 0, <code class="docutils literal notranslate"><span class="pre">yes</span></code> menjadi 1</p></li>
+<li><p><strong>NObeyesdad (Target)</strong>: Diubah dari format teks tingkat obesitas menjadi rentang angka 0 hingga 6.</p></li>
+</ul>
+</section>
+<section id="proses-normalisasi-data">
+<h3>2. Proses Normalisasi Data<a class="headerlink" href="#proses-normalisasi-data" title="Link to this heading">#</a></h3>
+<p>Setelah semua data berupa angka, skala datanya masih sangat berbeda (contoh: Umur puluhan tahun, Berat Badan seratusan kilogram, Tinggi Badan berupa angka desimal 1.70). Normalisasi dilakukan menggunakan <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> yang akan mengubah seluruh rentang angka menjadi skala <strong>0 hingga 1</strong>, sehingga distribusi setiap fitur dapat dimodelkan dengan lebih baik oleh Gaussian Naive Bayes melalui estimasi <em>mean</em> dan varians masing-masing fitur.</p>
+<blockquote>
+<div><p><strong>Catatan:</strong> Pada Gaussian Naive Bayes, model mengestimasi <em>mean</em> dan varians setiap fitur secara <strong>independen</strong> untuk menghitung probabilitas. Berbeda dengan algoritma berbasis jarak seperti KNN, Gaussian NB tidak sensitif terhadap dominasi skala fitur — namun normalisasi tetap disarankan agar asumsi distribusi Gaussian terpenuhi dengan lebih baik.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="seleksi-atribut-untuk-demonstrasi-manual">
+<h2>Seleksi Atribut untuk Demonstrasi Manual<a class="headerlink" href="#seleksi-atribut-untuk-demonstrasi-manual" title="Link to this heading">#</a></h2>
+<p>Seleksi atribut bertujuan untuk menentukan fitur-fitur yang relevan dan akan digunakan dalam proses demonstrasi perhitungan probabilitas Naive Bayes secara manual. Dari 17 atribut yang tersedia, dipilih 4 atribut utama yang mewakili empat tipe data yang berbeda (Numerik, Nominal, Ordinal, dan Biner).</p>
+<section id="atribut-yang-digunakan">
+<h3>Atribut Yang Digunakan<a class="headerlink" href="#atribut-yang-digunakan" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Atribut</p></th>
+<th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Alasan Penggunaan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Weight</p></td>
+<td><p>Numerik</p></td>
+<td><p>Mewakili data angka kontinu dengan rentang nilai yang lebar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>MTRANS</p></td>
+<td><p>Nominal</p></td>
+<td><p>Menunjukkan alat transportasi tanpa urutan tingkatan.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>CAEC</p></td>
+<td><p>Ordinal</p></td>
+<td><p>Menunjukkan frekuensi makan dengan tingkatan yang jelas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Gender</p></td>
+<td><p>Biner</p></td>
+<td><p>Mewakili jenis kelamin dengan dua kategori.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="atribut-yang-tidak-digunakan">
+<h3>Atribut Yang Tidak Digunakan<a class="headerlink" href="#atribut-yang-tidak-digunakan" title="Link to this heading">#</a></h3>
+<p>Atribut lainnya seperti <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Height</span></code>, <code class="docutils literal notranslate"><span class="pre">family_history</span></code>, hingga <code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code> tidak digunakan dalam demonstrasi manual ini untuk menyederhanakan proses, meskipun dalam analisis komputasional seluruh atribut dapat dilibatkan.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-transformasi-data">
+<h2>Hasil Transformasi Data<a class="headerlink" href="#hasil-transformasi-data" title="Link to this heading">#</a></h2>
+<p>Transformasi bertujuan untuk mengubah seluruh atribut ke dalam bentuk numerik dan memiliki skala yang sebanding (0 sampai 1), sehingga distribusi setiap fitur dapat dimodelkan dengan baik oleh Gaussian Naive Bayes melalui estimasi <em>mean</em> dan varians.</p>
+<section id="encoding-data-kategorikal">
+<h3>1. Encoding Data Kategorikal<a class="headerlink" href="#encoding-data-kategorikal" title="Link to this heading">#</a></h3>
+<p>Encoding dilakukan untuk mengubah atribut bertipe kategori (teks) menjadi angka.</p>
+<p><strong>Gender (Biner) :</strong>
+Menggunakan <em>binary encoding</em> karena hanya memiliki dua kategori.</p>
+<ul class="simple">
+<li><p><strong>Female : 1</strong></p></li>
+<li><p><strong>Male : 0</strong></p></li>
+</ul>
+<p><strong>MTRANS (Nominal) :</strong>
+Karena <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code> bersifat nominal (tidak memiliki urutan), idealnya digunakan <em>One-Hot Encoding</em> untuk menghindari pemberian urutan palsu antar kategori. Namun untuk keperluan demonstrasi manual ini, diberikan label angka unik sebagai representasi sederhana.</p>
+<ul class="simple">
+<li><p><strong>Public_Transportation : 0</strong></p></li>
+<li><p><strong>Walking : 1</strong></p></li>
+<li><p><strong>Automobile : 2</strong></p></li>
+<li><p><strong>Motorbike : 3</strong></p></li>
+<li><p><strong>Bike : 4</strong></p></li>
+</ul>
+<p><strong>CAEC (Ordinal) :</strong>
+Diubah menjadi angka berdasarkan tingkatan intensitasnya (0 sampai 3). <em>Label Encoding</em> tepat digunakan di sini karena kategorinya memiliki urutan yang bermakna.</p>
+<ul class="simple">
+<li><p><strong>no : 0</strong></p></li>
+<li><p><strong>Sometimes : 1</strong></p></li>
+<li><p><strong>Frequently : 2</strong></p></li>
+<li><p><strong>Always : 3</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="implementasi-alur-kerja-workflow-knime">
+<h2>Implementasi Alur Kerja (Workflow) KNIME<a class="headerlink" href="#implementasi-alur-kerja-workflow-knime" title="Link to this heading">#</a></h2>
+<p>Proses analisis ini disusun menggunakan <em>node-based programming</em> di KNIME Analytics Platform. Berdasarkan desain arsitektur yang dirancang, berikut adalah 5 komponen utama yang digunakan dalam <em>workflow</em>:</p>
+<p><img alt="Workflow KNIME Naive Bayes" src="_images/naviebayes.png" /></p>
+<ol class="arabic simple">
+<li><p><strong>CSV Reader</strong>: Berfungsi sebagai <em>data ingestion</em> untuk mengimpor file <code class="docutils literal notranslate"><span class="pre">ObesityDataSet.csv</span></code> ke dalam <em>workspace</em> KNIME.</p></li>
+<li><p><strong>Column Filter</strong>: Node ini digunakan untuk menyaring fitur sejak awal. Hanya 5 kolom yang diteruskan ke tahap selanjutnya, yaitu 4 atribut prediktor (<code class="docutils literal notranslate"><span class="pre">Weight</span></code>, <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code>, <code class="docutils literal notranslate"><span class="pre">CAEC</span></code>, <code class="docutils literal notranslate"><span class="pre">Gender</span></code>) dan 1 atribut target (<code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code>).</p></li>
+<li><p><strong>Partitioning</strong>: Node ini membagi data yang sudah difilter menjadi dua jalur secara <em>stratified</em>. Jalur atas menghasilkan <strong>80% data latih (training)</strong>, dan jalur bawah menghasilkan <strong>20% data uji (testing)</strong>.</p></li>
+<li><p><strong>Python Script</strong>: Merupakan <em>engine</em> komputasi utama. Node ini menerima data latih dan uji, melakukan <em>preprocessing</em> (Label Encoding &amp; Normalisasi), melatih model <strong>Gaussian Naive Bayes</strong> menggunakan <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, dan menghasilkan tabel data uji yang telah dilengkapi dengan kolom prediksi.</p></li>
+<li><p><strong>Scorer</strong>: Diletakkan di akhir alur untuk mengevaluasi performa model. Node ini membandingkan kolom target asli (<code class="docutils literal notranslate"><span class="pre">NObeyesdad</span></code>) dengan kolom prediksi keluaran Python Script untuk menghasilkan nilai Akurasi dan <em>Confusion Matrix</em> secara visual.</p></li>
+</ol>
+</section>
+<section id="analisis-akurasi-accuracy-statistics">
+<h2>1. Analisis Akurasi (Accuracy Statistics)<a class="headerlink" href="#analisis-akurasi-accuracy-statistics" title="Link to this heading">#</a></h2>
+<p><img alt="Accuracy Statistics Naive Bayes" src="_images/accnb.png" /></p>
+<p>Berdasarkan metrik evaluasi <em>Accuracy Statistics</em>, model Gaussian Naive Bayes yang dibangun menggunakan atribut terbatas memperoleh <strong>Overall Accuracy sebesar 0.572 (57.2%)</strong>. Artinya, dari seluruh data uji, model mampu mengklasifikasikan sekitar <strong>57% data dengan benar</strong>.</p>
+<p>Jika dianalisis lebih rinci berdasarkan performa tiap kelas:</p>
+<section id="performa-tinggi-baik">
+<h3>Performa Tinggi (Baik)<a class="headerlink" href="#performa-tinggi-baik" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Obesity_Type_II</strong></p>
+<ul>
+<li><p>Precision: 0.983</p></li>
+<li><p>Recall: 0.69<br />
+Model sangat akurat ketika memprediksi kelas ini.</p></li>
+</ul>
+</li>
+<li><p><strong>Obesity_Type_III</strong></p>
+<ul>
+<li><p>Recall: 0.51</p></li>
+<li><p>F1-Score: 0.675<br />
+Model cukup baik dalam mengenali kelas obesitas ekstrem.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="performa-menengah">
+<h3>Performa Menengah<a class="headerlink" href="#performa-menengah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Insufficient_Weight</strong></p>
+<ul>
+<li><p>Recall: 0.672</p></li>
+<li><p>Precision: 0.82<br />
+Model cukup stabil dalam mendeteksi kelas ini.</p></li>
+</ul>
+</li>
+<li><p><strong>Normal_Weight</strong></p>
+<ul>
+<li><p>F1-Score: 0.50<br />
+Performa moderat, masih terdapat kesalahan klasifikasi.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="performa-rendah">
+<h3>Performa Rendah<a class="headerlink" href="#performa-rendah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Obesity_Type_I</strong></p>
+<ul>
+<li><p>Precision: 0.152</p></li>
+<li><p>Recall: 0.476<br />
+Banyak prediksi yang tidak tepat.</p></li>
+</ul>
+</li>
+<li><p><strong>Overweight_Level_I</strong> dan <strong>Overweight_Level_II</strong></p>
+<ul>
+<li><p>F1-Score &lt; 0.5<br />
+Model kesulitan membedakan kategori overweight.</p></li>
+</ul>
+</li>
+</ul>
+<p>Selain itu, nilai <strong>Cohen’s Kappa sebesar 0.503</strong> menunjukkan tingkat kesepakatan <em>moderate</em>, yang berarti model lebih baik dibandingkan tebakan acak, namun belum optimal.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-confusion-matrix">
+<h2>2. Analisis Confusion Matrix<a class="headerlink" href="#analisis-confusion-matrix" title="Link to this heading">#</a></h2>
+<p><img alt="Confusion Matrix Naive Bayes" src="_images/cmnb.png" /></p>
+<p>Confusion Matrix memberikan gambaran detail mengenai distribusi prediksi benar dan kesalahan model.</p>
+<section id="diagonal-utama-prediksi-benar-true-positive">
+<h3>Diagonal Utama (Prediksi Benar / True Positive)<a class="headerlink" href="#diagonal-utama-prediksi-benar-true-positive" title="Link to this heading">#</a></h3>
+<p>Nilai diagonal menunjukkan jumlah prediksi yang benar untuk masing-masing kelas:</p>
+<ul class="simple">
+<li><p>Overweight_Level_I → <strong>27</strong></p></li>
+<li><p>Overweight_Level_II → <strong>27</strong></p></li>
+<li><p>Insufficient_Weight → <strong>41</strong></p></li>
+<li><p>Obesity_Type_I → <strong>10</strong></p></li>
+<li><p>Normal_Weight → <strong>28</strong></p></li>
+<li><p>Obesity_Type_III → <strong>51</strong></p></li>
+<li><p>Obesity_Type_II → <strong>58</strong></p></li>
+</ul>
+<p>Hal ini menunjukkan bahwa model sudah mampu melakukan klasifikasi dengan benar pada setiap kelas, meskipun tingkat keberhasilannya berbeda-beda.</p>
+</section>
+<hr class="docutils" />
+<section id="sebaran-kesalahan-misclassification">
+<h3>Sebaran Kesalahan (Misclassification)<a class="headerlink" href="#sebaran-kesalahan-misclassification" title="Link to this heading">#</a></h3>
+<p>Beberapa pola kesalahan yang menonjol:</p>
+<ul class="simple">
+<li><p><strong>Kebingungan antar kelas Overweight:</strong></p>
+<ul>
+<li><p>Overweight_Level_I sering diprediksi sebagai Overweight_Level_II (<strong>14 data</strong>) dan Normal_Weight (<strong>15 data</strong>)</p></li>
+<li><p>Overweight_Level_II sering tertukar dengan Overweight_Level_I (<strong>23 data</strong>)</p></li>
+</ul>
+</li>
+<li><p><strong>Kesalahan menuju kelas Obesitas:</strong></p>
+<ul>
+<li><p>Beberapa data Overweight diprediksi sebagai Obesity_Type_I</p></li>
+</ul>
+</li>
+<li><p><strong>Kesalahan pada kelas Normal:</strong></p>
+<ul>
+<li><p>Normal_Weight diprediksi sebagai Overweight_Level_I (<strong>9 data</strong>) dan Insufficient_Weight (<strong>9 data</strong>)</p></li>
+</ul>
+</li>
+</ul>
+<p>Pola ini menunjukkan adanya <strong>overlap karakteristik antar kelas</strong>, terutama pada kategori tengah.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="insight-dan-kesimpulan-evaluasi">
+<h2>3. Insight dan Kesimpulan Evaluasi<a class="headerlink" href="#insight-dan-kesimpulan-evaluasi" title="Link to this heading">#</a></h2>
+<section id="keterbatasan-fitur">
+<h3>1. Keterbatasan Fitur<a class="headerlink" href="#keterbatasan-fitur" title="Link to this heading">#</a></h3>
+<p>Model hanya menggunakan beberapa atribut seperti:</p>
+<ul class="simple">
+<li><p>Weight</p></li>
+<li><p>CAEC</p></li>
+<li><p>Gender</p></li>
+</ul>
+<p>Tanpa fitur penting seperti <strong>Height</strong>, model tidak dapat menghitung proporsi tubuh (misalnya BMI).</p>
+</section>
+<hr class="docutils" />
+<section id="overlap-antar-kelas">
+<h3>2. Overlap Antar Kelas<a class="headerlink" href="#overlap-antar-kelas" title="Link to this heading">#</a></h3>
+<p>Rentang nilai antar kelas seperti:</p>
+<ul class="simple">
+<li><p>Normal_Weight</p></li>
+<li><p>Overweight</p></li>
+<li><p>Obesity_Type_I</p></li>
+</ul>
+<p>memiliki <strong>irisan (overlap)</strong> yang tinggi.</p>
+<p>Contoh:
+Berat 70 kg bisa masuk kategori berbeda tergantung tinggi badan.</p>
+</section>
+<hr class="docutils" />
+<section id="kinerja-baik-pada-kelas-ekstrem">
+<h3>3. Kinerja Baik pada Kelas Ekstrem<a class="headerlink" href="#kinerja-baik-pada-kelas-ekstrem" title="Link to this heading">#</a></h3>
+<p>Model sangat baik dalam mengenali:</p>
+<ul class="simple">
+<li><p>Obesity_Type_II</p></li>
+<li><p>Obesity_Type_III</p></li>
+</ul>
+<p>Karena pola datanya lebih jelas dan tidak banyak overlap.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-akhir">
+<h2>4. Kesimpulan Akhir<a class="headerlink" href="#kesimpulan-akhir" title="Link to this heading">#</a></h2>
+<p>Secara keseluruhan, algoritma Gaussian Naive Bayes:</p>
+<ul class="simple">
+<li><p>Berjalan dengan baik secara teknis</p></li>
+<li><p>Mampu mengenali pola pada kelas ekstrem</p></li>
+<li><p>Masih kesulitan pada kelas dengan karakteristik mirip</p></li>
+<li><p>Menghasilkan akurasi moderat (<strong>57.2%</strong>)</p></li>
+</ul>
+<p>Hal ini menunjukkan bahwa performa model sangat dipengaruhi oleh:</p>
+<ul class="simple">
+<li><p>Kelengkapan fitur</p></li>
+<li><p>Tingkat perbedaan antar kelas dalam dataset</p></li>
+</ul>
+</section>
+<section id="implementasi-script-python-node-python-script">
+<h2>Implementasi Script Python (Node Python Script)<a class="headerlink" href="#implementasi-script-python-node-python-script" title="Link to this heading">#</a></h2>
+<p>Di dalam node Python Script, dilakukan pengolahan data menggunakan 4 atribut terpilih (Weight, MTRANS, CAEC, Gender). Berikut adalah source code lengkap yang diimplemetasikan</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">knime.scripting.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">knio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">input_tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+<span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;NObeyesdad&#39;</span>
+
+<span class="c1"># AUTO DETECT FEATURE</span>
+<span class="n">all_possible_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;MTRANS&#39;</span><span class="p">,</span> <span class="s1">&#39;CAEC&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
+<span class="n">selected_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">all_possible_features</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_train</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="c1"># GABUNG</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># ENCODING AMAN</span>
+<span class="n">cols_to_encode</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;MTRANS&#39;</span><span class="p">,</span> <span class="s1">&#39;CAEC&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="n">target_col</span><span class="p">]</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_all</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">encoders</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_to_encode</span><span class="p">:</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">df_all</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">encoders</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
+
+<span class="c1"># SPLIT</span>
+<span class="n">df_train_proc</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">)]</span>
+<span class="n">df_test_proc</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">):]</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">df_train_proc</span><span class="p">[</span><span class="n">selected_features</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train_proc</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">df_test_proc</span><span class="p">[</span><span class="n">selected_features</span><span class="p">]</span>
+
+<span class="c1"># NORMALISASI</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># MODEL</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># PREDIKSI</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># DECODE</span>
+<span class="k">if</span> <span class="n">target_col</span> <span class="ow">in</span> <span class="n">encoders</span><span class="p">:</span>
+    <span class="n">y_pred_text</span> <span class="o">=</span> <span class="n">encoders</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">y_pred_text</span> <span class="o">=</span> <span class="n">y_pred</span>
+
+<span class="c1"># OUTPUT</span>
+<span class="n">df_output</span> <span class="o">=</span> <span class="n">df_test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_output</span><span class="p">[</span><span class="s1">&#39;Prediction_Naive_Bayes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred_text</span>
+
+<span class="n">knio</span><span class="o">.</span><span class="n">output_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">knio</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">knime.scripting.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">knio</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;knime&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="demonstrasi-perhitungan-manual-naive-bayes">
+<h2>Demonstrasi Perhitungan Manual Naive Bayes<a class="headerlink" href="#demonstrasi-perhitungan-manual-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Untuk memahami cara kerja algoritma di balik layar (sebelum dieksekusi oleh KNIME), berikut adalah demonstrasi perhitungan probabilitas klasifikasi Naive Bayes secara manual menggunakan 4 atribut terpilih (<code class="docutils literal notranslate"><span class="pre">Weight</span></code>, <code class="docutils literal notranslate"><span class="pre">MTRANS</span></code>, <code class="docutils literal notranslate"><span class="pre">CAEC</span></code>, <code class="docutils literal notranslate"><span class="pre">Gender</span></code>).</p>
+<p>Algoritma Naive Bayes beroperasi berdasarkan Teorema Bayes:
+$<span class="math notranslate nohighlight">\(P(C \mid X) = \frac{P(X \mid C) \cdot P(C)}{P(X)}\)</span>$</p>
+<p>Karena nilai penyebut <span class="math notranslate nohighlight">\(P(X)\)</span> selalu konstan untuk semua kelas, perhitungan dapat disederhanakan dengan mencari nilai probabilitas gabungan terbesar (Maximum A Posteriori):
+$<span class="math notranslate nohighlight">\(Posterior \propto Prior \times Likelihood\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(P(C_i \mid X) \propto P(C_i) \cdot \prod_{k=1}^{n} P(x_k \mid C_i)\)</span>$</p>
+<section id="skenario-data-uji-data-dummy">
+<h3>1. Skenario Data Uji (Data Dummy)<a class="headerlink" href="#skenario-data-uji-data-dummy" title="Link to this heading">#</a></h3>
+<p>Misalkan kita memiliki satu data pasien baru yang belum diketahui tingkat obesitasnya, dengan nilai atribut yang sudah melalui tahap <em>preprocessing</em> (Encoding &amp; Normalisasi) sebagai berikut:</p>
+<ul class="simple">
+<li><p><strong>Gender</strong> = 1 (Female)</p></li>
+<li><p><strong>MTRANS</strong> = 0 (Public_Transportation)</p></li>
+<li><p><strong>CAEC</strong> = 1 (Sometimes)</p></li>
+<li><p><strong>Weight</strong> = 0.45 (Sudah dinormalisasi)</p></li>
+</ul>
+</section>
+<section id="menghitung-probabilitas-prior-p-c">
+<h3>2. Menghitung Probabilitas Prior <span class="math notranslate nohighlight">\(P(C)\)</span><a class="headerlink" href="#menghitung-probabilitas-prior-p-c" title="Link to this heading">#</a></h3>
+<p>Langkah pertama adalah menghitung seberapa sering masing-masing kelas target (Tingkat Obesitas) muncul di dalam data <em>training</em>.
+$<span class="math notranslate nohighlight">\(P(C_i) = \frac{\text{Jumlah kemunculan kelas } C_i}{\text{Total seluruh data latih}}\)</span><span class="math notranslate nohighlight">\(
+*Contoh:* Jika dari total 1.688 data training terdapat 280 data kelas `Obesity_Type_I`, maka Probabilitas Prior \)</span>P(\text{Obesity_Type_I}) = \frac{280}{1688} = 0.165$. Hal ini dihitung untuk ke-7 kelas obesitas.</p>
+</section>
+<section id="menghitung-likelihood-p-x-mid-c">
+<h3>3. Menghitung Likelihood <span class="math notranslate nohighlight">\(P(X \mid C)\)</span><a class="headerlink" href="#menghitung-likelihood-p-x-mid-c" title="Link to this heading">#</a></h3>
+<p>Langkah kedua adalah menghitung probabilitas setiap nilai atribut pada masing-masing kelas target.</p>
+<p><strong>A. Untuk Fitur Kategorikal (Gender, MTRANS, CAEC):</strong>
+Dihitung menggunakan probabilitas diskrit (frekuensi kemunculan).</p>
+<div class="math notranslate nohighlight">
+\[P(Gender=1 \mid C_i) = \frac{\text{Jumlah Female pada kelas } C_i}{\text{Total data pada kelas } C_i}\]</div>
+<p><strong>B. Untuk Fitur Numerik Kontinu (Weight):</strong>
+Karena <code class="docutils literal notranslate"><span class="pre">Weight</span></code> adalah data numerik yang diasumsikan berdistribusi normal (Gaussian), probabilitasnya tidak dihitung dari frekuensi, melainkan menggunakan fungsi <em>Probability Density Function</em> (PDF):</p>
+<div class="math notranslate nohighlight">
+\[P(Weight=0.45 \mid C_i) = \frac{1}{\sqrt{2\pi \sigma^2_{C_i}}} \exp \left( -\frac{(0.45 - \mu_{C_i})^2}{2\sigma^2_{C_i}} \right)\]</div>
+<p><em>Di mana:</em></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu_{C_i}\)</span> = Rata-rata (mean) atribut Weight pada kelas <span class="math notranslate nohighlight">\(C_i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{C_i}\)</span> = Varians atribut Weight pada kelas <span class="math notranslate nohighlight">\(C_i\)</span></p></li>
+</ul>
+</section>
+<section id="menghitung-probabilitas-posterior-p-c-mid-x">
+<h3>4. Menghitung Probabilitas Posterior <span class="math notranslate nohighlight">\(P(C \mid X)\)</span><a class="headerlink" href="#menghitung-probabilitas-posterior-p-c-mid-x" title="Link to this heading">#</a></h3>
+<p>Langkah terakhir adalah mengalikan nilai <em>Prior</em> dengan seluruh nilai <em>Likelihood</em> fitur untuk masing-masing kelas.</p>
+<p><em>Misal untuk kelas <code class="docutils literal notranslate"><span class="pre">Obesity_Type_I</span></code>:</em></p>
+<div class="math notranslate nohighlight">
+\[Posterior = P(Obesity\_Type\_I) \times P(Gender=1 \mid Obesity\_Type\_I) \times P(MTRANS=0 \mid Obesity\_Type\_I) \times P(CAEC=1 \mid Obesity\_Type\_I) \times P(Weight=0.45 \mid Obesity\_Type\_I)\]</div>
+<p>Perhitungan ini diulang untuk ke-7 kelas obesitas. Kelas dengan nilai <em>Posterior</em> tertinggi (paling maksimum) akan dipilih oleh model sebagai hasil akhir tebakan tingkat obesitas untuk pasien tersebut.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="jwb_uts.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Jawaban UTS</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-data-menggunakan-naive-bayes">Analisis Data Menggunakan Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-dataset">Karakteristik Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-transformasi-data">Preprocessing (Transformasi Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-encoding-data">1. Proses Encoding Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-normalisasi-data">2. Proses Normalisasi Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleksi-atribut-untuk-demonstrasi-manual">Seleksi Atribut untuk Demonstrasi Manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-digunakan">Atribut Yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-yang-tidak-digunakan">Atribut Yang Tidak Digunakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-transformasi-data">Hasil Transformasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-data-kategorikal">1. Encoding Data Kategorikal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-alur-kerja-workflow-knime">Implementasi Alur Kerja (Workflow) KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-akurasi-accuracy-statistics">1. Analisis Akurasi (Accuracy Statistics)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-tinggi-baik">Performa Tinggi (Baik)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-menengah">Performa Menengah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-rendah">Performa Rendah</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-confusion-matrix">2. Analisis Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonal-utama-prediksi-benar-true-positive">Diagonal Utama (Prediksi Benar / True Positive)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-kesalahan-misclassification">Sebaran Kesalahan (Misclassification)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-dan-kesimpulan-evaluasi">3. Insight dan Kesimpulan Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan-fitur">1. Keterbatasan Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlap-antar-kelas">2. Overlap Antar Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-baik-pada-kelas-ekstrem">3. Kinerja Baik pada Kelas Ekstrem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">4. Kesimpulan Akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-script-python-node-python-script">Implementasi Script Python (Node Python Script)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-perhitungan-manual-naive-bayes">Demonstrasi Perhitungan Manual Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-data-uji-data-dummy">1. Skenario Data Uji (Data Dummy)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-probabilitas-prior-p-c">2. Menghitung Probabilitas Prior <span class="math notranslate nohighlight">\(P(C)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-likelihood-p-x-mid-c">3. Menghitung Likelihood <span class="math notranslate nohighlight">\(P(X \mid C)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-probabilitas-posterior-p-c-mid-x">4. Menghitung Probabilitas Posterior <span class="math notranslate nohighlight">\(P(C \mid X)\)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By A. Choiril Anwar EL-Asfihani Risydan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
