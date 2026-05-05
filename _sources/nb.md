@@ -110,7 +110,7 @@ Proses analisis ini disusun menggunakan *node-based programming* di KNIME Analyt
 
 ## 1. Analisis Akurasi (Accuracy Statistics)
 
-![Accuracy Statistics Naive Bayes](img/accstk.png)
+![Accuracy Statistics Naive Bayes](img/accnb.png)
 
 Berdasarkan metrik evaluasi *Accuracy Statistics*, model Gaussian Naive Bayes yang dibangun menggunakan atribut terbatas memperoleh **Overall Accuracy sebesar 0.572 (57.2%)**. Artinya, dari seluruh data uji, model mampu mengklasifikasikan sekitar **57% data dengan benar**.
 
