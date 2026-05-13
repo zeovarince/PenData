@@ -705,38 +705,8 @@ Node <strong>Scorer</strong> membandingkan prediksi dengan label aktual pada dat
 <section id="tree-ensemble-statistics">
 <h4>Tree Ensemble Statistics<a class="headerlink" href="#tree-ensemble-statistics" title="Link to this heading">#</a></h4>
 <p>Node <strong>Tree Ensemble Statistics</strong> menampilkan ringkasan statistik dari 50 pohon yang telah dibangun:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>Metrik</p></th>
-<th class="head text-left"><p>Nilai</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p>Jumlah model</p></td>
-<td class="text-left"><p>50</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>Kedalaman minimal</p></td>
-<td class="text-left"><p>10</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>Kedalaman maksimal</p></td>
-<td class="text-left"><p>10</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>Kedalaman rata-rata</p></td>
-<td class="text-left"><p>10</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>Jumlah node minimal</p></td>
-<td class="text-left"><p>373</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>Jumlah node maksimal</p></td>
-<td class="text-left"><p>787</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>Rata-rata jumlah node</p></td>
-<td class="text-left"><p>582,04</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Seluruh 50 pohon memiliki kedalaman seragam yaitu <strong>10 level</strong>, menunjukkan bahwa setiap pohon mampu menangkap pola yang cukup kompleks. Variasi jumlah node (373 hingga 787) mencerminkan efek <em>random feature selection</em> — masing-masing pohon memiliki struktur yang unik karena mempertimbangkan kombinasi fitur yang berbeda di setiap pemisahan.</p>
+<p><img alt="Tree Ensemble Statistics" src="_images/tesrf.png" /></p>
+<p>seperti yang terlihat, kedalaman pohon berkisar antara 3 hingga 10 level, dengan rata-rata sekitar 6 level. Jumlah node per pohon juga bervariasi, menunjukkan bahwa setiap pohon memiliki struktur yang berbeda-beda karena mekanisme randomisasi.</p>
 </section>
 <section id="scorer-javascript-random-forest">
 <h4>Scorer (JavaScript) — Random Forest<a class="headerlink" href="#scorer-javascript-random-forest" title="Link to this heading">#</a></h4>

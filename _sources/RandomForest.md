@@ -169,17 +169,9 @@ Node ini menerapkan model ensemble ke data test. Berbeda dari Decision Tree, set
 
 Node **Tree Ensemble Statistics** menampilkan ringkasan statistik dari 50 pohon yang telah dibangun:
 
-| Metrik | Nilai |
-| :--- | :--- |
-| Jumlah model | 50 |
-| Kedalaman minimal | 10 |
-| Kedalaman maksimal | 10 |
-| Kedalaman rata-rata | 10 |
-| Jumlah node minimal | 373 |
-| Jumlah node maksimal | 787 |
-| Rata-rata jumlah node | 582,04 |
+![Tree Ensemble Statistics](img/tesrf.png)
 
-Seluruh 50 pohon memiliki kedalaman seragam yaitu **10 level**, menunjukkan bahwa setiap pohon mampu menangkap pola yang cukup kompleks. Variasi jumlah node (373 hingga 787) mencerminkan efek *random feature selection* — masing-masing pohon memiliki struktur yang unik karena mempertimbangkan kombinasi fitur yang berbeda di setiap pemisahan.
+seperti yang terlihat, kedalaman pohon berkisar antara 3 hingga 10 level, dengan rata-rata sekitar 6 level. Jumlah node per pohon juga bervariasi, menunjukkan bahwa setiap pohon memiliki struktur yang berbeda-beda karena mekanisme randomisasi.
 
 #### Scorer (JavaScript) — Random Forest
 
