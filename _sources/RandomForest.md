@@ -126,10 +126,28 @@ Node **Decision Tree Predictor** menerapkan model yang sudah dilatih ke data tes
 
 #### Scorer (JavaScript) Decision Tree
 
-![confusion matrix](img/scorerrf.png)
-![accuracy](img/accrf.png)
-Node **Scorer** membandingkan prediksi dengan label aktual pada data test, menghasilkan *Confusion Matrix* dan metrik evaluasi seperti akurasi, precision, dan recall.
+![Confusion Matrix Decision Tree](img/scorerdt.png)
+![Accuracy Decision Tree](img/accdt.png)
 
+Node **Scorer** membandingkan hasil prediksi Decision Tree dengan label aktual pada data test.
+Dari *Confusion Matrix* yang dihasilkan:
+
+|  | **Prediksi: Female** | **Prediksi: Male** |
+| :--- | :---: | :---: |
+| **Aktual: Female** | 1.374 *(True Positive)* | 686 *(False Negative)* |
+| **Aktual: Male** | 464 *(False Positive)* | 3.819 *(True Negative)* |
+
+Metrik evaluasi per kelas:
+
+| Kelas | Precision | Recall | F-measure |
+| :--- | :---: | :---: | :---: |
+| Female | 0.748 | 0.667 | 0.705 |
+| Male | 0.848 | 0.892 | 0.869 |
+
+Total prediksi benar: 1.374 + 3.819 = **5.193** dari 6.343 data uji,
+menghasilkan akurasi sekitar **81,9%**. Performa model untuk kelas **Male**
+jauh lebih baik dibanding **Female** karena jumlah data Male lebih dominan
+dalam dataset, sehingga Decision Tree lebih "terlatih" mengenali pola kelas tersebut.
 ---
 
 ### Blok 2 Random Forest (Ensemble 50 Pohon)
@@ -167,24 +185,53 @@ Node ini menerapkan model ensemble ke data test. Berbeda dari Decision Tree, set
 
 #### Tree Ensemble Statistics
 
-Node **Tree Ensemble Statistics** menampilkan ringkasan statistik dari 50 pohon yang telah dibangun:
-
 ![Tree Ensemble Statistics](img/tesrf.png)
 
-seperti yang terlihat, kedalaman pohon berkisar antara 3 hingga 10 level, dengan rata-rata sekitar 6 level. Jumlah node per pohon juga bervariasi, menunjukkan bahwa setiap pohon memiliki struktur yang berbeda-beda karena mekanisme randomisasi.
+Node **Tree Ensemble Statistics** menampilkan ringkasan statistik dari 50 pohon
+yang telah dibangun oleh Random Forest:
+
+| Metrik | Nilai |
+| :--- | :--- |
+| Jumlah model | 50 |
+| Kedalaman minimal | 29 |
+| Kedalaman maksimal | 42 |
+| Kedalaman rata-rata | 35,64 |
+| Jumlah node minimal | 3.845 |
+| Jumlah node maksimal | 4.657 |
+| Rata-rata jumlah node | 4.214,88 |
+
+Berbeda dari Decision Tree tunggal, setiap pohon dalam ensemble ini memiliki kedalaman yang bervariasi antara **29 hingga 42 level** dengan rata-rata 35,64. Variasi ini mencerminkan efek *bootstrap sampling* dan *random feature selection* masing-masing pohon dilatih pada subset data yang berbeda sehingga menghasilkan struktur pohon yang unik. Rata-rata 4.214 node per pohon menunjukkan bahwa setiap pohon cukup kompleks untuk menangkap pola-pola detail dalam data.
 
 #### Scorer (JavaScript) — Random Forest
 
-Evaluasi model Random Forest pada data uji menghasilkan *Confusion Matrix* berikut:
+![Confusion Matrix Random Forest](img/cmrf.png)
+![Accuracy Random Forest](img/csrf.png)
 
-![confusion matrix RF](img/cmrf.png)
+Node **Scorer** mengevaluasi prediksi Random Forest terhadap label aktual pada data test.
+Dari *Confusion Matrix* yang dihasilkan:
 
-![accuracy RF](img/csrf.png)
-Model berhasil mengklasifikasikan jenis kelamin dengan akurasi **84,7%** (5.519 prediksi benar dari 6.513 total data uji). Performa untuk kelas **Male** lebih tinggi karena jumlah data Male dalam dataset memang lebih banyak, sehingga model lebih "terlatih" mengenali pola kelas tersebut.
+|  | **Prediksi: Female** | **Prediksi: Male** |
+| :--- | :---: | :---: |
+| **Aktual: Female** | 1.582 *(True Positive)* | 572 *(False Negative)* |
+| **Aktual: Male** | 404 *(False Positive)* | 3.955 *(True Negative)* |
 
+Metrik evaluasi per kelas:
+
+| Kelas | Precision | Recall | F-measure |
+| :--- | :---: | :---: | :---: |
+| Female | 0.797 | 0.734 | 0.764 |
+| Male | 0.874 | 0.907 | 0.890 |
+
+Total prediksi benar: 1.582 + 3.955 = **5.537** dari 6.513 data uji,
+menghasilkan akurasi **85,0%**. Dibandingkan Decision Tree (81,9%),
+Random Forest meningkat sekitar **+3,1%** — bukti bahwa mekanisme
+ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual.
+Performa kelas **Female** juga meningkat signifikan dari Precision 0.748
+(DT) menjadi **0.797** (RF), menunjukkan model ensemble lebih baik
+dalam mengenali pola kelas minoritas.
 ---
 
-### Blok 3 — Export PMML (Opsional)
+### Blok 3 Export PMML (Opsional)
 
 Blok terakhir menyediakan opsi untuk mengekspor model ke format standar industri agar bisa digunakan di luar KNIME.
 
@@ -204,7 +251,7 @@ Node **Table to PMML Ensemble** mengonversi model tersebut ke format **PMML (Pre
 
 Decision Tree adalah algoritma supervised learning yang membangun struktur pohon di mana setiap *internal node* merepresentasikan sebuah tes pada suatu fitur, setiap *branch* merepresentasikan hasil tes tersebut, dan setiap *leaf node* merepresentasikan kelas prediksi akhir.
 
-Kekuatan utama Decision Tree adalah **interpretabilitasnya** — hasil model dapat divisualisasikan dan dipahami secara intuitif. Namun kelemahannya adalah kecenderungan terhadap *overfitting*, terutama ketika pohon dibiarkan tumbuh tanpa batas (tanpa pruning) pada dataset besar.
+Kekuatan utama Decision Tree adalah **interpretabilitasnya** hasil model dapat divisualisasikan dan dipahami secara intuitif. Namun kelemahannya adalah kecenderungan terhadap *overfitting*, terutama ketika pohon dibiarkan tumbuh tanpa batas (tanpa pruning) pada dataset besar.
 
 ### Random Forest
 
@@ -232,7 +279,7 @@ Kombinasi keduanya menghasilkan pohon-pohon yang **beragam namun tetap akurat**,
 
 Melalui analisis ini, dua pendekatan klasifikasi dibandingkan pada dataset Adult Census menggunakan KNIME:
 
-**Decision Tree** menghasilkan model yang mudah diinterpretasi. Visualisasi pohon menunjukkan bahwa atribut `relationship` menjadi pemisah utama karena korelasinya yang kuat dengan variabel target `sex` — nilai `Husband` hampir seluruhnya `Male`, sedangkan `Wife` hampir seluruhnya `Female`. Namun, pohon tunggal tanpa pruning rentan terhadap *overfitting* pada dataset sebesar ini.
+**Decision Tree** menghasilkan model yang mudah diinterpretasi. Visualisasi pohon menunjukkan bahwa atribut `relationship` menjadi pemisah utama karena korelasinya yang kuat dengan variabel target `sex` nilai `Husband` hampir seluruhnya `Male`, sedangkan `Wife` hampir seluruhnya `Female`. Namun, pohon tunggal tanpa pruning rentan terhadap *overfitting* pada dataset sebesar ini.
 
 **Random Forest dengan 50 pohon** menghasilkan akurasi **84,7%** pada data uji. Keseragaman kedalaman pohon (10 level) dan variasi struktur tiap pohon (373–787 node) mencerminkan bahwa setiap pohon telah mempelajari pola yang berbeda-beda berkat mekanisme bootstrap dan random feature selection. Hasilnya, model ensemble jauh lebih robust dibanding pohon tunggal.
 
