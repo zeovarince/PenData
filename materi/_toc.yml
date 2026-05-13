@@ -25,3 +25,4 @@ chapters:
 - file: jwb_uts
 - file: nb
 - file: GR
+- file: RandomForest
