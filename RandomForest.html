@@ -410,12 +410,6 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-javascript-decision-tree">Scorer (JavaScript) Decision Tree</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#total-prediksi-benar-1-374-3-819-5-193-dari-6-343-data-uji-menghasilkan-akurasi-sekitar-81-9-performa-model-untuk-kelas-male-jauh-lebih-baik-dibanding-female-karena-jumlah-data-male-lebih-dominan-dalam-dataset-sehingga-decision-tree-lebih-terlatih-mengenali-pola-kelas-tersebut">Total prediksi benar: 1.374 + 3.819 = <strong>5.193</strong> dari 6.343 data uji,
-menghasilkan akurasi sekitar <strong>81,9%</strong>. Performa model untuk kelas <strong>Male</strong>
-jauh lebih baik dibanding <strong>Female</strong> karena jumlah data Male lebih dominan
-dalam dataset, sehingga Decision Tree lebih “terlatih” mengenali pola kelas tersebut.</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blok-2-random-forest-ensemble-50-pohon">Blok 2 Random Forest (Ensemble 50 Pohon)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">Random Forest Learner</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">Random Forest Predictor</a></li>
@@ -423,15 +417,6 @@ dalam dataset, sehingga Decision Tree lebih “terlatih” mengenali pola kelas 
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-javascript-random-forest">Scorer (JavaScript) — Random Forest</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#total-prediksi-benar-1-582-3-955-5-537-dari-6-513-data-uji-menghasilkan-akurasi-85-0-dibandingkan-decision-tree-81-9-random-forest-meningkat-sekitar-3-1-bukti-bahwa-mekanisme-ensemble-50-pohon-berhasil-mengurangi-kesalahan-prediksi-individual-performa-kelas-female-juga-meningkat-signifikan-dari-precision-0-748-dt-menjadi-0-797-rf-menunjukkan-model-ensemble-lebih-baik-dalam-mengenali-pola-kelas-minoritas">Total prediksi benar: 1.582 + 3.955 = <strong>5.537</strong> dari 6.513 data uji,
-menghasilkan akurasi <strong>85,0%</strong>. Dibandingkan Decision Tree (81,9%),
-Random Forest meningkat sekitar <strong>+3,1%</strong> — bukti bahwa mekanisme
-ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual.
-Performa kelas <strong>Female</strong> juga meningkat signifikan dari Precision 0.748
-(DT) menjadi <strong>0.797</strong> (RF), menunjukkan model ensemble lebih baik
-dalam mengenali pola kelas minoritas.</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blok-3-export-pmml-opsional">Blok 3 Export PMML (Opsional)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-ensemble-model-extract">Tree Ensemble Model Extract</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-to-pmml-ensemble">Table to PMML Ensemble</a></li>
@@ -714,14 +699,10 @@ Dari <em>Confusion Matrix</em> yang dihasilkan:</p>
 </tbody>
 </table>
 </div>
+<p>Total prediksi benar: 1.374 + 3.819 = <strong>5.193</strong> dari 6.343 data uji, menghasilkan akurasi sekitar <strong>81,9%</strong>. Performa model untuk kelas <strong>Male</strong> jauh lebih baik dibanding <strong>Female</strong> karena jumlah data Male lebih dominan dalam dataset, sehingga Decision Tree lebih “terlatih” mengenali pola kelas tersebut.</p>
 </section>
 </section>
-</section>
-<section id="total-prediksi-benar-1-374-3-819-5-193-dari-6-343-data-uji-menghasilkan-akurasi-sekitar-81-9-performa-model-untuk-kelas-male-jauh-lebih-baik-dibanding-female-karena-jumlah-data-male-lebih-dominan-dalam-dataset-sehingga-decision-tree-lebih-terlatih-mengenali-pola-kelas-tersebut">
-<h2>Total prediksi benar: 1.374 + 3.819 = <strong>5.193</strong> dari 6.343 data uji,
-menghasilkan akurasi sekitar <strong>81,9%</strong>. Performa model untuk kelas <strong>Male</strong>
-jauh lebih baik dibanding <strong>Female</strong> karena jumlah data Male lebih dominan
-dalam dataset, sehingga Decision Tree lebih “terlatih” mengenali pola kelas tersebut.<a class="headerlink" href="#total-prediksi-benar-1-374-3-819-5-193-dari-6-343-data-uji-menghasilkan-akurasi-sekitar-81-9-performa-model-untuk-kelas-male-jauh-lebih-baik-dibanding-female-karena-jumlah-data-male-lebih-dominan-dalam-dataset-sehingga-decision-tree-lebih-terlatih-mengenali-pola-kelas-tersebut" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
 <section id="blok-2-random-forest-ensemble-50-pohon">
 <h3>Blok 2 Random Forest (Ensemble 50 Pohon)<a class="headerlink" href="#blok-2-random-forest-ensemble-50-pohon" title="Link to this heading">#</a></h3>
 <p>Blok kedua menggunakan pendekatan <em>ensemble</em> dengan membangun 50 pohon keputusan secara bersamaan, lalu menggabungkan prediksi semua pohon melalui <em>majority voting</em>.</p>
@@ -851,17 +832,10 @@ Dari <em>Confusion Matrix</em> yang dihasilkan:</p>
 </tbody>
 </table>
 </div>
+<p>Total prediksi benar: 1.582 + 3.955 = <strong>5.537</strong> dari 6.513 data uji,menghasilkan akurasi <strong>85,0%</strong>. Dibandingkan Decision Tree (81,9%),Random Forest meningkat sekitar <strong>+3,1%</strong> — bukti bahwa mekanisme ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual. Performa kelas <strong>Female</strong> juga meningkat signifikan dari Precision 0.748 (DT)menjadi <strong>0.797</strong> (RF), menunjukkan model ensemble lebih baik dalam mengenali pola kelas minoritas.</p>
 </section>
 </section>
-</section>
-<section id="total-prediksi-benar-1-582-3-955-5-537-dari-6-513-data-uji-menghasilkan-akurasi-85-0-dibandingkan-decision-tree-81-9-random-forest-meningkat-sekitar-3-1-bukti-bahwa-mekanisme-ensemble-50-pohon-berhasil-mengurangi-kesalahan-prediksi-individual-performa-kelas-female-juga-meningkat-signifikan-dari-precision-0-748-dt-menjadi-0-797-rf-menunjukkan-model-ensemble-lebih-baik-dalam-mengenali-pola-kelas-minoritas">
-<h2>Total prediksi benar: 1.582 + 3.955 = <strong>5.537</strong> dari 6.513 data uji,
-menghasilkan akurasi <strong>85,0%</strong>. Dibandingkan Decision Tree (81,9%),
-Random Forest meningkat sekitar <strong>+3,1%</strong> — bukti bahwa mekanisme
-ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual.
-Performa kelas <strong>Female</strong> juga meningkat signifikan dari Precision 0.748
-(DT) menjadi <strong>0.797</strong> (RF), menunjukkan model ensemble lebih baik
-dalam mengenali pola kelas minoritas.<a class="headerlink" href="#total-prediksi-benar-1-582-3-955-5-537-dari-6-513-data-uji-menghasilkan-akurasi-85-0-dibandingkan-decision-tree-81-9-random-forest-meningkat-sekitar-3-1-bukti-bahwa-mekanisme-ensemble-50-pohon-berhasil-mengurangi-kesalahan-prediksi-individual-performa-kelas-female-juga-meningkat-signifikan-dari-precision-0-748-dt-menjadi-0-797-rf-menunjukkan-model-ensemble-lebih-baik-dalam-mengenali-pola-kelas-minoritas" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
 <section id="blok-3-export-pmml-opsional">
 <h3>Blok 3 Export PMML (Opsional)<a class="headerlink" href="#blok-3-export-pmml-opsional" title="Link to this heading">#</a></h3>
 <p>Blok terakhir menyediakan opsi untuk mengekspor model ke format standar industri agar bisa digunakan di luar KNIME.</p>
@@ -1010,12 +984,6 @@ dalam mengenali pola kelas minoritas.<a class="headerlink" href="#total-prediksi
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-javascript-decision-tree">Scorer (JavaScript) Decision Tree</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#total-prediksi-benar-1-374-3-819-5-193-dari-6-343-data-uji-menghasilkan-akurasi-sekitar-81-9-performa-model-untuk-kelas-male-jauh-lebih-baik-dibanding-female-karena-jumlah-data-male-lebih-dominan-dalam-dataset-sehingga-decision-tree-lebih-terlatih-mengenali-pola-kelas-tersebut">Total prediksi benar: 1.374 + 3.819 = <strong>5.193</strong> dari 6.343 data uji,
-menghasilkan akurasi sekitar <strong>81,9%</strong>. Performa model untuk kelas <strong>Male</strong>
-jauh lebih baik dibanding <strong>Female</strong> karena jumlah data Male lebih dominan
-dalam dataset, sehingga Decision Tree lebih “terlatih” mengenali pola kelas tersebut.</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blok-2-random-forest-ensemble-50-pohon">Blok 2 Random Forest (Ensemble 50 Pohon)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-learner">Random Forest Learner</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-predictor">Random Forest Predictor</a></li>
@@ -1023,15 +991,6 @@ dalam dataset, sehingga Decision Tree lebih “terlatih” mengenali pola kelas 
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scorer-javascript-random-forest">Scorer (JavaScript) — Random Forest</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#total-prediksi-benar-1-582-3-955-5-537-dari-6-513-data-uji-menghasilkan-akurasi-85-0-dibandingkan-decision-tree-81-9-random-forest-meningkat-sekitar-3-1-bukti-bahwa-mekanisme-ensemble-50-pohon-berhasil-mengurangi-kesalahan-prediksi-individual-performa-kelas-female-juga-meningkat-signifikan-dari-precision-0-748-dt-menjadi-0-797-rf-menunjukkan-model-ensemble-lebih-baik-dalam-mengenali-pola-kelas-minoritas">Total prediksi benar: 1.582 + 3.955 = <strong>5.537</strong> dari 6.513 data uji,
-menghasilkan akurasi <strong>85,0%</strong>. Dibandingkan Decision Tree (81,9%),
-Random Forest meningkat sekitar <strong>+3,1%</strong> — bukti bahwa mekanisme
-ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual.
-Performa kelas <strong>Female</strong> juga meningkat signifikan dari Precision 0.748
-(DT) menjadi <strong>0.797</strong> (RF), menunjukkan model ensemble lebih baik
-dalam mengenali pola kelas minoritas.</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blok-3-export-pmml-opsional">Blok 3 Export PMML (Opsional)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-ensemble-model-extract">Tree Ensemble Model Extract</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-to-pmml-ensemble">Table to PMML Ensemble</a></li>
