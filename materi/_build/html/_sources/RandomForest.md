@@ -144,10 +144,9 @@ Metrik evaluasi per kelas:
 | Female | 0.748 | 0.667 | 0.705 |
 | Male | 0.848 | 0.892 | 0.869 |
 
-Total prediksi benar: 1.374 + 3.819 = **5.193** dari 6.343 data uji,
-menghasilkan akurasi sekitar **81,9%**. Performa model untuk kelas **Male**
-jauh lebih baik dibanding **Female** karena jumlah data Male lebih dominan
-dalam dataset, sehingga Decision Tree lebih "terlatih" mengenali pola kelas tersebut.
+
+Total prediksi benar: 1.374 + 3.819 = **5.193** dari 6.343 data uji, menghasilkan akurasi sekitar **81,9%**. Performa model untuk kelas **Male** jauh lebih baik dibanding **Female** karena jumlah data Male lebih dominan dalam dataset, sehingga Decision Tree lebih "terlatih" mengenali pola kelas tersebut.
+
 ---
 
 ### Blok 2 Random Forest (Ensemble 50 Pohon)
@@ -222,13 +221,9 @@ Metrik evaluasi per kelas:
 | Female | 0.797 | 0.734 | 0.764 |
 | Male | 0.874 | 0.907 | 0.890 |
 
-Total prediksi benar: 1.582 + 3.955 = **5.537** dari 6.513 data uji,
-menghasilkan akurasi **85,0%**. Dibandingkan Decision Tree (81,9%),
-Random Forest meningkat sekitar **+3,1%** — bukti bahwa mekanisme
-ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual.
-Performa kelas **Female** juga meningkat signifikan dari Precision 0.748
-(DT) menjadi **0.797** (RF), menunjukkan model ensemble lebih baik
-dalam mengenali pola kelas minoritas.
+
+Total prediksi benar: 1.582 + 3.955 = **5.537** dari 6.513 data uji,menghasilkan akurasi **85,0%**. Dibandingkan Decision Tree (81,9%),Random Forest meningkat sekitar **+3,1%** — bukti bahwa mekanisme ensemble 50 pohon berhasil mengurangi kesalahan prediksi individual. Performa kelas **Female** juga meningkat signifikan dari Precision 0.748 (DT)menjadi **0.797** (RF), menunjukkan model ensemble lebih baik dalam mengenali pola kelas minoritas.
+
 ---
 
 ### Blok 3 Export PMML (Opsional)
