@@ -433,7 +433,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-dan-rekomendasi">8. Kesimpulan dan Rekomendasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-utama">Temuan Utama</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-untuk-pengembangan">Rekomendasi untuk Pengembangan</a></li>
 </ul>
 </li>
 </ul>
@@ -1105,16 +1104,6 @@ NO2(t-15)    0.0926   ← terendah
 <li><p><strong>KNN Optimal di 4 Lag:</strong> Penambahan lag justru menurunkan performa karena <em>curse of dimensionality</em>. Model dengan 4 fitur lag menghasilkan RMSE = 0.1757 dan MAPE = 31.97%.</p></li>
 </ol>
 </section>
-<section id="rekomendasi-untuk-pengembangan">
-<h3>Rekomendasi untuk Pengembangan<a class="headerlink" href="#rekomendasi-untuk-pengembangan" title="Link to this heading">#</a></h3>
-<p>Untuk meningkatkan akurasi peramalan NO₂, beberapa langkah dapat dipertimbangkan:</p>
-<ul class="simple">
-<li><p><strong>Tambahkan fitur meteorologi</strong> seperti kecepatan angin, curah hujan, suhu permukaan, dan kelembaban dari sumber seperti ERA5 (Copernicus Climate Data Store)</p></li>
-<li><p><strong>Coba model yang lebih canggih</strong> seperti LSTM (Long Short-Term Memory) atau Prophet yang dirancang khusus untuk time series dengan pola musiman</p></li>
-<li><p><strong>Pertimbangkan dekomposisi musiman</strong> (STL decomposition) untuk memisahkan komponen tren, musiman, dan residual sebelum modeling</p></li>
-<li><p><strong>Hyperparameter tuning</strong> nilai K pada KNN menggunakan cross-validation untuk menemukan K optimal</p></li>
-</ul>
-</section>
 </section>
 </section>
 
@@ -1207,7 +1196,6 @@ NO2(t-15)    0.0926   ← terendah
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-dan-rekomendasi">8. Kesimpulan dan Rekomendasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-utama">Temuan Utama</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-untuk-pengembangan">Rekomendasi untuk Pengembangan</a></li>
 </ul>
 </li>
 </ul>

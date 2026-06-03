@@ -706,12 +706,3 @@ Model 30 lag justru memberikan R² negatif (-0.10), artinya prediksinya lebih bu
 4. **Autokorelasi Kuat di Lag Pendek:** Korelasi lag-1 (0.644) jauh lebih kuat daripada lag yang lebih panjang, menunjukkan bahwa nilai hari sebelumnya adalah prediktor terbaik untuk hari ini.
 
 5. **KNN Optimal di 4 Lag:** Penambahan lag justru menurunkan performa karena *curse of dimensionality*. Model dengan 4 fitur lag menghasilkan RMSE = 0.1757 dan MAPE = 31.97%.
-
-### Rekomendasi untuk Pengembangan
-
-Untuk meningkatkan akurasi peramalan NO₂, beberapa langkah dapat dipertimbangkan:
-
-- **Tambahkan fitur meteorologi** seperti kecepatan angin, curah hujan, suhu permukaan, dan kelembaban dari sumber seperti ERA5 (Copernicus Climate Data Store)
-- **Coba model yang lebih canggih** seperti LSTM (Long Short-Term Memory) atau Prophet yang dirancang khusus untuk time series dengan pola musiman
-- **Pertimbangkan dekomposisi musiman** (STL decomposition) untuk memisahkan komponen tren, musiman, dan residual sebelum modeling
-- **Hyperparameter tuning** nilai K pada KNN menggunakan cross-validation untuk menemukan K optimal
