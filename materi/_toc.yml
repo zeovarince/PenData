@@ -28,3 +28,4 @@ chapters:
 - file: RandomForest
 - file: regresi
 - file: no2_bangkalan
+- file: explainability_skforecast
