@@ -554,16 +554,35 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 </pre></div>
 </div>
 <p>Matriks training ini dibuat secara otomatis oleh skforecast menggunakan metode:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">create_train_X_y</span><span class="p">(</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">create_train_X_y</span><span class="p">(</span>
     <span class="n">y</span>    <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Demand&#39;</span><span class="p">],</span>
     <span class="n">exog</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">create_train_X_y</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">y</span>    <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Demand&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">exog</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;forecaster&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="kode-pembuatan-dan-pelatihan-model">
 <h3>Kode Pembuatan dan Pelatihan Model<a class="headerlink" href="#kode-pembuatan-dan-pelatihan-model" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.inspection</span><span class="w"> </span><span class="kn">import</span> <span class="n">permutation_importance</span><span class="p">,</span> <span class="n">PartialDependenceDisplay</span>
@@ -590,6 +609,8 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
     <span class="n">exog</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -654,9 +675,13 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 <section id="tahap-2-feature-importance-bawaan-model">
 <h3>Tahap 2: Feature Importance (Bawaan Model)<a class="headerlink" href="#tahap-2-feature-importance-bawaan-model" title="Link to this heading">#</a></h3>
 <p>Metode pertama untuk memahami model adalah <strong>feature importance bawaan</strong> LightGBM.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mendapatkan feature importance dari model</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mendapatkan feature importance dari model</span>
 <span class="n">feature_importances</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">get_feature_importances</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p>LightGBM menghitung seberapa sering sebuah fitur digunakan sebagai titik split di pohon keputusan. Fitur dengan split lebih banyak dianggap lebih penting.</p>
 <p><strong>Insight yang bisa diperoleh:</strong> Apakah lag terdekat (lag_1, lag_2) lebih berpengaruh daripada lag yang jauh (lag_7)? Apakah suhu lebih penting dari nilai historis demand?</p>
@@ -670,7 +695,9 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 <li><p>Hitung lagi performa model — performa yang turun = fitur itu penting</p></li>
 <li><p>Ulangi untuk setiap fitur</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.inspection</span><span class="w"> </span><span class="kn">import</span> <span class="n">permutation_importance</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.inspection</span><span class="w"> </span><span class="kn">import</span> <span class="n">permutation_importance</span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">create_train_X_y</span><span class="p">(</span>
     <span class="n">y</span>    <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Demand&#39;</span><span class="p">],</span>
@@ -693,13 +720,17 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 <span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;mean_importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
 <p><strong>Keunggulan:</strong> Tidak bergantung pada struktur model, sehingga lebih adil dan dapat dibandingkan antar model yang berbeda.</p>
 </section>
 <section id="tahap-4-shap-values-shapley-additive-explanations">
 <h3>Tahap 4: SHAP Values (SHapley Additive exPlanations)<a class="headerlink" href="#tahap-4-shap-values-shapley-additive-explanations" title="Link to this heading">#</a></h3>
 <p>SHAP adalah metode yang paling komprehensif. Ia menghitung <strong>kontribusi masing-masing fitur terhadap setiap prediksi individu</strong>, bukan hanya rata-rata global.</p>
 <p><strong>Konsep dasar SHAP:</strong> Berasal dari teori permainan (game theory). Setiap fitur dianggap sebagai “pemain” dalam tim, dan SHAP menghitung kontribusi adil setiap pemain terhadap “kemenangan” (hasil prediksi) berdasarkan semua kombinasi fitur yang mungkin.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
 
 <span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
 
@@ -717,6 +748,8 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
     <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 <span class="p">)</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p><strong>Visualisasi yang dihasilkan:</strong></p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -742,7 +775,9 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 <section id="tahap-5-partial-dependence-plot-pdp">
 <h3>Tahap 5: Partial Dependence Plot (PDP)<a class="headerlink" href="#tahap-5-partial-dependence-plot-pdp" title="Link to this heading">#</a></h3>
 <p>PDP menunjukkan <strong>bagaimana perubahan nilai satu fitur mempengaruhi prediksi</strong>, dengan semua fitur lain dipegang konstan (dirata-ratakan).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.inspection</span><span class="w"> </span><span class="kn">import</span> <span class="n">PartialDependenceDisplay</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.inspection</span><span class="w"> </span><span class="kn">import</span> <span class="n">PartialDependenceDisplay</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">PartialDependenceDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
@@ -754,6 +789,8 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p><strong>Contoh insight dari PDP:</strong></p>
 <ul class="simple">

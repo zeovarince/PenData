@@ -85,7 +85,7 @@ t=10     D10      → D9     D8     D7     D6     D5     D4     D3     T10   | D
 
 Matriks training ini dibuat secara otomatis oleh skforecast menggunakan metode:
 
-```python runnable
+```{code-cell} ipython3
 X_train, y_train = forecaster.create_train_X_y(
     y    = data_train['Demand'],
     exog = data_train['Temperature']
@@ -94,7 +94,7 @@ X_train, y_train = forecaster.create_train_X_y(
 
 ### Kode Pembuatan dan Pelatihan Model
 
-```python runnable
+```{code-cell} ipython3
 import pandas as pd
 import matplotlib.pyplot as plt
 import shap
@@ -184,7 +184,7 @@ Analisis pada tutorial ini terdiri dari **empat tahap utama**, yaitu:
 
 Metode pertama untuk memahami model adalah **feature importance bawaan** LightGBM.
 
-```python runnable
+```{code-cell} ipython3
 # Mendapatkan feature importance dari model
 feature_importances = forecaster.get_feature_importances()
 ```
@@ -202,7 +202,7 @@ LightGBM menghitung seberapa sering sebuah fitur digunakan sebagai titik split d
 3. Hitung lagi performa model — performa yang turun = fitur itu penting
 4. Ulangi untuk setiap fitur
 
-```python runnable
+```{code-cell} ipython3
 from sklearn.inspection import permutation_importance
 
 X_train, y_train = forecaster.create_train_X_y(
@@ -234,7 +234,7 @@ SHAP adalah metode yang paling komprehensif. Ia menghitung **kontribusi masing-m
 
 **Konsep dasar SHAP:** Berasal dari teori permainan (game theory). Setiap fitur dianggap sebagai "pemain" dalam tim, dan SHAP menghitung kontribusi adil setiap pemain terhadap "kemenangan" (hasil prediksi) berdasarkan semua kombinasi fitur yang mungkin.
 
-```python runnable
+```{code-cell} ipython3
 import shap
 
 shap.initjs()
@@ -266,7 +266,7 @@ shap.force_plot(
 
 PDP menunjukkan **bagaimana perubahan nilai satu fitur mempengaruhi prediksi**, dengan semua fitur lain dipegang konstan (dirata-ratakan).
 
-```python runnable
+```{code-cell} ipython3
 from sklearn.inspection import PartialDependenceDisplay
 
 fig, ax = plt.subplots(figsize=(10, 4))
