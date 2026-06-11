@@ -1,10 +1,20 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Explainability pada Model Forecasting dengan Skforecast
 
 > **Sumber Referensi:** [https://skforecast.org/0.15.1/user_guides/explainability.html](https://skforecast.org/0.15.1/user_guides/explainability.html)  
-> **Mata Kuliah:** Penambangan Data  
-> **Nama:** *(isi nama)*  
-> **NIM:** *(isi NIM)*
-
 ---
 
 ## 1. Analisis Prediksi Tentang Apa?
