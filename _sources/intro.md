@@ -8,7 +8,7 @@
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"></img>
 
 <p align="center">
-  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExamxodTE0c3hzcW1mZW42NWt2MG05Z2JsbzU0MWljczNkeWc4cnNrNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/naoAQrL3DY0xEcEgbv/giphy.gif" width="100%" />
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExamxodTE0c3hzcW1mZW42NWt2MG05Z2JsbzU0MWljczNkeWc4cnNrNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/naoAQrL3DY0xEcEgbv/giphy.gif" width="50%" />
 </p>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"></img>
@@ -81,7 +81,9 @@
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"></img>
 
 
-<img src="https://raw.githubusercontent.com/Zeovarince/Zeovarince/snake-output/snake.svg" alt="Snake animation" />
+<img src="https://raw.githubusercontent.com/zeovarince/rielz-code/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" />
+
+<img src="https://raw.githubusercontent.com/zeovarince/rielz-code/output/pacman-contribution-graph.svg" alt="Pacman animation" />
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"></img>
 
